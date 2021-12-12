@@ -1,0 +1,40 @@
+<!DOCKTYPE html>
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>shufflestatus</title>
+    <style type="text/css">
+    <!--
+        table{
+            border-collapse: collapse;
+        }
+        th,td{
+            border: 1px darkgray solid;
+            padding: 0.2em 0.5em;
+        }
+    -->
+    </style>
+</head>
+<body>
+    <form th:object="${shuffleDetailForm}" th:action="@{/packs/shuffle/detail/update}" method="post">
+        <p>
+            <label="name">文字数</label>
+            <input type="text" th:field="*{wordSize}" th:errorclass="input-error">
+            <span style="color: red;" th:if="${#fields.hasErrors('*{wordSize}')}" th:errors="*{wordSize}"></span>
+        </p>
+        <p>
+            <label="name">単語数</label>
+            <input type="text" th:field="*{wordCount}" th:errorclass="input-error">
+            <span style="color: red;" th:if="${#fields.hasErrors('*{wordCount}')}" th:errors="*{wordCount}"></span>
+        </p>
+        <p>
+            <a th:href="@{/packs/shuffle/listReset}" ><input type="button" value="単語リストリセット" /></a>
+        </p>
+
+        <p>
+            <a th:href="@{/packs}"><input type="button" value="戻る" /></a>
+            <input id="update-form" type="submit" value="完了">
+        </p>
+    </form>
+</body>
+</html>

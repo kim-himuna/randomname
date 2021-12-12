@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>detail</title>
+    <style>
+        .input-error {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div th:object="${pack}">
+        <p th:text="*{getTitle().getValue()}"></p>
+        <p>ワード1:</p>
+        <p th:text="*{getWords().get(0).getCharacterString()}"></p>
+        <p>ワード2:</p>
+        <p th:text="*{getWords().get(1).getCharacterString()}"></p>
+        <p>ワード3:</p>
+        <p th:text="*{getWords().get(2).getCharacterString()}"></p>
+        <p>ワード4:</p>
+        <p th:text="*{getWords().get(3).getCharacterString()}"></p>
+        <p>ワード5:</p>
+        <p th:text="*{getWords().get(4).getCharacterString()}"></p>
+        <p>
+            <a th:href="@{/packs}"><input type="button" value="戻る"/></a>
+        </p>
+    </div>
+</body>
+
+</html>

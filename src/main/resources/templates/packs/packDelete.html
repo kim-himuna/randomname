@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>delete</title>
+    <style>
+        .input-error {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <form th:action="@{/packs/{id}/delete(id=${id})}" th:method="get">
+        <input type="submit" value="削除" />
+    </form>
+</body>
+
+</html>

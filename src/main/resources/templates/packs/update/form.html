@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>edit</title>
+    <style>
+        .input-error {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <form th:action="@{/packs/{packId}/update/register(packId=${packForm.getId()})}" th:object="${packForm}" method="post">
+        <p>
+            <label="name">パッケージ名</label>
+            <input type="text" th:name="*{title}" th:field="*{title}" th:errorclass="input-error">
+            <span style="color: red;" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+        </p>
+
+        <p th:each="word, stat: *{wordsForm}">
+            <label="name">ワード1</label>
+            <input type="text" th:field="*{wordsForm[__${stat.index}__].word}" th:errorclass="input-error">
+            <span style="color: red;" th:if="${#fields.hasErrors('*{wordsForm[__${stat.index}__].word}')}" th:errors="*{wordsForm[__${stat.index}__].word}"></span>
+        </p>
+       
+        <p>
+            <a th:href="@{/packs}"><input type="button" value="戻る" /></a>
+            <input id="update-form" type="submit" value="完了">
+        </p>
+    </form>
+</body>
+
+</html>

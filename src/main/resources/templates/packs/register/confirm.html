@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>edit</title>
+    <style>
+        .input-error {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <form th:action="@{/packs/register/register}" th:object="${packForm}" method="get">
+        <p>
+            <label="name">パッケージ名</label>
+            <p th:text="*{title}"></p>
+        </p>
+
+        <div th:each="word, stat: *{wordsForm}">
+            <label="name">ワード</label>
+            <p th:text="*{wordsForm[__${stat.index}__].word}"></p>
+        </div>
+       
+        <p>
+            <a th:href="@{/packs}"><input type="button" value="戻る" /></a>
+            <input type="submit" value="完了">
+        </p>
+    </form>
+</body>
+
+</html>
