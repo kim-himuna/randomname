@@ -11,6 +11,6 @@ public class DashboardController {
 
     @GetMapping
     public String show() {
-        return "top";
+        return "index";
     }
 }
