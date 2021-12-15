@@ -2,6 +2,7 @@ package example.presentation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -74,6 +75,7 @@ public class PackShuffleController {
         return "packs/shuffle/shuffleDetail";
     }
 
+    @Transactional
     @PostMapping("detail/update")
     public String shuffleDetailUpdate(@Validated @ModelAttribute ShuffleDetailForm shuffleDetailForm, BindingResult result,RedirectAttributes redirectAttrs){
 

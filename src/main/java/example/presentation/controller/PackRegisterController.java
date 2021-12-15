@@ -2,6 +2,7 @@ package example.presentation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -46,11 +47,13 @@ public class PackRegisterController {
         return "packs/register/form";
     }
 
+    @Transactional
     @GetMapping("input/again")
     public String showFormToModify(){
         return "packs/register/form";
     }
 
+    @Transactional
     @PostMapping("confirm")
     public String validate(@Validated @ModelAttribute("packForm") PackForm packForm, BindingResult result){
         if (result.hasErrors()){
