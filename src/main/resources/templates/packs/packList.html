@@ -16,7 +16,9 @@
     </style>
 </head>
 <body>
-
+    <a th:href="@{/packs/shuffle}"><input type="submit" value="シャッフル"/></a>
+    <a th:href="@{/packs/register}"><input type="submit" value="パッケージ作製"/></a>
+    <a th:href="@{/packs/shuffle/detail}"><input type="submit" value="シャッフル詳細"/></a>
 <table>
     <caption>word List</caption>
     <thead>
@@ -45,8 +47,5 @@
         <tr><td th:text="${pack.getWords().get(4).characterString.value}" /></tr>
     </tbody>
 </table>
-    <a th:href="@{/packs/shuffle}"><input type="submit" value="シャッフル"/></a>
-    <a th:href="@{/packs/register}"><input type="submit" value="パッケージ作製"/></a>
-    <a th:href="@{/packs/shuffle/detail}"><input type="submit" value="シャッフル詳細"/></a>
 </body>
 </html>
