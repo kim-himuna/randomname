@@ -16,9 +16,7 @@
     </style>
 </head>
 <body>
-    <a th:href="@{/packs/shuffle}"><input type="submit" value="シャッフル"/></a>
-    <a th:href="@{/packs/register}"><input type="submit" value="パッケージ作製"/></a>
-    <a th:href="@{/packs/shuffle/detail}"><input type="submit" value="シャッフル詳細"/></a>
+    <div id="header" th:replace="~{layout/header :: header}"></div>
 <table>
     <caption>word List</caption>
     <thead>
