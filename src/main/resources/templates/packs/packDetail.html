@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div id="header" th:replace="~{layout/header :: header}"></div>
+    <div id="header" th:replace="~{fragnments/header :: header}"></div>
     <div th:object="${pack}">
         <p th:text="*{getTitle().getValue()}"></p>
         <p>ワード1:</p>
