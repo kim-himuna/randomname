@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>ナビゲーションバー</title>
+    </head>
+
+    <body>
+        <header th:fragment="navigation(active)">
+            <nav class="navbar">
+                <div class="navbar-menu is-flux">
+                    <a class="navbar-item" th:classappend="${active.equals('トップ')} ? 'is-active' : ''" th:href="@{/}">
+                        <span>トップページ</span>
+                    </a>
+                </div>
+                <div class="navbar-menu is-flux">
+                    <a class="navbar-item" th:classappend="${active.equals('パック作成')} ? 'is-active' : ''" th:href="@{/packs/register}">
+                        <span>パック作成</span>
+                    </a>
+                </div>
+                <div class="navbar-menu is-flux">
+                    <a class="navbar-item" th:classappend="${active.equals('シャッフル結果')} ? 'is-active' : ''" th:href="@{/packs/shuffle}">
+                        <span>シャッフル結果</span>
+                    </a>
+                </div>
+                <div class="navbar-menu is-flux">
+                    <a class="navbar-item" th:classappend="${active.equals('シャッフル詳細')} ? 'is-active' : ''" th:href="@{/packs/shuffle/detail}">
+                        <span>シャッフル詳細</span>
+                    </a>
+                </div>
+            </nav>
+        </header>
+    </body>
+</html>
