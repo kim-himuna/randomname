@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: htmlhead(~{::title})">
     <meta charset="UTF-8">
-    <title>detail</title>
-    <style>
-        .input-error {
-            border: 1px solid red;
-        }
-    </style>
+    <title>パック詳細</title>
 </head>
 
 <body>
-    <div id="header" th:replace="~{fragnments/header :: header}"></div>
+<header th:replace="fragments/navigation::navigation('')"></header>
+
+<main class="container">
+    <header th:replace="{fragments/header :: header('パック詳細')}"></header>
     <div th:object="${pack}">
         <p th:text="*{getTitle().getValue()}"></p>
         <p>ワード1:</p>
@@ -28,6 +26,9 @@
             <a th:href="@{/packs}"><input type="button" value="戻る"/></a>
         </p>
     </div>
+</main>
+
+
 </body>
 
 </html>
