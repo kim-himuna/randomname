@@ -41,7 +41,7 @@ public class PackShuffleController {
 
         redirectAttrs.addFlashAttribute("shuffleSession",shuffleSession);
 
-        return "redirect:/packs";
+        return "redirect:/";
     }
 
     @GetMapping()
@@ -62,7 +62,7 @@ public class PackShuffleController {
         
         System.out.println("redirectpacks");
 
-        return "redirect:/packs";
+        return "redirect:/";
     }
 
 
@@ -92,7 +92,7 @@ public class PackShuffleController {
 
         redirectAttrs.addFlashAttribute("shuffleSession",shuffleSession);
 
-        return "redirect:/packs";
+        return "redirect:/";
     }
 
     @GetMapping("listReset")

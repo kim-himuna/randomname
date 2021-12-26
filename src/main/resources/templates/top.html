@@ -2,7 +2,7 @@
 <html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>shuffleResult</title>
+    <title>Top page</title>
     <style type="text/css">
     <!--
         table{
@@ -16,8 +16,6 @@
     </style>
 </head>
 <body>
-    <p th:text="${word}"></p>
-    <a th:href="@{/}"><input type="button" value="戻る" /></a>
-    <a th:href="@{/packs/shuffle}"><input type="button" value="もう一回" /></a>
+    <a th:href="@{/}"><input type="button" value="パッケージ選択へ" /></a>
 </body>
 </html>

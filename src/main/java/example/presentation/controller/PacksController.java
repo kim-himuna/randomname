@@ -16,7 +16,7 @@ import example.domain.model.pack.Pack;
 /**pack一覧 */
 
 @Controller
-@RequestMapping("packs")
+@RequestMapping("")
 public class PacksController {
 
     @Autowired
@@ -31,8 +31,8 @@ public class PacksController {
         model.addAttribute("packs", packList);
 
         System.out.println(shuffleSession.getShuffleList().selectIds);
-
-        return "packs/packList";
+        System.out.println(packList);
+        return "/index";
     }
     
 }
