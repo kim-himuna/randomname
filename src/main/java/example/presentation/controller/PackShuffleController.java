@@ -37,8 +37,6 @@ public class PackShuffleController {
         shuffleList.selectIds.add(packId.getValue());
 
         shuffleSession.setShuffleList(shuffleList);
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-
         redirectAttrs.addFlashAttribute("shuffleSession",shuffleSession);
 
         return "redirect:/";
