@@ -16,6 +16,7 @@
     </style>
 </head>
 <body>
+    <header th:replace="fragments/navigation::navigation('シャッフル詳細')"></header>
     <form th:object="${shuffleDetailForm}" th:action="@{/packs/shuffle/detail/update}" method="post">
         <p>
             <label="name">文字数</label>

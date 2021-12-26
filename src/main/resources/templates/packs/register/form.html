@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <header th:replace="fragments/navigation::navigation('')"></header>
     <form th:action="@{/packs/register/confirm}" th:object="${packForm}" method="post">
         <p>
             <label="name">パッケージ名</label>

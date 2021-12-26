@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <header th:replace="fragments/navigation::navigation('パック修正')"></header>
     <form th:action="@{/packs/{packId}/update/register(packId=${packForm.getId()})}" th:object="${packForm}" method="post">
         <p>
             <label="name">パッケージ名</label>

@@ -16,6 +16,7 @@
     </style>
 </head>
 <body>
+    <header th:replace="fragments/navigation::navigation('シャッフル結果')"></header>
     <p th:text="${word}"></p>
     <a th:href="@{/}"><input type="button" value="戻る" /></a>
     <a th:href="@{/packs/shuffle}"><input type="button" value="もう一回" /></a>
