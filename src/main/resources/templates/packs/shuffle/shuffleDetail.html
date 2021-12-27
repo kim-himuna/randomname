@@ -28,14 +28,38 @@
             <input type="text" th:field="*{wordCount}" th:errorclass="input-error">
             <span style="color: red;" th:if="${#fields.hasErrors('*{wordCount}')}" th:errors="*{wordCount}"></span>
         </p>
-        <p>
-            <a th:href="@{/packs/shuffle/listReset}" ><input type="button" value="単語リストリセット" /></a>
-        </p>
 
         <p>
-            <a th:href="@{/}"><input type="button" value="戻る" /></a>
             <input id="update-form" type="submit" value="完了">
         </p>
     </form>
+    <p>
+        <a th:href="@{/packs/shuffle/listReset}" ><input type="button" value="単語リストリセット" /></a>
+    </p>
+
+    <table>
+        <caption>word List</caption>
+        <thead>
+            <tr>
+                <th scope="col">pack title</th>
+                <th scope="col">word</th>
+            </tr>
+        </thead>
+    
+        <tbody th:each="packId: ${shuffleSession.getShuffleList().getSelectIds()}">
+            <tr>
+            <td rowspan = "5" th:text="${packId}" />
+            <td th:text="${packId}" />
+            <td rowspan= "5"> 
+                <a th:href="@{/}">削除ページへ</a>
+            </td>
+            </tr>
+            <tr><td th:text="${packId}" /></tr>
+            <tr><td th:text="${packId}" /></tr>
+            <tr><td th:text="${packId}" /></tr>
+            <tr><td th:text="${packId}" /></tr>
+        </tbody>
+    </table>
+
 </body>
 </html>

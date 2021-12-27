@@ -27,11 +27,10 @@ public class PacksController {
 
     @GetMapping
     String packs(Model model){
-        List<Pack> packList= packService.getPackList();
-        model.addAttribute("packs", packList);
+        List<Pack> packs= packService.getPackList();
+        model.addAttribute("packs", packs);
 
         System.out.println(shuffleSession.getShuffleList().selectIds);
-        System.out.println(packList);
         return "/index";
     }
     

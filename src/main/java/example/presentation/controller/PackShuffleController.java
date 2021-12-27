@@ -69,7 +69,7 @@ public class PackShuffleController {
     public String ShuffleDetail(Model model){
         ShuffleDetailForm shuffleDetailForm = new ShuffleDetailForm(shuffleSession.getShuffleList().getWordSize(), shuffleSession.getShuffleList().getWordCount());
         model.addAttribute("shuffleDetailForm",shuffleDetailForm);
-        System.out.println(shuffleSession.getShuffleList());
+        model.addAttribute("shuffleSession",shuffleSession);
         return "packs/shuffle/shuffleDetail";
     }
 
