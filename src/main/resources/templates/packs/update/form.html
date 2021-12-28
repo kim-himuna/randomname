@@ -20,7 +20,7 @@
         </p>
 
         <p th:each="word, stat: *{wordsForm}">
-            <label="name">ワード1</label>
+            <label="name">ワード</label>
             <input type="text" th:field="*{wordsForm[__${stat.index}__].word}" th:errorclass="input-error">
             <span style="color: red;" th:if="${#fields.hasErrors('*{wordsForm[__${stat.index}__].word}')}" th:errors="*{wordsForm[__${stat.index}__].word}"></span>
         </p>
