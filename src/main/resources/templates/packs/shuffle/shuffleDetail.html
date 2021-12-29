@@ -51,7 +51,7 @@
             <td rowspan = "5" th:text="${packId}" />
             <td th:text="${packId}" />
             <td rowspan= "5"> 
-                <a th:href="@{/}">削除ページへ</a>
+                <a th:href="@{/packs/shuffle/{packId}/listRemove(packId=${packId})}">リストから削除</a>
             </td>
             </tr>
             <tr><td th:text="${packId}" /></tr>
