@@ -51,7 +51,7 @@
             <td rowspan = "5" th:text="${pack.title.value}" />
             <td th:text="${pack.getWords.get(0).characterString.value}" />
             <td rowspan= "5"> 
-                <a th:href="@{/packs/shuffle/{packId}/listRemove(packId=${packId})}">リストから削除</a>
+                <a th:href="@{/packs/shuffle/{packId}/listRemove(packId=${pack.getId})}">リストから削除</a>
             </td>
             </tr>
             <tr><td th:text="${pack.getWords().get(1).characterString.value}" /></tr>
