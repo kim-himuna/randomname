@@ -20,6 +20,6 @@ public class PackDeleteController {
     @GetMapping
     public String deleteThenRedirect(Model model,@PathVariable(value = "packId") PackId packId){
         packService.deletePack(packId);
-        return "redirect:";
+        return "redirect:/";
     }
 }
