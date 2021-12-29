@@ -1,5 +1,8 @@
 package example.presentation.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,9 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import example.application.service.PackService;
 import example.application.service.PackShuffleService;
 import example.domain.model.ShuffleList;
 import example.domain.model.ShuffleSession;
+import example.domain.model.pack.Pack;
 import example.domain.model.pack.PackId;
 import example.presentation.form.ShuffleDetailForm;
 
@@ -26,6 +31,9 @@ public class PackShuffleController {
 
     @Autowired
     private PackShuffleService packShuffleService;
+
+    @Autowired
+    private PackService packService;
 
     @Autowired
     private ShuffleSession shuffleSession;
@@ -77,6 +85,14 @@ public class PackShuffleController {
         ShuffleDetailForm shuffleDetailForm = new ShuffleDetailForm(shuffleSession.getShuffleList().getWordSize(), shuffleSession.getShuffleList().getWordCount());
         model.addAttribute("shuffleDetailForm",shuffleDetailForm);
         model.addAttribute("shuffleSession",shuffleSession);
+
+        List<Pack> selectPack = new ArrayList<>();
+
+        for(Long packId:shuffleSession.getShuffleList().getSelectIds()){
+            selectPack.add(packService.getPack(new PackId(packId)));
+        }
+
+        shuffleDetailForm.setSelectPack(selectPack);
         return "packs/shuffle/shuffleDetail";
     }
 

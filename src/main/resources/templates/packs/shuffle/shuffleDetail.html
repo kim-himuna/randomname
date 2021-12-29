@@ -46,18 +46,18 @@
             </tr>
         </thead>
     
-        <tbody th:each="packId: ${shuffleSession.getShuffleList().getSelectIds()}">
+        <tbody th:each="pack: ${shuffleDetailForm.getSelectPack()}">
             <tr>
-            <td rowspan = "5" th:text="${packId}" />
-            <td th:text="${packId}" />
+            <td rowspan = "5" th:text="${pack.title.value}" />
+            <td th:text="${pack.getWords.get(0).characterString.value}" />
             <td rowspan= "5"> 
                 <a th:href="@{/packs/shuffle/{packId}/listRemove(packId=${packId})}">リストから削除</a>
             </td>
             </tr>
-            <tr><td th:text="${packId}" /></tr>
-            <tr><td th:text="${packId}" /></tr>
-            <tr><td th:text="${packId}" /></tr>
-            <tr><td th:text="${packId}" /></tr>
+            <tr><td th:text="${pack.getWords().get(1).characterString.value}" /></tr>
+            <tr><td th:text="${pack.getWords().get(2).characterString.value}" /></tr>
+            <tr><td th:text="${pack.getWords().get(3).characterString.value}" /></tr>
+            <tr><td th:text="${pack.getWords().get(4).characterString.value}" /></tr>
         </tbody>
     </table>
 
