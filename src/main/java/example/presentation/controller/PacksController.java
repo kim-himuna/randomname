@@ -29,8 +29,6 @@ public class PacksController {
     String packs(Model model){
         List<Pack> packs= packService.getPackList();
         model.addAttribute("packs", packs);
-
-        System.out.println(shuffleSession.getShuffleList().selectIds);
         return "/index";
     }
     
