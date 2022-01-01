@@ -22,6 +22,7 @@ public class PackController {
     @GetMapping
     public String packDetail(Model model,@PathVariable(value = "packId") PackId packId){
         Pack pack = packService.getPack(packId);
+        /**出来ればここでviewModelにしたい */
         model.addAttribute("pack",pack);
         return "packs/packDetail";
     }

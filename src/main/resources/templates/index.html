@@ -28,21 +28,23 @@
     
     <tbody th:each="pack , stat : ${packs}" th:object="${shuffleList}">
         <tr>
-            <td rowspan = "5" th:text="${pack.title.value}" />
-            <td th:text="${pack.getWords.get(0).characterString.value}" />
+            <td rowspan = "5" th:text="${pack.getTitle()}" />
+            <td th:text="${pack.getWords.get(0)}" />
             <td rowspan= "5"> 
                     <a th:href="@{/packs/{packId}(packId=${pack.getId()})}">詳細</a>
                     <a th:href="@{/packs/{packId}/update(packId=${pack.getId()})}">編集</a>
                     <a th:href="@{/packs/{packId}/delete(packId=${pack.getId()})}">削除ページへ</a>
             </td>
             <td rowspan= "5"> 
+                <th:block th:if = "${pack.getUsing()}"
                     <a th:href="@{/packs/shuffle/{packId}/listAdd(packId=${pack.getId()})}"><input type="submit" value="追加"/></a>
+                </th:block>
             </td>
         </tr>
-        <tr><td th:text="${pack.getWords().get(1).characterString.value}" /></tr>
-        <tr><td th:text="${pack.getWords().get(2).characterString.value}" /></tr>
-        <tr><td th:text="${pack.getWords().get(3).characterString.value}" /></tr>
-        <tr><td th:text="${pack.getWords().get(4).characterString.value}" /></tr>
+        <tr><td th:text="${pack.getWords().get(1)}" /></tr>
+        <tr><td th:text="${pack.getWords().get(2)}" /></tr>
+        <tr><td th:text="${pack.getWords().get(3)}" /></tr>
+        <tr><td th:text="${pack.getWords().get(4)}" /></tr>
     </tbody>
 </table>
 </body>
