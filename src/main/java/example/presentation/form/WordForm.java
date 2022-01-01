@@ -10,7 +10,7 @@ public class WordForm {
 
     final int maxrange = 10;
     
-    @NotBlank(message = "タイトルを入力してください")
+    @NotBlank(message = "ワードを入力してください")
     @Size(max = maxrange, message = "{max}文字以内で入力してください。")
     public String word;
 }
