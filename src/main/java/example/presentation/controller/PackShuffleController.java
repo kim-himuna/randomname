@@ -39,10 +39,10 @@ public class PackShuffleController {
     private ShuffleSession shuffleSession;
 
     @RequestMapping("/{packId}/listAdd")
-    public String ShuffleListAdd(@PathVariable PackId packId,RedirectAttributes redirectAttrs){
+    public String ShuffleListAdd(@PathVariable long packId,RedirectAttributes redirectAttrs){
         /**shuffleListに追加 */
         ShuffleList shuffleList = shuffleSession.getShuffleList();
-        shuffleList.selectIds.add(packId.getValue());
+        shuffleList.selectIds.add(packId);
 
         shuffleSession.setShuffleList(shuffleList);
         redirectAttrs.addFlashAttribute("shuffleSession",shuffleSession);
@@ -54,7 +54,7 @@ public class PackShuffleController {
     public String ShuffleListremove(@PathVariable PackId packId,RedirectAttributes redirectAttrs){
         ShuffleList shuffleList = shuffleSession.getShuffleList();
         shuffleList.selectIds.remove(shuffleList.selectIds.indexOf(packId.getValue()));
-        return "redirect:/packs/shuffle/detail";
+        return "redirect:/";
     }
 
     @GetMapping()
