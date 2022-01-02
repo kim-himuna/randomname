@@ -36,8 +36,11 @@
                     <a th:href="@{/packs/{packId}/delete(packId=${pack.getId()})}">削除ページへ</a>
             </td>
             <td rowspan= "5"> 
-                <th:block th:if = "${pack.getUsing()}"
+                <th:block th:if = "${!pack.getUsing()}">
                     <a th:href="@{/packs/shuffle/{packId}/listAdd(packId=${pack.getId()})}"><input type="submit" value="追加"/></a>
+                </th:block>
+                <th:block th:if = "${pack.getUsing()}">
+                    <a th:href="@{/packs/shuffle/{packId}/listAdd(packId=${pack.getId()})}"><input type="submit" value="ss"/></a>
                 </th:block>
             </td>
         </tr>

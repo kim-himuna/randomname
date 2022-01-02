@@ -35,12 +35,22 @@ public class DashboardController {
         List<PackViewModel> packs = new ArrayList<>();
 
         for(Pack pack:packList){
+
             List<String> words = new ArrayList<>();
+            boolean using = false;
             for(Word word:pack.getWords()){
                 words.add(word.getCharacterString().toString());
             }
 
-            packs.add(new PackViewModel(pack.getId().getValue(), pack.getTitle().getValue(),words));
+            long packid = pack.getId().getValue();
+            for(long id:shuffleSession.getShuffleList().getSelectIds()){
+                if(packid == id){
+                    using = true;
+                }
+            }
+
+            packs.add(new PackViewModel(pack.getId().getValue(), pack.getTitle().getValue(),words,using));
+
         }
 
         model.addAttribute("packs", packs);

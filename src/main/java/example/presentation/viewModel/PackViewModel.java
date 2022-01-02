@@ -8,11 +8,11 @@ public class PackViewModel {
     private List<String> words;
     private boolean using;
 
-    public PackViewModel(long id,String title,List<String> words){
+    public PackViewModel(long id,String title,List<String> words,boolean using){
         this.id = id;
         this.title = title;
         this.words = words;
-        this.using = true;
+        this.using = using;
     }
 
     public long getId(){
@@ -30,5 +30,7 @@ public class PackViewModel {
     public boolean getUsing(){
         return using;
     }
-    
+    public void setUsing(boolean using){
+        using = this.using;
+    }
 }
