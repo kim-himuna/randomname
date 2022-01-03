@@ -32,8 +32,6 @@
             <td th:text="${pack.getWords.get(0)}" />
             <td rowspan= "5"> 
                     <a th:href="@{/packs/{packId}(packId=${pack.getId()})}">詳細</a>
-                    <a th:href="@{/packs/{packId}/update(packId=${pack.getId()})}">編集</a>
-                    <a th:href="@{/packs/{packId}/delete(packId=${pack.getId()})}">削除ページへ</a>
             </td>
             <td rowspan= "5"> 
                 <th:block th:if = "${!pack.getUsing()}">

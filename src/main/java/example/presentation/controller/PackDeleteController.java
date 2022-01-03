@@ -18,8 +18,14 @@ public class PackDeleteController {
     PackService packService;
     
     @GetMapping
-    public String deleteThenRedirect(Model model,@PathVariable(value = "packId") PackId packId){
-        packService.deletePack(packId);
+    public String deleteConfirm(Model model,@PathVariable(value = "packId") long packId){
+        model.addAttribute("packId", packId);
+        return "packs/delete/confirm";
+    }
+
+    @GetMapping("complete")
+    public String deleteThenRedirect(Model model,@PathVariable(value = "packId") long packId){
+        packService.deletePack(new PackId(packId));
         return "redirect:/";
     }
 }

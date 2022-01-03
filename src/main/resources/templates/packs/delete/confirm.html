@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>削除確認</title>
+    <style>
+        .input-error {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <text>削除しますか？</text>
+    <a th:href="@{/}"><input type="button" value="キャンセル" /></a>
+    <a th:href="@{/packs/{packId}/delete/complete(packId=${packId})}"><input type="button" value="削除" /></a>
+</body>
+
+</html>

@@ -26,6 +26,9 @@
             <a th:href="@{/}"><input type="button" value="戻る"/></a>
         </p>
     </div>
+
+    <a th:href="@{/packs/{packId}/update(packId=${pack.getId()})}">編集</a>
+    <a th:href="@{/packs/{packId}/delete(packId=${pack.getId()})}">削除ページへ</a>
 </main>
 
 
