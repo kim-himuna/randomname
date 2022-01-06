@@ -19,12 +19,12 @@
     <header th:replace="fragments/navigation::navigation('シャッフル詳細')"></header>
     <form th:object="${shuffleDetailForm}" th:action="@{/packs/shuffle/detail/update}" method="post">
         <p>
-            <label="name">文字数</label>
+            <label="name">最大文字数</label>
             <input type="text" th:field="*{wordSize}" th:errorclass="input-error">
             <span style="color: red;" th:if="${#fields.hasErrors('*{wordSize}')}" th:errors="*{wordSize}"></span>
         </p>
         <p>
-            <label="name">単語数</label>
+            <label="name">最大単語数</label>
             <input type="text" th:field="*{wordCount}" th:errorclass="input-error">
             <span style="color: red;" th:if="${#fields.hasErrors('*{wordCount}')}" th:errors="*{wordCount}"></span>
         </p>
