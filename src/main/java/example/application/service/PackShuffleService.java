@@ -31,6 +31,9 @@ public class PackShuffleService {
 
         for(int i = 0; i < shuffleList.getWordCount(); i++){
             shuffleResultString = shuffleResultString + shuffleWordList.get(random.nextInt(randomrange)).getCharacterString().getValue();
+            if(shuffleResultString.length() > shuffleList.getWordSize()){
+                break;
+            }
         }
 
         return shuffleResultString;
