@@ -5,7 +5,24 @@
 
     <title th:replace="${title}">(title)</title>
 
-    <link rel="stylesheet" th:href="@{css/site.css}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+
+    <style>
+        .input-error {
+            border: 1px solid red;
+        }
+        <!--
+        table{
+            border-collapse: collapse;
+        }
+        th,td{
+            border: 1px darkgray solid;
+            padding: 0.2em 0.5em;
+        }
+        -->
+    </style>
 </head>
 <body>
 </body>
