@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +23,7 @@ import example.domain.model.ShuffleSession;
 import example.domain.model.pack.Pack;
 import example.domain.model.pack.PackId;
 import example.presentation.form.ShuffleDetailForm;
+import example.presentation.form.ShuffleSelectPacks;
 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,6 +41,13 @@ public class PackShuffleController {
 
     @Autowired
     private ShuffleSession shuffleSession;
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        // bind empty strings as null
+        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+    }
+
 
     @RequestMapping("/{packId}/listAdd")
     public String ShuffleListAdd(@PathVariable long packId,RedirectAttributes redirectAttrs){
@@ -86,21 +97,33 @@ public class PackShuffleController {
         model.addAttribute("shuffleDetailForm",shuffleDetailForm);
         model.addAttribute("shuffleSession",shuffleSession);
 
-        List<Pack> selectPack = new ArrayList<>();
+        List<Pack> selectPacks = new ArrayList<>();
 
         for(Long packId:shuffleSession.getShuffleList().getSelectIds()){
-            selectPack.add(packService.getPack(new PackId(packId)));
+            selectPacks.add(packService.getPack(new PackId(packId)));
         }
-
-        shuffleDetailForm.setSelectPack(selectPack);
+        ShuffleSelectPacks shuffleSelectPacks = new ShuffleSelectPacks(selectPacks);
+        model.addAttribute("shuffleselectPacks", shuffleSelectPacks);
         return "packs/shuffle/shuffleDetail";
     }
 
     @Transactional
     @PostMapping("detail/update")
-    public String shuffleDetailUpdate(@Validated @ModelAttribute ShuffleDetailForm shuffleDetailForm, BindingResult result,RedirectAttributes redirectAttrs){
+    public String shuffleDetailUpdate(@Validated @ModelAttribute ShuffleDetailForm shuffleDetailForm, BindingResult result,Model model,RedirectAttributes redirectAttrs){
+        System.out.println("shuflD wordcount: "+shuffleDetailForm.getWordCount() +" wordsize:  "+shuffleDetailForm.getWordSize());
+
+        System.out.println("result wordcount: "+result.getFieldValue("wordCount") +" wordsize:  "+result.getFieldValue("wordSize"));
 
         if (result.hasErrors()) {
+            System.out.println("error");
+            List<Pack> selectPacks = new ArrayList<>();
+
+            for(Long packId:shuffleSession.getShuffleList().getSelectIds()){
+                selectPacks.add(packService.getPack(new PackId(packId)));
+            }
+
+            ShuffleSelectPacks shuffleSelectPacks = new ShuffleSelectPacks(selectPacks);
+            model.addAttribute("shuffleselectPacks", shuffleSelectPacks);
             return "packs/shuffle/shuffleDetail";
         }
 

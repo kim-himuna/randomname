@@ -9,12 +9,12 @@
     <form th:object="${shuffleDetailForm}" th:action="@{/packs/shuffle/detail/update}" method="post">
         <p>
             <label="name">最大文字数</label>
-            <input type="text" th:field="*{wordSize}" th:errorclass="input-error">
+            <input type="text" th:field="*{wordSize}" th:errorclass="input-error" placeholder="1~20以内でお願いします。（例：４）">
             <span style="color: red;" th:if="${#fields.hasErrors('*{wordSize}')}" th:errors="*{wordSize}"></span>
         </p>
         <p>
             <label="name">最大単語数</label>
-            <input type="text" th:field="*{wordCount}" th:errorclass="input-error">
+            <input type="text" th:field="*{wordCount}" th:errorclass="input-error"　placeholder="1~5以内でお願いします。（例：４）">
             <span style="color: red;" th:if="${#fields.hasErrors('*{wordCount}')}" th:errors="*{wordCount}"></span>
         </p>
 
@@ -35,7 +35,7 @@
             </tr>
         </thead>
     
-        <tbody th:each="pack: ${shuffleDetailForm.getSelectPack()}">
+        <tbody th:each="pack: ${shuffleselectPacks.getSelectPacks()}">
             <tr>
             <td rowspan = "5" th:text="${pack.title.value}" />
             <td th:text="${pack.getWords.get(0).characterString.value}" />
