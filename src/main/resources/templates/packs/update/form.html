@@ -10,13 +10,13 @@
     <form th:action="@{/packs/{packId}/update/register(packId=${packForm.getId()})}" th:object="${packForm}" method="post">
         <p>
             <label="name">パッケージ名</label>
-            <input type="text" th:name="*{title}" th:field="*{title}" th:errorclass="input-error">
+            <input type="text" th:name="*{title}" th:field="*{title}" th:errorclass="input-error" th:placeholder="*{title}">
             <span style="color: red;" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
         </p>
 
         <p th:each="word, stat: *{wordsForm}">
             <label="name">ワード</label>
-            <input type="text" th:field="*{wordsForm[__${stat.index}__].word}" th:errorclass="input-error">
+            <input type="text" th:field="*{wordsForm[__${stat.index}__].word}" th:errorclass="input-error" th:placeholder="*{wordsForm[__${stat.index}__].word}">
             <span style="color: red;" th:if="${#fields.hasErrors('*{wordsForm[__${stat.index}__].word}')}" th:errors="*{wordsForm[__${stat.index}__].word}"></span>
         </p>
        
