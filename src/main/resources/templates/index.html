@@ -28,7 +28,7 @@
                     <a th:href="@{/packs/shuffle/{packId}/listAdd(packId=${pack.getId()})}"><input type="submit" value="追加"/></a>
                 </th:block>
                 <th:block th:if = "${pack.getUsing()}">
-                    <a th:href="@{/packs/shuffle/{packId}/listRemove(packId=${pack.getId()})}"><input type="submit" value="使用キャンセル"/></a>
+                    <a th:href="@{/packs/shuffle/{packId}/listRemoveFromTop(packId=${pack.getId()})}"><input type="submit" value="使用キャンセル"/></a>
                 </th:block>
             </td>
         </tr>

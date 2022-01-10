@@ -61,11 +61,18 @@ public class PackShuffleController {
         return "redirect:/";
     }
 
-    @RequestMapping("/{packId}/listRemove")
-    public String ShuffleListremove(@PathVariable PackId packId,RedirectAttributes redirectAttrs){
+    @RequestMapping("/{packId}/listRemoveFromTop")
+    public String ShuffleListRemoveFromTop(@PathVariable PackId packId,RedirectAttributes redirectAttrs){
         ShuffleList shuffleList = shuffleSession.getShuffleList();
         shuffleList.selectIds.remove(shuffleList.selectIds.indexOf(packId.getValue()));
         return "redirect:/";
+    }
+
+    @RequestMapping("/{packId}/listRemoveFromDetail")
+    public String ShuffleListRemoveFromDetail(@PathVariable PackId packId,RedirectAttributes redirectAttrs){
+        ShuffleList shuffleList = shuffleSession.getShuffleList();
+        shuffleList.selectIds.remove(shuffleList.selectIds.indexOf(packId.getValue()));
+        return "redirect:/packs/shuffle/detail";
     }
 
     @GetMapping()
