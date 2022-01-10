@@ -70,23 +70,18 @@ public class PackShuffleController {
 
     @GetMapping()
     public String WordShuffle(Model model){
-        
-        if(shuffleSession.getShuffleList() != null){
 
-            if(shuffleSession.getShuffleList().getSelectIds().size() != 0){        
-                String word = packShuffleService.shuffleResult(shuffleSession.getShuffleList());
-                System.out.println(word);
-                model.addAttribute("word", word);
+        String word ="使用するパックを選んでください";
 
-                return "packs/shuffle/shuffleResult";
-            }
-            
-            
+        if(shuffleSession.getShuffleList().getSelectIds().size() != 0){        
+            word = packShuffleService.shuffleResult(shuffleSession.getShuffleList());
         }
-        
+
         System.out.println("redirectpacks");
 
-        return "redirect:/";
+        System.out.println(word);
+        model.addAttribute("word", word);
+        return "packs/shuffle/shuffleResult";
     }
 
 
