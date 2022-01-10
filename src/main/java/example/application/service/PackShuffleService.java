@@ -41,6 +41,10 @@ public class PackShuffleService {
             shuffleResultString = shuffleResultStringAfter;
         }
 
+        if(shuffleResultString.length() == 0){
+            shuffleResultString = "名前が生成出来ませんでした。使用単語が全て最大文字数を超えている可能性があります。「シャッフル詳細」から最大文字数を確認してください。";
+        }
+
         return shuffleResultString;
 
     }
