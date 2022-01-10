@@ -20,6 +20,8 @@ public class PackShuffleService {
     public String shuffleResult(ShuffleList shuffleList){
 
         String shuffleResultString ="";
+        String shuffleResultStringAfter ="";
+        
         Random random = new Random();
 
         ArrayList<Word> shuffleWordList = new ArrayList<>();
@@ -28,12 +30,15 @@ public class PackShuffleService {
         }
         
         int randomrange = shuffleWordList.size();
+        int wordCount =shuffleList.getWordCount();
+        int wordSize = shuffleList.getWordSize();
 
-        for(int i = 0; i < shuffleList.getWordCount(); i++){
-            shuffleResultString = shuffleResultString + shuffleWordList.get(random.nextInt(randomrange)).getCharacterString().getValue();
-            if(shuffleResultString.length() > shuffleList.getWordSize()){
+        for(int i = 0; i < wordCount; i++){
+            shuffleResultStringAfter = shuffleResultString + shuffleWordList.get(random.nextInt(randomrange)).getCharacterString().getValue();
+            if(shuffleResultStringAfter.length() > wordSize){
                 break;
             }
+            shuffleResultString = shuffleResultStringAfter;
         }
 
         return shuffleResultString;
