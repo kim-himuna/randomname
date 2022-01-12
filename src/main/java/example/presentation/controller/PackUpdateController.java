@@ -47,15 +47,16 @@ public class PackUpdateController {
         packForm.setWordsForm(words);
 
         model.addAttribute("packForm",packForm);
-        
+   
         return "packs/update/form";
     }
 
     @Transactional
     @PostMapping("register")
-    public String registerThenRedirect(@PathVariable(value = "packId") PackId packId,@Validated @ModelAttribute PackForm packForm, BindingResult result, Model model){
+    public String registerThenRedirect(@PathVariable(value = "packId") PackId packId,@Validated @ModelAttribute("packForm") PackForm packForm, BindingResult result, Model model){
 
         if (result.hasErrors()) {
+            packForm.setId(packId.getValue());
             return "packs/update/form";
         }
 
