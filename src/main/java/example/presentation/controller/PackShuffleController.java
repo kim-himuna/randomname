@@ -3,13 +3,12 @@ package example.presentation.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +26,6 @@ import example.presentation.form.ShuffleSelectPacks;
 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 
 @Controller
 @RequestMapping("packs/shuffle")
@@ -41,12 +39,6 @@ public class PackShuffleController {
 
     @Autowired
     private ShuffleSession shuffleSession;
-
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        // bind empty strings as null
-        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
-    }
 
 
     @RequestMapping("/{packId}/listAdd")
@@ -95,7 +87,9 @@ public class PackShuffleController {
 
     @GetMapping("detail")
     public String ShuffleDetail(Model model){
-        ShuffleDetailForm shuffleDetailForm = new ShuffleDetailForm(shuffleSession.getShuffleList().getWordSize(), shuffleSession.getShuffleList().getWordCount());
+        ShuffleDetailForm shuffleDetailForm = new ShuffleDetailForm();
+        shuffleDetailForm.setWordSize(shuffleSession.getShuffleList().getWordSize()); 
+        shuffleDetailForm.setWordCount(shuffleSession.getShuffleList().getWordCount());
         model.addAttribute("shuffleDetailForm",shuffleDetailForm);
         model.addAttribute("shuffleSession",shuffleSession);
 
@@ -111,9 +105,8 @@ public class PackShuffleController {
 
     @Transactional
     @PostMapping("detail/update")
-    public String shuffleDetailUpdate(@Validated @ModelAttribute ShuffleDetailForm shuffleDetailForm, BindingResult result,Model model,RedirectAttributes redirectAttrs){
+    public String shuffleDetailUpdate(@Valid @ModelAttribute("shuffleDetailForm") ShuffleDetailForm shuffleDetailForm, BindingResult result,Model model,RedirectAttributes redirectAttrs){
         System.out.println("shuflD wordcount: "+shuffleDetailForm.getWordCount() +" wordsize:  "+shuffleDetailForm.getWordSize());
-
         System.out.println("result wordcount: "+result.getFieldValue("wordCount") +" wordsize:  "+result.getFieldValue("wordSize"));
 
         if (result.hasErrors()) {
