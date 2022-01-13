@@ -11,13 +11,13 @@ import lombok.Data;
 public class ShuffleDetailForm {
 
     /**文字数のリミット */
-    @NotNull
+    @NotNull(message = "整数を入力してください")
     @Max(20)
     @Min(1)
     private Integer wordSize;
 
     /**単語数のリミット */
-    @NotNull
+    @NotNull(message = "整数を入力してください")
     @Max(5)
     @Min(1)
     private Integer wordCount;
