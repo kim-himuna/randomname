@@ -4,6 +4,7 @@ package example.application.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import example.application.repository.PackRepository;
 import example.domain.model.pack.*;
@@ -11,6 +12,7 @@ import example.domain.model.word.*;
 
 
 @Service
+@Transactional
 public class PackService{
 
     @Autowired
