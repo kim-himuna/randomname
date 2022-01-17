@@ -3,8 +3,6 @@ package example.presentation.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +24,7 @@ import example.presentation.form.ShuffleSelectPacks;
 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 
 @Controller
 @RequestMapping("packs/shuffle")
@@ -105,7 +104,7 @@ public class PackShuffleController {
 
     @Transactional
     @PostMapping("detail/update")
-    public String shuffleDetailUpdate(@Valid @ModelAttribute("shuffleDetailForm") ShuffleDetailForm shuffleDetailForm, BindingResult result,Model model,RedirectAttributes redirectAttrs){
+    public String shuffleDetailUpdate(@Validated @ModelAttribute("shuffleDetailForm") ShuffleDetailForm shuffleDetailForm, BindingResult result,Model model,RedirectAttributes redirectAttrs){
         System.out.println("shuflD wordcount: "+shuffleDetailForm.getWordCount() +" wordsize:  "+shuffleDetailForm.getWordSize());
         System.out.println("result wordcount: "+result.getFieldValue("wordCount") +" wordsize:  "+result.getFieldValue("wordSize"));
 
