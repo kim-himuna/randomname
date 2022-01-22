@@ -2,9 +2,12 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="htmlhead(title)">
     <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title th:replace="${title}">(title)</title>
     <link rel="stylesheet" th:href="@{/stylesheet/style.css}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
 </body>
