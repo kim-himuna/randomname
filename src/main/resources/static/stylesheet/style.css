@@ -3,27 +3,5 @@
 }
 
 table{
-    border-collapse: collapse;
-}
-th,td{
-    border: 1px darkgray solid;
-    padding: 0.2em 0.5em;
-}
-nav {
-    list-style: none;
-    font-size: 0;
-}
-
-nav {
-    width: 140px;
-    text-align: center;
-    background-color: #333;
-    display: inline-block;
-    font-size: 16px;
-}
-
-nav a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
+    width: 100%;
 }

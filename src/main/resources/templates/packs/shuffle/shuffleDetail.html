@@ -26,29 +26,24 @@
         <a th:href="@{/packs/shuffle/listReset}" ><input type="button" value="単語リストリセット" /></a>
     </p>
 
-    <table>
-        <caption>word List</caption>
-        <thead>
-            <tr>
-                <th scope="col">pack title</th>
-                <th scope="col">word</th>
-            </tr>
-        </thead>
-    
-        <tbody th:each="pack: ${shuffleselectPacks.getSelectPacks()}">
-            <tr>
-            <td rowspan = "5" th:text="${pack.title.value}" />
-            <td th:text="${pack.getWords.get(0).characterString.value}" />
-            <td rowspan= "5"> 
-                <a th:href="@{/packs/shuffle/{packId}/listRemoveFromDetail(packId=${pack.getId})}">使用キャンセル</a>
-            </td>
-            </tr>
-            <tr><td th:text="${pack.getWords().get(1).characterString.value}" /></tr>
-            <tr><td th:text="${pack.getWords().get(2).characterString.value}" /></tr>
-            <tr><td th:text="${pack.getWords().get(3).characterString.value}" /></tr>
-            <tr><td th:text="${pack.getWords().get(4).characterString.value}" /></tr>
-        </tbody>
-    </table>
-
+    <div class="m-1 card" th:each="pack: ${shuffleselectPacks.getSelectPacks()}">
+        <div class="card-content">
+            <table>
+            <tbody>
+                <tr>
+                    <td width="25%" rowspan = "5" th:text="${pack.title.value}" >
+                    <td width="25%" th:text="${pack.getWords.get(0).characterString.value}" >
+                    <td width="50%" rowspan= "5"> 
+                        <a th:href="@{/packs/shuffle/{packId}/listRemoveFromDetail(packId=${pack.getId})}">使用キャンセル</a>
+                    </td>
+                </tr>
+                <tr><td th:text="${pack.getWords().get(1).characterString.value}" ></tr>
+                <tr><td th:text="${pack.getWords().get(2).characterString.value}" ></tr>
+                <tr><td th:text="${pack.getWords().get(3).characterString.value}" ></tr>
+                <tr><td th:text="${pack.getWords().get(4).characterString.value}" ></tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>
