@@ -1,14 +1,14 @@
-package example.presentation.viewModel;
+package example.presentation.form;
 
 import java.util.List;
 
-public class PackViewModel {
+public class PackListForm {
     private long id;
     private String title;
     private List<String> words;
     private boolean using;
 
-    public PackViewModel(long id,String title,List<String> words,boolean using){
+    public PackListForm(long id,String title,List<String> words,boolean using){
         this.id = id;
         this.title = title;
         this.words = words;

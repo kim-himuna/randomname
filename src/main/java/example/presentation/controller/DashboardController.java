@@ -13,7 +13,7 @@ import example.application.service.PackService;
 import example.domain.model.ShuffleSession;
 import example.domain.model.pack.*;
 import example.domain.model.word.Word;
-import example.presentation.viewModel.PackViewModel;
+import example.presentation.form.PackListForm;
 
 
 
@@ -32,7 +32,7 @@ public class DashboardController {
         
         List<Pack> packList= packService.getPackList();
 
-        List<PackViewModel> packs = new ArrayList<>();
+        List<PackListForm> packs = new ArrayList<>();
 
         for(Pack pack:packList){
 
@@ -49,7 +49,7 @@ public class DashboardController {
                 }
             }
 
-            packs.add(new PackViewModel(pack.getId().getValue(), pack.getTitle().getValue(),words,using));
+            packs.add(new PackListForm(pack.getId().getValue(), pack.getTitle().getValue(),words,using));
 
         }
 
