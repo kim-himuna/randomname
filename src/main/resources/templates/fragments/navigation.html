@@ -8,7 +8,15 @@
     <body>
         <header class="hero is-primary" th:fragment="navigation(active)">
             <nav class="navbar">
-                <div class="navbar-menu is-flux">
+                <div>
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="menu">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div id="menu" class="navbar-menu is-flux">
                     <a class="navbar-item" th:classappend="${active.equals('トップページ')} ? 'is-active' : ''" th:href="@{/}">
                         <span>トップページ</span>
                     </a>
