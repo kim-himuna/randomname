@@ -75,8 +75,6 @@ public class PackShuffleController {
             word = packShuffleService.shuffleResult(shuffleSession.getShuffleList());
         }
 
-        System.out.println("redirectpacks");
-
         System.out.println(word);
         model.addAttribute("word", word);
         return "packs/shuffle/shuffleResult";
