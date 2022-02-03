@@ -4,11 +4,16 @@ public class User {
     private UserId userId;
     private UserName userName;
     private UserRole userRole;
+    private UserPassword userPassword;
 
-    public User(UserId userId,UserName userName,UserRole userRole){
+    @Deprecated
+    public User(){}
+
+    public User(UserId userId,UserName userName,UserRole userRole,UserPassword userPassword){
         this.userId = userId;
         this.userName = userName;
         this.userRole = userRole;
+        this.userPassword = userPassword;
     }
 
     public UserId GetUserId(){
@@ -19,5 +24,8 @@ public class User {
     }
     public UserRole getUserRole(){
         return userRole;
+    }
+    public UserPassword getPassword(){
+        return userPassword;
     }
 }

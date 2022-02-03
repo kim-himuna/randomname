@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmls:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/layout :: htmlhead(~{::title})">
     <meta charset="UTF-8">
     <title>パック詳細</title>
@@ -27,8 +27,10 @@
         </p>
     </div>
 
+    <div sec:authorize="hasRole('ADMIN')">
     <a th:href="@{/packs/{packId}/update(packId=${pack.getId()})}">編集</a>
     <a th:href="@{/packs/{packId}/delete(packId=${pack.getId()})}">削除ページへ</a>
+    </div>
 </main>
 
 
