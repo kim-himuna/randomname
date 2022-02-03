@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="example.infrastructure.datasource.user.UserMapper">
+
+    <resultMap id="userMap" type="example.domain.model.user.User">
+        <association property="userId" javaType="example.domain.model.user.UserId">
+            <constructor>
+                <arg name="value" column="id"/>
+            </constructor>
+        </association>
+        <association property="userName" javaType="example.domain.model.user.UserName">
+            <constructor>
+                <arg name="value" column="username"/>
+            </constructor>
+        </association>
+        <association property="userRole" javaType="example.domain.model.user.UserRole">
+            <constructor>
+                <arg name="value" column="rolename"/>
+            </constructor>
+        </association>
+        <association property="userPassword" javaType="example.domain.model.user.UserPassword">
+            <constructor>
+                <arg name="value" column="password"/>
+            </constructor>
+        </association>
+
+        
+
+    </resultMap>
+
+    <select id="findOne" resultMap="userMap" parameterType="map">
+        SELECT id,username,password,rolename FROM users WHERE username = #{userName.value}
+    </select>
+
+</mapper>

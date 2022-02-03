@@ -1,9 +1,9 @@
 package example.domain.model.user;
 
-public class UserRole {
+public class UserPassword {
     private String value;
 
-    public UserRole(String value){
+    public UserPassword(String value){
         this.value = value;
     }
 
