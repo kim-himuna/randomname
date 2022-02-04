@@ -25,7 +25,6 @@ public class PackController {
         if(pack == null){
             return "redirect:/";
         }
-        /**出来ればここでviewModelにしたい */
         model.addAttribute("pack",pack);
         return "packs/packDetail";
     }
