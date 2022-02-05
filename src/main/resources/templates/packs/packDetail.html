@@ -7,33 +7,30 @@
 
 <body>
 <header th:replace="fragments/navigation::navigation('')"></header>
-
-<main class="container">
     <header th:replace="fragments/header :: header('パック詳細')"></header>
-    <div th:object="${pack}">
-        <p th:text="*{getTitle().getValue()}"></p>
-        <p>ワード1:</p>
-        <p th:text="*{getWords().get(0).getCharacterString()}"></p>
-        <p>ワード2:</p>
-        <p th:text="*{getWords().get(1).getCharacterString()}"></p>
-        <p>ワード3:</p>
-        <p th:text="*{getWords().get(2).getCharacterString()}"></p>
-        <p>ワード4:</p>
-        <p th:text="*{getWords().get(3).getCharacterString()}"></p>
-        <p>ワード5:</p>
-        <p th:text="*{getWords().get(4).getCharacterString()}"></p>
-        <p>
-            <a th:href="@{/}"><input type="button" value="戻る"/></a>
-        </p>
+    <div class="m-1 card" th:object="${pack}">
+        <div class="card-content">
+            <table>
+                <tbody>
+                    <tr>
+                        <td width="25%" rowspan = "5" th:text="*{getTitle().getValue()}"></td>
+                        <td width="75%" th:text="*{getWords().get(0).getCharacterString()}"></td>
+                    </tr>
+                    <tr><td th:text="*{getWords().get(1).getCharacterString()}"></td></tr>
+                    <tr><td th:text="*{getWords().get(2).getCharacterString()}"></td></tr>
+                    <tr><td th:text="*{getWords().get(3).getCharacterString()}"></td></tr>
+                    <tr><td th:text="*{getWords().get(4).getCharacterString()}"></td></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+    
+    <a th:href="@{/}"><input type="button" value="戻る"/></a>
 
     <div sec:authorize="hasRole('ADMIN')">
     <a th:href="@{/packs/detail/{packId}/update(packId=${pack.getId()})}">編集</a>
     <a th:href="@{/packs/detail/{packId}/delete(packId=${pack.getId()})}">削除ページへ</a>
     </div>
-</main>
-
-
 </body>
 
 </html>

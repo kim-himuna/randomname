@@ -23,7 +23,6 @@ import example.presentation.form.WordForm;
 @Controller
 @RequestMapping("packs/register")
 @SessionAttributes({"packForm"})
-
 public class PackRegisterController {
 
     @Autowired
@@ -54,6 +53,7 @@ public class PackRegisterController {
 
     @PostMapping("confirm")
     public String validate(@Validated @ModelAttribute("packForm") PackForm packForm, BindingResult result){
+        System.out.println("errrrrrrrrrrrr");
         if (result.hasErrors()){
             return "packs/register/form";
         }
