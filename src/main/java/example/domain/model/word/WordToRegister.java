@@ -1,7 +1,9 @@
 package example.domain.model.word;
 
 import example.domain.model.pack.*;
+import lombok.Data;
 
+@Data
 public class WordToRegister {
     private WordId id;
     private CharacterString characterString;
