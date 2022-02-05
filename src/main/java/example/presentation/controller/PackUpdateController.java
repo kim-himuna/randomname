@@ -23,7 +23,7 @@ import example.presentation.form.PackForm;
 import example.presentation.form.WordForm;
 
 @Controller
-@RequestMapping("packs/detail/{packId}/update")
+@RequestMapping("packs/{packId}/update")
 public class PackUpdateController {
 
     @Autowired
@@ -60,16 +60,23 @@ public class PackUpdateController {
             return "packs/update/form";
         }
 
+        Pack pack = packService.getPack(packId);
+
         List<WordToRegister> words = new ArrayList<WordToRegister>();
 
+        int i = 0;
+
         for(WordForm word:packForm.wordsForm){
-            words.add(new WordToRegister(packId,new CharacterString(word.word)));
+            WordToRegister wordToRegister = new WordToRegister(packId,new CharacterString(word.getWord()));
+            wordToRegister.setId(pack.getWords().get(i).getId());
+            words.add(wordToRegister);
+            i++;
         }
 
         PackToRegister packToRegister = new PackToRegister(packId,new PackTitle(packForm.getTitle()),words);
 
         packService.updatePack(packToRegister);
 
-        return "redirect:/packs/" + packId;
+        return "redirect:/packs/detail/" + packId;
     }
 }

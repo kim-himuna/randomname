@@ -15,7 +15,9 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import example.application.coordinator.pack.PackRecordCoordinator;
+import example.application.service.PackService;
 import example.domain.model.pack.PackId;
+import example.domain.model.pack.Pack;
 import example.presentation.form.PackForm;
 import example.presentation.form.WordForm;
 
@@ -27,6 +29,9 @@ public class PackRegisterController {
 
     @Autowired
     PackRecordCoordinator packRecordCoordinator;
+
+    @Autowired
+    PackService packService;
 
     @GetMapping
     public String clearSessionAtStart(SessionStatus sessionstatus){
@@ -53,7 +58,6 @@ public class PackRegisterController {
 
     @PostMapping("confirm")
     public String validate(@Validated @ModelAttribute("packForm") PackForm packForm, BindingResult result){
-        System.out.println("errrrrrrrrrrrr");
         if (result.hasErrors()){
             return "packs/register/form";
         }
@@ -77,9 +81,10 @@ public class PackRegisterController {
 
     @GetMapping("completed")
     public String showResult(Model model,@RequestParam("packId") PackId packId,@RequestParam("packTitle") String packTitle) {
-        model.addAttribute("packId", packId);
-        model.addAttribute("packTitle", packTitle);
-        return "packs/register/result";
+
+        Pack pack = packService.getPack(packId);
+        model.addAttribute("pack",pack);
+        return "packs/packDetail";
     }
 
 }
