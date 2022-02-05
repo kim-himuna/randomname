@@ -12,7 +12,7 @@ import example.domain.model.ShuffleSession;
 import example.domain.model.pack.PackId;
 
 @Controller
-@RequestMapping("packs/{packId}/delete")
+@RequestMapping("packs/detail/{packId}/delete")
 public class PackDeleteController {
 
     @Autowired

@@ -16,7 +16,7 @@
                         <td width="25%" rowspan = "5" th:text="${pack.getTitle()}" >
                         <td width="25%" th:text="${pack.getWords.get(0)}" >
                         <td width="25%" rowspan= "5"> 
-                                <a th:href="@{/packs/{packId}(packId=${pack.getId()})}">詳細</a>
+                                <a th:href="@{/packs/detail/{packId}(packId=${pack.getId()})}">詳細</a>
                         </td>
                         <td width="25%" rowspan= "5"> 
                             <th:block th:if = "${!pack.getUsing()}">

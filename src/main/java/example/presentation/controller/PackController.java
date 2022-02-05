@@ -13,7 +13,7 @@ import example.domain.model.pack.*;
 /**pack詳細 */
 
 @Controller
-@RequestMapping("packs/{packId}")
+@RequestMapping("packs/detail/{packId}")
 public class PackController {
 
     @Autowired

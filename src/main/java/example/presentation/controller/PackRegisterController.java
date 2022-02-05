@@ -23,6 +23,7 @@ import example.presentation.form.WordForm;
 @Controller
 @RequestMapping("packs/register")
 @SessionAttributes({"packForm"})
+
 public class PackRegisterController {
 
     @Autowired

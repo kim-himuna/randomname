@@ -23,7 +23,7 @@ import example.presentation.form.PackForm;
 import example.presentation.form.WordForm;
 
 @Controller
-@RequestMapping("packs/{packId}/update")
+@RequestMapping("packs/detail/{packId}/update")
 public class PackUpdateController {
 
     @Autowired
