@@ -13,7 +13,7 @@ import example.domain.model.pack.*;
 /**pack詳細 */
 
 @Controller
-@RequestMapping("packs/{packId}")
+@RequestMapping("packs/detail/{packId}")
 public class PackController {
 
     @Autowired
@@ -25,7 +25,6 @@ public class PackController {
         if(pack == null){
             return "redirect:/";
         }
-        /**出来ればここでviewModelにしたい */
         model.addAttribute("pack",pack);
         return "packs/packDetail";
     }

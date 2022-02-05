@@ -7,8 +7,8 @@
 
 <body>
     <text>削除しますか？</text>
-    <a th:href="@{/packs/{packId}(packId=${packId})}"><input type="button" value="キャンセル" /></a>
-    <a th:href="@{/packs/{packId}/delete/complete(packId=${packId})}"><input type="button" value="削除" /></a>
+    <a th:href="@{/packs/detail/{packId}(packId=${packId})}"><input type="button" value="キャンセル" /></a>
+    <a th:href="@{/packs/detail/{packId}/delete/complete(packId=${packId})}"><input type="button" value="削除" /></a>
 </body>
 
 </html>

@@ -22,13 +22,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     public void configure(WebSecurity web) throws Exception{
-        web.ignoring().antMatchers("/js/**","/css/**");
+        web.ignoring().antMatchers("/javascript/**","/stylesheet/**");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.csrf().disable().
-        authorizeRequests().antMatchers("/loginForm","/loginForm?error=true").permitAll()
+        authorizeRequests().antMatchers("/loginForm","/loginForm?error=true","/","/packs/shuffle/**","/packs/detail/{packId}").permitAll()
         .anyRequest().authenticated();
 
         http.formLogin().loginPage("/loginForm").loginProcessingUrl("/login")
@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         .usernameParameter("username").passwordParameter("password")
         .and()
         .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-        .logoutSuccessUrl("/loginForm").deleteCookies("JJSESSIONID")
+        .logoutSuccessUrl("/loginForm").deleteCookies("JSESSIONID")
         .invalidateHttpSession(true).permitAll()
         .and()
         .sessionManagement().invalidSessionUrl("/loginForm");

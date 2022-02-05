@@ -53,6 +53,7 @@ public class PackRegisterController {
 
     @PostMapping("confirm")
     public String validate(@Validated @ModelAttribute("packForm") PackForm packForm, BindingResult result){
+        System.out.println("errrrrrrrrrrrr");
         if (result.hasErrors()){
             return "packs/register/form";
         }
