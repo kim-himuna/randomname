@@ -8,7 +8,7 @@
 <body>
     <header th:replace="fragments/navigation::navigation('パック修正')"></header>
     <header th:replace="fragments/header :: header('パック修正')"></header>
-    <form th:action="@{/packs/detail/{packId}/update/register(packId=${packForm.getId()})}" th:object="${packForm}" method="post">
+    <form th:action="@{/packs/{packId}/update/register(packId=${packForm.getId()})}" th:object="${packForm}" method="post">
         <p>
             <label="name">パッケージ名</label>
             <input type="text" th:name="*{title}" th:field="*{title}" th:errorclass="input-error" th:placeholder="*{title}">
@@ -22,8 +22,8 @@
         </p>
        
         <p>
-            <a th:href="@{/packs/detail/{packId}(packId=${packId})}"><input type="button" value="戻る" /></a>
             <input id="update-form" type="submit" value="完了">
+            <a th:href="@{/packs/detail/{packId}(packId=${packId})}"><input type="button" value="戻る" /></a>
         </p>
     </form>
 </body>
