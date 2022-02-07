@@ -32,8 +32,8 @@
                     <a class="navbar-item" th:classappend="${active.equals('シャッフル詳細')} ? 'is-active' : ''" th:href="@{/packs/shuffle/detail}">
                         <span>シャッフル詳細</span>
                     </a>
-                    <a sec:authrize="hasRole('USER')" class="navbar-item" th:href="@{/logout}">
-                        <span>ログアウト</span>
+                    <a class="navbar-item" th:classappend="${active.equals('ユーザ情報')} ? 'is-active' : ''" th:href="@{/users/detail}">
+                        <span>ユーザ情報</span>
                     </a>
                 </div>
             </nav>

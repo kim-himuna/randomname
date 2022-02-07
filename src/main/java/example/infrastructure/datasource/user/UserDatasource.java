@@ -16,6 +16,9 @@ public class UserDatasource implements UserRepository{
     public User getUserByName(UserName username) {
         return mapper.findOne(username);
     }
-    
-    
+
+    @Override
+    public void registerUser(User user) {
+        mapper.insertUser(user);
+    }
 }

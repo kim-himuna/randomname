@@ -28,4 +28,20 @@ public class User {
     public UserPassword getPassword(){
         return userPassword;
     }
+
+    public void setUserId(UserId userId){
+        this.userId = userId;
+    }
+    
+    public void setUserName(UserName userName){
+        this.userName = userName;
+    }
+    
+    public void setUserPassword(UserPassword userPassword){
+        this.userPassword = userPassword;
+    }
+    
+    public void setUserRole(UserRole userRole){
+        this.userRole = userRole;
+    }
 }

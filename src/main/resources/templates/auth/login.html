@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="fragments/layout :: htmlhead(~{::title})">
 <meta charset="UTF-8">
 <title>ログイン</title>
 </head>
@@ -21,6 +21,8 @@
       </form>
       <p th:if="${param.error}">名前かパスワードが間違っています</p>
     </div>
+
+    <a th:href="@{/user/register}">新規登録</a>
   </div>
 </div>
 </body>

@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.csrf().disable().
-        authorizeRequests().antMatchers("/loginForm","/loginForm?error=true","/","/packs/shuffle/**","/packs/detail/{packId}").permitAll()
+        authorizeRequests().antMatchers("/loginForm","/loginForm?error=true","/","/packs/shuffle/**","/packs/detail/{packId}","/user/register/**").permitAll()
         .anyRequest().authenticated();
 
         http.formLogin().loginPage("/loginForm").loginProcessingUrl("/login")
