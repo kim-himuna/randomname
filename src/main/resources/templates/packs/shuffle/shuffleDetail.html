@@ -19,11 +19,11 @@
         </p>
 
         <p>
-            <input id="update-form" type="submit" value="完了">
+            <input id="update-form" input class="button is-small" type="button" value="完了">
         </p>
     </form>
     <p>
-        <a th:href="@{/packs/shuffle/listReset}" ><input type="button" value="単語リストリセット" /></a>
+        <a th:href="@{/packs/shuffle/listReset}" ><input class="button is-small" type="button" value="単語リストリセット" /></a>
     </p>
 
     <div class="m-1 card" th:each="pack: ${shuffleselectPacks.getSelectPacks()}">

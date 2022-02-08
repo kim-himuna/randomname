@@ -20,10 +20,10 @@
                         </td>
                         <td width="25%" rowspan= "5"> 
                             <th:block th:if = "${!pack.getUsing()}">
-                                <a th:href="@{/packs/shuffle/{packId}/listAdd(packId=${pack.getId()})}"><input type="submit" value="使用"/></a>
+                                <a th:href="@{/packs/shuffle/{packId}/listAdd(packId=${pack.getId()})}"><input class="button is-small" type="button" value="使用"/></a>
                             </th:block>
                             <th:block th:if = "${pack.getUsing()}">
-                                <a th:href="@{/packs/shuffle/{packId}/listRemoveFromTop(packId=${pack.getId()})}"><input type="submit" value="使用キャンセル"/></a>
+                                <a th:href="@{/packs/shuffle/{packId}/listRemoveFromTop(packId=${pack.getId()})}"><input class="button is-small" type="button" value="使用キャンセル"/></a>
                             </th:block>
                         </td>
                     </tr>

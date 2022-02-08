@@ -25,7 +25,7 @@
         </div>
     </div>
     
-    <a th:href="@{/}"><input type="button" value="戻る"/></a>
+    <a th:href="@{/}"><input class="button is-small" type="button" value="戻る"/></a>
 
     <div sec:authorize="hasRole('ADMIN')">
     <a th:href="@{/packs/{packId}/update(packId=${pack.getId()})}">編集</a>

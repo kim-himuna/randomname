@@ -14,6 +14,7 @@
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
+                        <span sec:authorize="hasRole('USER')" aria-hidden="true"></span>
                     </a>
                 </div>
                 <div id="menu" class="navbar-menu is-flux">
@@ -21,7 +22,7 @@
                         <span>トップページ</span>
                     </a>
 
-                    <a class="navbar-item" th:classappend="${active.equals('パック作成')} ? 'is-active' : ''" th:href="@{/packs/register}">
+                    <a sec:authorize="hasRole('USER')" class="navbar-item" th:classappend="${active.equals('パック作成')} ? 'is-active' : ''" th:href="@{/packs/register}">
                         <span>パック作成</span>
                     </a>
 
