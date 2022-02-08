@@ -42,9 +42,15 @@ public class UserRegisterController {
     }
 
     @PostMapping("confirm")
-    public String validate(@Validated @ModelAttribute("userRegisterForm") UserRegisterForm userRegisterForm,BindingResult result){
-        System.out.println(userRegisterForm.getUserName() +"          "+ userRegisterForm.getUserPassword());
+    public String validate(@Validated @ModelAttribute("userRegisterForm") UserRegisterForm userRegisterForm,BindingResult result,Model model){
+
         if(result.hasErrors()){
+            return "user/register/registerationForm";
+        }
+
+        if(userSerivice.isExistUser(userRegisterForm.getUserName())){
+            model.addAttribute("userRegisterForm", userRegisterForm);
+            model.addAttribute("signupError", "ユーザー名 " + userRegisterForm.getUserName() + "は既に登録されています");
             return "user/register/registerationForm";
         }
         return "user/register/confirm";
@@ -52,9 +58,13 @@ public class UserRegisterController {
 
     @GetMapping("register")
     public String registerThenRedirectAndClearSession(
-        @ModelAttribute("userRegisterForm") UserRegisterForm userRegisterForm,SessionStatus status, RedirectAttributes attributes) {
-    
-        System.out.println(userRegisterForm.getUserName() +"          "+ userRegisterForm.getUserPassword());
+        @ModelAttribute("userRegisterForm") UserRegisterForm userRegisterForm,SessionStatus status, RedirectAttributes attributes,Model model) {
+
+        if(userSerivice.isExistUser(userRegisterForm.getUserName())){
+            model.addAttribute("userRegisterForm", userRegisterForm);
+            model.addAttribute("signupError", "ユーザー名 " + userRegisterForm.getUserName() + "は既に登録されています");
+            return "user/register/registerationForm";
+        }
 
         /**TODO userのidかぶらないような処理に書き直す*/
         User user = new User(null, new UserName(userRegisterForm.getUserName()), new UserRole("USER"), new UserPassword(userRegisterForm.getUserPassword()));

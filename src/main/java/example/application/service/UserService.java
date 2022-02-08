@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import example.application.repository.UserRepository;
 import example.domain.model.user.User;
@@ -35,11 +36,21 @@ public class UserService implements UserDetailsService{
         return new UserAuthDetails(user);
     }
 
+    @Transactional
     public void register(User user){
         System.out.println(user.getPassword());
         user.setUserPassword(new UserPassword(passwordEncorder.encode(user.getPassword().GetValue())));
         System.out.println(user.getPassword());
         userRepository.registerUser(user);
 
+    }
+
+    public boolean isExistUser(String username){
+
+        if(userRepository.getUserByName(new UserName(username)) == null){
+            return false;
+        }
+
+        return true;
     }
 }
