@@ -12,12 +12,10 @@
             <tr>
                 <th>項目</th>
                 <th>内容</th>
-                <th></th>
             </tr>
             <tr>
                 <td>UserName</td>
                 <td><span sec:authentication="principal.username"></span></td>
-                <td><a th:href="@{user/change/name}">名前変更</td>
             </tr>
         </table>
         <a th:href="@{/logout}">ログアウト</a>

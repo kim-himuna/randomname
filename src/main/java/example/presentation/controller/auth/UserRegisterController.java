@@ -66,7 +66,6 @@ public class UserRegisterController {
             return "user/register/registerationForm";
         }
 
-        /**TODO userのidかぶらないような処理に書き直す*/
         User user = new User(null, new UserName(userRegisterForm.getUserName()), new UserRole("USER"), new UserPassword(userRegisterForm.getUserPassword()));
         userSerivice.register(user);
 
