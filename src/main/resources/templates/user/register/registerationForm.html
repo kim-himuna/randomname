@@ -19,7 +19,7 @@
             <input type="password" id="userPassword" name="userPassword" placeholder="パスワードを入力"/>
             <div style="color: red;" th:if="${#fields.hasErrors('userPassword')}" th:errors="*{userPassword}"></div>
         </div>
-        <input class="button is-small" type="button" value="登録"/>
+        <input class="button is-small" type="submit" value="登録"/>
         <a th:href="@{/loginForm}"><input class="button is-small" type="button" value="戻る" /></a>
     </form>
 
