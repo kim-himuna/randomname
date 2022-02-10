@@ -21,7 +21,19 @@ public class PackService{
     public List<Pack> getPackList(){
         return packRepository.getPackList();
     }
+
+    public PackId register(PackToRegister packToRegister){
+        packRepository.registerPack(packToRegister);
+        PackId packId = packRepository.registerNew();
+        for(WordToRegister wordToRegister: packToRegister.getWords()){
+            wordToRegister.setPackId(packId);
+            packRepository.registerWord(wordToRegister);
+        }
+
+        return packId;
+    }
     
+    /*
     public PackId registerPack(PackToRegister packToRegister){
         packRepository.registerPack(packToRegister);
         return packToRegister.getId();
@@ -31,15 +43,15 @@ public class PackService{
         packRepository.registerWord(wordToRegister);    
     }
 
+        public PackId registerNew(){
+        return packRepository.registerNew();
+    }
+
+    */
 
     public Pack getPack(PackId packId) {
         return packRepository.getPack(packId);
     }
-
-    public PackId registerNew(){
-        return packRepository.registerNew();
-    }
-
 
     public PackId updatePack(PackToRegister packToRegister){
 
