@@ -1,11 +1,11 @@
-package example.presentation.controller;
+package example.presentation.controller.pack;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
+
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import example.application.service.PackService;
 import example.domain.model.pack.*;
-import example.domain.model.word.CharacterString;
-import example.domain.model.word.WordToRegister;
+import example.domain.model.word.Word;
+import example.presentation.coordinator.pack.PackRecordCoordinator;
 import example.presentation.form.PackForm;
 import example.presentation.form.WordForm;
 
@@ -29,6 +29,9 @@ public class PackUpdateController {
     @Autowired
     PackService packService;
 
+    @Autowired
+    PackRecordCoordinator packRecordCoordinator;
+
 
     @GetMapping
     public String open(@PathVariable(value = "packId") PackId packId, Model model){
@@ -38,20 +41,18 @@ public class PackUpdateController {
         packForm.setId(packId.getValue());
         packForm.setTitle(pack.getTitle().toString());
 
-        WordForm[] words = new WordForm[5];
-        for(int i = 0; i< 5; i++){
-            words[i] = new WordForm(); 
-            words[i].setWord(pack.getWords().get(i).getCharacterString().getValue()); 
+        List<WordForm> words = new ArrayList<>();
+        for(Word word:pack.getWords()){
+            words.add(new WordForm(word.getId().getValue(),word.getCharacterString().getValue()));    
         }
 
-        packForm.setWordsForm(words);
+        packForm.setWords(words);
 
         model.addAttribute("packForm",packForm);
    
         return "packs/update/form";
     }
 
-    @Transactional
     @PostMapping("register")
     public String registerThenRedirect(@PathVariable(value = "packId") PackId packId,@Validated @ModelAttribute("packForm") PackForm packForm, BindingResult result, Model model){
 
@@ -60,22 +61,10 @@ public class PackUpdateController {
             return "packs/update/form";
         }
 
-        Pack pack = packService.getPack(packId);
+        
+        Pack pack = packRecordCoordinator.packCoordinate(packForm);
 
-        List<WordToRegister> words = new ArrayList<WordToRegister>();
-
-        int i = 0;
-
-        for(WordForm word:packForm.wordsForm){
-            WordToRegister wordToRegister = new WordToRegister(packId,new CharacterString(word.getWord()));
-            wordToRegister.setId(pack.getWords().get(i).getId());
-            words.add(wordToRegister);
-            i++;
-        }
-
-        PackToRegister packToRegister = new PackToRegister(packId,new PackTitle(packForm.getTitle()),words);
-
-        packService.updatePack(packToRegister);
+        packService.updatePack(pack);
 
         return "redirect:/packs/detail/" + packId;
     }

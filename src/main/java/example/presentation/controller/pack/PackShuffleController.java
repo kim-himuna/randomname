@@ -1,11 +1,10 @@
-package example.presentation.controller;
+package example.presentation.controller.pack;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,9 +43,10 @@ public class PackShuffleController {
     public String ShuffleListAdd(@PathVariable long packId,RedirectAttributes redirectAttrs){
         /**shuffleListに追加 */
         ShuffleList shuffleList = shuffleSession.getShuffleList();
-        shuffleList.selectIds.add(packId);
-
-        shuffleSession.setShuffleList(shuffleList);
+        if(shuffleList.getSelectIds().size()<20){
+            shuffleList.selectIds.add(packId);
+            shuffleSession.setShuffleList(shuffleList);
+        }
         redirectAttrs.addFlashAttribute("shuffleSession",shuffleSession);
 
         return "redirect:/";
@@ -75,7 +75,6 @@ public class PackShuffleController {
             word = packShuffleService.shuffleResult(shuffleSession.getShuffleList());
         }
 
-        System.out.println(word);
         model.addAttribute("word", word);
         return "packs/shuffle/shuffleResult";
     }
@@ -100,14 +99,9 @@ public class PackShuffleController {
         return "packs/shuffle/shuffleDetail";
     }
 
-    @Transactional
     @PostMapping("detail/update")
     public String shuffleDetailUpdate(@Validated @ModelAttribute("shuffleDetailForm") ShuffleDetailForm shuffleDetailForm, BindingResult result,Model model,RedirectAttributes redirectAttrs){
-        System.out.println("shuflD wordcount: "+shuffleDetailForm.getWordCount() +" wordsize:  "+shuffleDetailForm.getWordSize());
-        System.out.println("result wordcount: "+result.getFieldValue("wordCount") +" wordsize:  "+result.getFieldValue("wordSize"));
-
         if (result.hasErrors()) {
-            System.out.println("error");
             List<Pack> selectPacks = new ArrayList<>();
 
             for(Long packId:shuffleSession.getShuffleList().getSelectIds()){
