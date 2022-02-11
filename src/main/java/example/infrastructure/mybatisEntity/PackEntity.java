@@ -4,10 +4,10 @@ import example.domain.model.pack.*;
 
 public class PackEntity {
     private PackTitle packTitle;
-    private PackId id;
+    private PackId packId;
 
-    public PackEntity(PackId id,PackTitle packTitle){
-        this.id = id;
+    public PackEntity(PackId packId,PackTitle packTitle){
+        this.packId = packId;
         this.packTitle = packTitle;
     }
 
@@ -20,6 +20,6 @@ public class PackEntity {
     }
 
     public PackId getId(){
-        return id;
+        return packId;
     }
 }

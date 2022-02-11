@@ -36,32 +36,41 @@ public class packDatasourace implements PackRepository {
     }
 
     @Override
-    public void registerPack(PackToRegister packToRegister){
-        mapper.insertPack(new PackEntity(packToRegister.getTitle()));
+    public PackId register(Pack pack){
+        mapper.insertPack(new PackEntity(pack.getTitle()));
+        PackId packId = mapper.registerNew();
+        for(Word word: pack.getWords()){
+            mapper.insertWord(new WordEntity(packId,word.getCharacterString()));
+        }
+
+        return packId;
     }
     
     @Override
-    public void updatePack(PackToRegister packToRegister){
-        mapper.updatePack(new PackEntity(packToRegister.getId(), packToRegister.getTitle()));
+    public void update(Pack pack){
+        PackId packId = pack.getId();
+        mapper.updatePack(new PackEntity(packId, pack.getTitle()));
 
+        for(Word word: pack.getWords()){
+            mapper.updateWord(new WordEntity(word.getId(),packId,word.getCharacterString()));
+        }
     }
 
     @Override
     public void deletePack(PackId packId){
         mapper.deletePack(packId);
-
+    }
+/*
+    @Override
+    public void registerWord(Word word) {
+        mapper.insertWord(new WordEntity(word.getPackId(), word.getCharacterString()));
     }
 
     @Override
-    public void registerWord(WordToRegister wordToRegister) {
-        mapper.insertWord(new WordEntity(wordToRegister.getPackId(), wordToRegister.getCharacterString()));
+    public void updateWord(Word word) {
+        mapper.updateWord(new WordEntity(word.getWordId(),word.getPackId(), word.getCharacterString()));
     }
-
-    @Override
-    public void updateWord(WordToRegister wordToRegister) {
-        mapper.updateWord(new WordEntity(wordToRegister.getWordId(),wordToRegister.getPackId(), wordToRegister.getCharacterString()));
-    }
-
+*/
     @Override
     public void deleteWord(WordId wordId) {
         mapper.deleteWord(wordId);

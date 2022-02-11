@@ -13,12 +13,10 @@ public interface PackRepository{
     PackId registerNew();
 
     /**C */
-    void registerPack(PackToRegister packToRegister);
-    void registerWord(WordToRegister wordToRegister);
+    PackId register(Pack pack);
 
     /**U */
-    void updatePack(PackToRegister packToRegister);
-    void updateWord(WordToRegister wordToRegister);
+    void update(Pack pack);
     
     /**D */
     void deletePack(PackId packId);

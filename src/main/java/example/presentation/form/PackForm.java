@@ -1,6 +1,8 @@
 package example.presentation.form;
 
 
+import java.util.List;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -19,5 +21,13 @@ public class PackForm {
     public String title;
     
     @Valid
-    public WordForm[] wordsForm;
+    public List<WordForm> words;
+
+    public PackForm(){}
+
+    public PackForm(long id,String title,List<WordForm> words){
+        this.id = id;
+        this.title = title;
+        this.words = words;
+    }
 }

@@ -7,10 +7,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import example.domain.model.pack.Pack;
+import example.domain.model.pack.PackId;
 import example.domain.model.pack.PackTitle;
-import example.domain.model.pack.PackToRegister;
 import example.domain.model.word.CharacterString;
-import example.domain.model.word.WordToRegister;
+import example.domain.model.word.Word;
 import example.presentation.form.PackForm;
 import example.presentation.form.WordForm;
 
@@ -18,15 +19,15 @@ import example.presentation.form.WordForm;
 public class PackRecordCoordinator {
 
 
-    public PackToRegister packCoordinate(PackForm packForm){
+    public Pack packCoordinate(PackForm packForm){
 
-        List<WordToRegister> words = new ArrayList<WordToRegister>();
+        List<Word> words = new ArrayList<Word>();
 
-        for(WordForm word:packForm.wordsForm){
-            words.add(new WordToRegister(null,new CharacterString(word.word)));
+        for(WordForm word:packForm.getWords()){
+            words.add(new Word(null,new CharacterString(word.word)));
         }
 
-        PackToRegister packToRegister = new PackToRegister(null,new PackTitle(packForm.getTitle()),words);
-        return packToRegister;
+        Pack pack = new Pack(new PackId(packForm.getId()),new PackTitle(packForm.getTitle()),words);
+        return pack;
     }
 }

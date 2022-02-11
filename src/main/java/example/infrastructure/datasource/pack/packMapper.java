@@ -17,7 +17,6 @@ public interface packMapper {
     List<Word> findWordsInPack(@Param("packId") PackId packId);
     List<Pack> findAll();
     PackId registerNew();
-    /**Word findWord(WordId id); */
 
     /**C */
     void insertPack(PackEntity packEntity);

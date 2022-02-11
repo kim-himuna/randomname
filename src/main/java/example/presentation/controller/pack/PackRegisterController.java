@@ -1,5 +1,8 @@
 package example.presentation.controller.pack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import example.application.service.PackService;
 import example.domain.model.pack.PackId;
-import example.domain.model.pack.PackToRegister;
 import example.domain.model.pack.Pack;
 import example.presentation.coordinator.pack.PackRecordCoordinator;
 import example.presentation.form.PackForm;
@@ -44,8 +46,11 @@ public class PackRegisterController {
     public String showForm(Model model) {
 
         PackForm packForm = new PackForm();
-        WordForm[] words = {new WordForm(),new WordForm(),new WordForm(),new WordForm(),new WordForm()};
-        packForm.setWordsForm(words);
+        List<WordForm> words = new ArrayList<WordForm>();
+        for(int i=0;i<5;i++){
+            words.add(new WordForm());
+        }
+        packForm.setWords(words);
 
         model.addAttribute("packForm",packForm);
 
@@ -70,12 +75,13 @@ public class PackRegisterController {
     public String registerThenRedirectAndClearSession(
         @ModelAttribute("packForm") PackForm packForm,SessionStatus status, RedirectAttributes attributes) {
             
-        PackToRegister packToRegister = packRecordCoordinator.packCoordinate(packForm);
-        PackId packId = packService.register(packToRegister);
+        Pack pack = packRecordCoordinator.packCoordinate(packForm);
+        PackId packId = packService.register(pack);
+
         
         status.setComplete();
         attributes.addAttribute("packId", packId);
-        attributes.addAttribute("packTitle", packForm.getTitle());
+        attributes.addAttribute("packTitle", pack.getTitle());
 
 
         return "redirect:/packs/register/completed";

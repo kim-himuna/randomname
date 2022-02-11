@@ -1,4 +1,4 @@
-package example.domain.model.pack;
+/*package example.domain.model.pack;
 
 import java.util.List;
 
@@ -32,3 +32,4 @@ public class PackToRegister{
         return words;
     }
 }
+*/

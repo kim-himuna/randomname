@@ -60,20 +60,20 @@
 </select>
 
 
-<insert id="insertPack" parameterType="example.domain.model.pack.PackToRegister" useGeneratedKeys="true" keyProperty="id">
+<insert id="insertPack" parameterType="example.infrastructure.mybatisEntity.PackEntity" useGeneratedKeys="true" keyProperty="packId">
       INSERT INTO pack (title) VALUES (#{title.value})
 </insert>
 
-<insert id="insertWord" parameterType="example.domain.model.word.WordToRegister" useGeneratedKeys="true" keyProperty="id">
+<insert id="insertWord" parameterType="example.infrastructure.mybatisEntity.WordEntity" useGeneratedKeys="true" keyProperty="wordId">
       INSERT INTO word (character_string,pack_id) VALUES (#{characterString.value},#{packId.value})
 </insert>
 
 <update id="updatePack" parameterType="example.infrastructure.mybatisEntity.PackEntity">
-      UPDATE pack SET title = #{packTitle.value} WHERE id = #{id.value}
+      UPDATE pack SET title = #{packTitle.value} WHERE id = #{packId.value}
 </update>
 
 <update id="updateWord" parameterType="example.infrastructure.mybatisEntity.WordEntity">
-      UPDATE word SET character_string = #{characterString.value} WHERE id = #{id.value}
+      UPDATE word SET character_string = #{characterString.value} WHERE id = #{wordId.value}
 </update>
 
 <delete id="deletePack">

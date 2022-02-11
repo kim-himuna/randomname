@@ -1,3 +1,4 @@
+/*
 package example.domain.model.word;
 
 import example.domain.model.pack.*;
@@ -5,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class WordToRegister {
-    private WordId id;
+    private WordId wordId;
     private CharacterString characterString;
     private PackId packId;
 
@@ -14,17 +15,5 @@ public class WordToRegister {
         this.characterString = characterString;
     }
 
-    public WordId getWordId(){
-        return id;
-    }
 
-    public CharacterString getCharacterString(){
-        return characterString;
-    }
-
-    public PackId getPackId(){
-        return packId;
-    }
-
-
-}
+}*/

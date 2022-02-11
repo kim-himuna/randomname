@@ -7,7 +7,7 @@ public class WordId {
         this.value = value;
     }
 
-    public Long getWordId(){
+    public Long getValue(){
         return value;
     }
 

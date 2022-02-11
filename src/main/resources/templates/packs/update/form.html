@@ -15,10 +15,10 @@
             <span style="color: red;" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
         </p>
 
-        <p th:each="word, stat: *{wordsForm}">
+        <p th:each="word, stat: *{words}">
             <label="name">ワード</label>
-            <input type="text" th:field="*{wordsForm[__${stat.index}__].word}" th:errorclass="input-error" th:placeholder="*{wordsForm[__${stat.index}__].word}">
-            <span style="color: red;" th:if="${#fields.hasErrors('*{wordsForm[__${stat.index}__].word}')}" th:errors="*{wordsForm[__${stat.index}__].word}"></span>
+            <input type="text" th:field="*{words[__${stat.index}__].word}" th:errorclass="input-error" th:placeholder="*{words[__${stat.index}__].word}">
+            <span style="color: red;" th:if="${#fields.hasErrors('*{words[__${stat.index}__].word}')}" th:errors="*{words[__${stat.index}__].word}"></span>
         </p>
        
         <p>

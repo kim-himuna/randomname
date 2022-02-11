@@ -4,12 +4,12 @@ import example.domain.model.word.*;
 import example.domain.model.pack.*;
 
 public class WordEntity {
-    private WordId id;
+    private WordId wordId;
     private CharacterString characterString;
     private PackId packId;
 
-    public WordEntity(WordId id,PackId packId,CharacterString characterString){
-        this.id = id;
+    public WordEntity(WordId wordId,PackId packId,CharacterString characterString){
+        this.wordId = wordId;
         this.packId = packId;
         this.characterString = characterString;
     }
@@ -20,7 +20,7 @@ public class WordEntity {
     }
 
     public WordId getWordId(){
-        return id;
+        return wordId;
     }
 
     public CharacterString getCharacterString(){

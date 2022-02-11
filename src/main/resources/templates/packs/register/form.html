@@ -17,33 +17,33 @@
                         <div style="color: red;" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
                     </td>
                     <td width="75%">
-                        <input type="text" th:field="*{wordsForm[0].word}" th:errorclass="input-error" placeholder="word">
-                        <span style="color: red;" th:if="${#fields.hasErrors('*{wordsForm[0].word}')}" th:errors="*{wordsForm[0].word}"></span>
+                        <input type="text" th:field="*{words[0].word}" th:errorclass="input-error" placeholder="word">
+                        <span style="color: red;" th:if="${#fields.hasErrors('*{words[0].word}')}" th:errors="*{words[0].word}"></span>
                     </td>
                 </tr>
 
                 <tr>
                     <td>
-                    <input type="text" th:field="*{wordsForm[1].word}" th:errorclass="input-error" placeholder="word">
-                    <span style="color: red;" th:if="${#fields.hasErrors('*{wordsForm[1].word}')}" th:errors="*{wordsForm[1].word}"></span>
+                    <input type="text" th:field="*{words[1].word}" th:errorclass="input-error" placeholder="word">
+                    <span style="color: red;" th:if="${#fields.hasErrors('*{words[1].word}')}" th:errors="*{words[1].word}"></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" th:field="*{wordsForm[2].word}" th:errorclass="input-error" placeholder="word">
-                        <span style="color: red;" th:if="${#fields.hasErrors('*{wordsForm[2].word}')}" th:errors="*{wordsForm[2].word}"></span>
+                        <input type="text" th:field="*{words[2].word}" th:errorclass="input-error" placeholder="word">
+                        <span style="color: red;" th:if="${#fields.hasErrors('*{words[2].word}')}" th:errors="*{words[2].word}"></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" th:field="*{wordsForm[3].word}" th:errorclass="input-error" placeholder="word">
-                        <span style="color: red;" th:if="${#fields.hasErrors('*{wordsForm[3].word}')}" th:errors="*{wordsForm[3].word}"></span>
+                        <input type="text" th:field="*{words[3].word}" th:errorclass="input-error" placeholder="word">
+                        <span style="color: red;" th:if="${#fields.hasErrors('*{words[3].word}')}" th:errors="*{words[3].word}"></span>
                     </td>
                 </tr>
                 <tr>   
                     <td>
-                        <input type="text" th:field="*{wordsForm[4].word}" th:errorclass="input-error" placeholder="word">
-                        <span style="color: red;" th:if="${#fields.hasErrors('*{wordsForm[4].word}')}" th:errors="*{wordsForm[4].word}"></span>
+                        <input type="text" th:field="*{words[4].word}" th:errorclass="input-error" placeholder="word">
+                        <span style="color: red;" th:if="${#fields.hasErrors('*{words[4].word}')}" th:errors="*{words[4].word}"></span>
                     </td>
                 </tr>
             </table>

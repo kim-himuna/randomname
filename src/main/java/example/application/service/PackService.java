@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import example.application.repository.PackRepository;
 import example.domain.model.pack.*;
-import example.domain.model.word.*;
 
 
 @Service
@@ -22,14 +21,8 @@ public class PackService{
         return packRepository.getPackList();
     }
 
-    public PackId register(PackToRegister packToRegister){
-        packRepository.registerPack(packToRegister);
-        PackId packId = packRepository.registerNew();
-        for(WordToRegister wordToRegister: packToRegister.getWords()){
-            wordToRegister.setPackId(packId);
-            packRepository.registerWord(wordToRegister);
-        }
-
+    public PackId register(Pack pack){
+        PackId packId = packRepository.register(pack);
         return packId;
     }
     
@@ -53,15 +46,11 @@ public class PackService{
         return packRepository.getPack(packId);
     }
 
-    public PackId updatePack(PackToRegister packToRegister){
+    public PackId updatePack(Pack pack){
 
-        packRepository.updatePack(packToRegister);
+        packRepository.update(pack);
 
-        for(WordToRegister wordToRegister:packToRegister.getWords()){
-            packRepository.updateWord(wordToRegister);    
-        }
-
-        return packToRegister.getId();
+        return pack.getId();
     }
 
     public PackId deletePack(PackId packId){
