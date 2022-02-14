@@ -1,3 +1,7 @@
+/*packを同時に複数使用できないように，使用中かどうか判定するisUsedを追加したpackmodel
+    formに入れるのも微妙だが，domainのpackにいれていいものか？
+*/
+
 package example.presentation.form;
 
 import java.util.List;
@@ -6,13 +10,13 @@ public class PackListForm {
     private long id;
     private String title;
     private List<String> words;
-    private boolean using;
+    private boolean isUsed;
 
-    public PackListForm(long id,String title,List<String> words,boolean using){
+    public PackListForm(long id,String title,List<String> words,boolean isUsed){
         this.id = id;
         this.title = title;
         this.words = words;
-        this.using = using;
+        this.isUsed = isUsed;
     }
 
     public long getId(){
@@ -27,10 +31,10 @@ public class PackListForm {
         return words;
     }
 
-    public boolean getUsing(){
-        return using;
+    public boolean getIsUsed(){
+        return isUsed;
     }
-    public void setUsing(boolean using){
-        using = this.using;
+    public void setIsUsed(boolean isUsed){
+        isUsed = this.isUsed;
     }
 }

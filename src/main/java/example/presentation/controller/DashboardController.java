@@ -37,7 +37,7 @@ public class DashboardController {
         for(Pack pack:packList){
 
             List<String> words = new ArrayList<>();
-            boolean using = false;
+            boolean isUsed = false;
             for(Word word:pack.getWords()){
                 words.add(word.getCharacterString().toString());
             }
@@ -45,17 +45,16 @@ public class DashboardController {
             long packid = pack.getId().getValue();
             for(long id:shuffleSession.getShuffleList().getSelectIds()){
                 if(packid == id){
-                    using = true;
+                    isUsed = true;
                 }
             }
 
-            packs.add(new PackListForm(pack.getId().getValue(), pack.getTitle().getValue(),words,using));
+            packs.add(new PackListForm(pack.getId().getValue(), pack.getTitle().getValue(),words,isUsed));
 
         }
 
         model.addAttribute("packs", packs);
 
-        System.out.println(shuffleSession.getShuffleList().selectIds);
         return "/index";
     }
 }
