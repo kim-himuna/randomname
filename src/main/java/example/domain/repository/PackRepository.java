@@ -1,4 +1,4 @@
-package example.application.repository;
+package example.domain.repository;
 
 import java.util.List;
 

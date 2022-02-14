@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import example.application.repository.PackRepository;
 import example.domain.model.ShuffleList;
 import example.domain.model.pack.*;
 import example.domain.model.word.*;
+import example.domain.repository.PackRepository;
 
 @Service
 @Transactional

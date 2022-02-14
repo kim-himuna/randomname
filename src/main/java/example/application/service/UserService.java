@@ -8,10 +8,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import example.application.repository.UserRepository;
 import example.domain.model.user.User;
 import example.domain.model.user.UserName;
 import example.domain.model.user.UserPassword;
+import example.domain.repository.UserRepository;
 
 @Service
 public class UserService implements UserDetailsService{
@@ -25,22 +25,17 @@ public class UserService implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        System.out.println(username);
-
         User user = userRepository.getUserByName(new UserName(username));
         if(user == null){
             throw new UsernameNotFoundException(username + "is not found");
         }
 
-        System.out.println(user.getUserRole().GetValue());
         return new UserAuthDetails(user);
     }
 
     @Transactional
     public void register(User user){
-        System.out.println(user.getPassword());
         user.setUserPassword(new UserPassword(passwordEncorder.encode(user.getPassword().GetValue())));
-        System.out.println(user.getPassword());
         userRepository.registerUser(user);
 
     }

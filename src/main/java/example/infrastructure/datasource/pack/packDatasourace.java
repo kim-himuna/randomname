@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import example.application.repository.PackRepository;
 import example.domain.model.pack.*;
 import example.domain.model.word.*;
+import example.domain.repository.PackRepository;
 import example.infrastructure.mybatisEntity.*;
 
 @Repository

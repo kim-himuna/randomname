@@ -1,4 +1,4 @@
-package example.application.repository;
+package example.domain.repository;
 
 import example.domain.model.user.User;
 import example.domain.model.user.UserName;
