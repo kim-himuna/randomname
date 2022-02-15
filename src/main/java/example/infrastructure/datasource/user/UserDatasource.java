@@ -14,7 +14,7 @@ public class UserDatasource implements UserRepository{
 
     @Override
     public User getUserByName(UserName username) {
-        return mapper.findOne(username);
+        return mapper.selectOne(username);
     }
 
     @Override

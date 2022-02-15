@@ -8,6 +8,6 @@ import example.domain.model.user.UserName;
 
 @Mapper
 public interface UserMapper {
-    User findOne(@Param("userName") UserName userName);
+    User selectOne(@Param("userName") UserName userName);
     void insertUser(User user);
 }

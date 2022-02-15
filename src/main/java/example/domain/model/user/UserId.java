@@ -1,13 +1,13 @@
 package example.domain.model.user;
 
 public class UserId {
-    private String value;
+    private long value;
 
-    public UserId(String value){
+    public UserId(long value){
         this.value = value;
     }
 
-    public String GetValue(){
+    public long getValue(){
         return value;
     }
 }

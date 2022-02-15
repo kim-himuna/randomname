@@ -21,6 +21,10 @@ public class PackService{
         return packRepository.getPackList();
     }
 
+    public List<Pack> getLikedPackList(){
+        return packRepository.getPackList();
+    }
+
     public PackId register(Pack pack){
         PackId packId = packRepository.register(pack);
         return packId;

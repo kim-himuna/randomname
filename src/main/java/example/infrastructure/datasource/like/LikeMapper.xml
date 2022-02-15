@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="example.infrastructure.datasource.like.LikeMapper">
+
+
+<resultMap id="packMap" type="example.domain.model.pack.Pack">
+
+      <association property="id" javaType="example.domain.model.pack.PackId">
+            <constructor>
+                  <arg name="value" column="pack_id"/>
+            </constructor>
+      </association>
+      <association property="title" javaType="example.domain.model.pack.PackTitle">
+            <constructor>
+                  <arg name="value" column="title"/>
+            </constructor>
+      </association>
+
+      <collection property="words" ofType="example.domain.model.word.Word">
+            <association property="id" javaType="example.domain.model.word.WordId">
+                  <constructor>
+                        <arg name="value" column="word_id"/>
+                  </constructor>
+            </association>
+            <association property="characterString" javaType="example.domain.model.word.CharacterString">
+                  <constructor>
+                        <arg name="value" column="character_string"/>
+                  </constructor>
+            </association>
+      </collection>
+</resultMap>
+
+
+<select id="selectPacksByUserId" resultMap="packMap">
+      SELECT pack.id as pack_id, title, word.id as word_id, character_string FROM likes INNER JOIN pack ON likes.pack_id = pack.id INNER JOIN word ON pack.id = word.pack_id where likes.user_id = #{value}
+</select>
+
+
+<insert id="insert" parameterType="example.infrastructure.mybatisEntity.LikeEntity" useGeneratedKeys="true" keyProperty="likeId">
+      INSERT INTO likes (user_id,pack_id) VALUES (#{userId.value},#{packId.value})
+</insert>
+
+</mapper>

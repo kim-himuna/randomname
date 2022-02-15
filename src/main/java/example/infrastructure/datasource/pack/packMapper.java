@@ -13,9 +13,9 @@ import example.infrastructure.mybatisEntity.*;
 public interface packMapper {
 
     /**R */
-    Pack findOne(@Param("packId") PackId packId);
-    List<Word> findWordsInPack(@Param("packId") PackId packId);
-    List<Pack> findAll();
+    Pack selectOne(@Param("packId") PackId packId);
+    List<Word> selectWordsInPack(@Param("packId") PackId packId);
+    List<Pack> selectAll();
     PackId registerNew();
 
     /**C */

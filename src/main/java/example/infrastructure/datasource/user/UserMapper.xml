@@ -28,7 +28,7 @@
 
     </resultMap>
 
-    <select id="findOne" resultMap="userMap" parameterType="map">
+    <select id="selectOne" resultMap="userMap" parameterType="map">
         SELECT id,username,password,rolename FROM users WHERE username = #{userName.value}
     </select>
 

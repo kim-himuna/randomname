@@ -20,5 +20,23 @@
         </table>
         <a th:href="@{/logout}">ログアウト</a>
 
+        お気に入りカード
+        <div class="m-1 card" th:each="pack , stat : ${likedPacks}">
+            <div class="card-content">
+                <table>
+                <tbody>
+                    <tr>
+                        <td width="25%" rowspan = "5" th:text="${pack.getTitle()}" >
+                        <td width="75%" th:text="${pack.getWords.get(0)}" >
+                    </tr>
+                    <tr><td th:text="${pack.getWords().get(1)}" ></tr>
+                    <tr><td th:text="${pack.getWords().get(2)}" ></tr>
+                    <tr><td th:text="${pack.getWords().get(3)}" ></tr>
+                    <tr><td th:text="${pack.getWords().get(4)}" ></tr>
+                </tbody>
+                </table>
+            </div>
+        </div>
+
     </body>
 </html>

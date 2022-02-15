@@ -7,13 +7,18 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import example.domain.model.user.User;
+import example.domain.model.user.UserId;
 
 public class UserAuthDetails implements UserDetails{
 
-    private User user;
+    private final User user;
 
     public UserAuthDetails(User user){
         this.user = user;
+    }
+
+    public UserId getUserId(){
+        return user.GetUserId();
     }
 
     @Override

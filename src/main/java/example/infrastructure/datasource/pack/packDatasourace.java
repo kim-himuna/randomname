@@ -17,17 +17,17 @@ public class packDatasourace implements PackRepository {
 
     @Override
     public Pack getPack(PackId packId){
-        return mapper.findOne(packId);
+        return mapper.selectOne(packId);
     }
     
     @Override
     public List<Pack> getPackList(){
-        return mapper.findAll();
+        return mapper.selectAll();
     }
 
     @Override
     public List<Word> getWordsInPack(PackId packId) {
-        return mapper.findWordsInPack(packId);
+        return mapper.selectWordsInPack(packId);
     }
 
     @Override

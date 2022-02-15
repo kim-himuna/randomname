@@ -43,15 +43,15 @@
 </resultMap>
 
 
-<select id="findOne" resultMap="packMap" parameterType="map">
+<select id="selectOne" resultMap="packMap" parameterType="map">
       SELECT pack.id as pack_id, title, word.id as word_id, character_string FROM pack INNER JOIN word ON pack.id = word.pack_id WHERE pack_id = #{packId.value}
 </select>
 
-<select id="findWordsInPack" resultMap="wordMap">
+<select id="selectWordsInPack" resultMap="wordMap">
       SELECT id, character_string FROM word WHERE pack_id = #{packId.value}
 </select>
 
-<select id="findAll" resultMap="packMap">
+<select id="selectAll" resultMap="packMap">
       SELECT pack.id as pack_id, title, word.id as word_id, character_string FROM pack INNER JOIN word ON pack.id = word.pack_id
 </select>
 
