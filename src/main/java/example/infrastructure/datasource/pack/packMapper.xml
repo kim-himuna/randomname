@@ -59,6 +59,10 @@
       SELECT LAST_INSERT_ID()
 </select>
 
+<select id="selectPacksByWord" resultMap="packMap" parameterType="string">
+      SELECT pack.id as pack_id, title, word.id as word_id, character_string FROM pack INNER JOIN word ON pack.id = word.pack_id WHERE title like '%${word}%'
+</select>
+
 
 <insert id="insertPack" parameterType="example.infrastructure.mybatisEntity.PackEntity" useGeneratedKeys="true" keyProperty="packId">
       INSERT INTO pack (title) VALUES (#{title.value})

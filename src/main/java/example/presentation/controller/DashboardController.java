@@ -3,6 +3,7 @@ package example.presentation.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import example.domain.model.ShuffleSession;
 import example.domain.model.pack.*;
 import example.domain.model.word.Word;
 import example.presentation.form.PackListForm;
+import example.presentation.form.SearchWordsForm;
 
 
 
@@ -53,8 +55,44 @@ public class DashboardController {
 
         }
 
+        SearchWordsForm searchWordsForm = new SearchWordsForm();
         model.addAttribute("packs", packs);
+        model.addAttribute("searchWordsForm",searchWordsForm);
 
         return "/index";
+    }
+
+    @PostMapping("packs/search")
+    public String searchPacksByWord(Model model,SearchWordsForm searchWordsForm){
+
+        List<Pack> packList= packService.getPackListByWord(searchWordsForm.getWord());
+
+        List<PackListForm> packs = new ArrayList<>();
+
+        for(Pack pack:packList){
+
+            List<String> words = new ArrayList<>();
+            boolean isUsed = false;
+            for(Word word:pack.getWords()){
+                words.add(word.getCharacterString().toString());
+            }
+
+            long packid = pack.getId().getValue();
+            for(long id:shuffleSession.getShuffleList().getSelectIds()){
+                if(packid == id){
+                    isUsed = true;
+                }
+            }
+
+            packs.add(new PackListForm(pack.getId().getValue(), pack.getTitle().getValue(),words,isUsed));
+
+        }
+
+        model.addAttribute("packs", packs);
+
+
+
+        return "/index";
+
     }
 }

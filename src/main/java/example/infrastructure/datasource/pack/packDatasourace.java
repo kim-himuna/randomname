@@ -83,4 +83,9 @@ public class packDatasourace implements PackRepository {
         
     }
 
+    @Override
+    public List<Pack> getPackListByWord(String word) {
+        return mapper.selectPacksByWord(word);
+    }
+
 }

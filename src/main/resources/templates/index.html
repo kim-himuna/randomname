@@ -8,6 +8,13 @@
         <div id="header" th:replace="fragments/navigation :: navigation('トップページ')"></div>
         <header th:replace="fragments/header :: header('トップページ')"></header>
 
+        <div class="container">
+            <form th:action="@{/packs/search}" th:object="${searchWordsForm}" method="POST">
+                <input id="input_text" type="text" th:field="*{word}">
+                <input class="button is-small" type="submit" value="検索"/>
+            </form>
+        </div>
+
         <div class="m-1 card" th:each="pack , stat : ${packs}" th:object="${shuffleList}">
             <div class="card-content">
                 <table>

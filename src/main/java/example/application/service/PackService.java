@@ -21,6 +21,11 @@ public class PackService{
         return packRepository.getPackList();
     }
 
+    
+    public List<Pack> getPackListByWord(String word){
+        return packRepository.getPackListByWord(word);
+    }
+
     public List<Pack> getLikedPackList(){
         return packRepository.getPackList();
     }

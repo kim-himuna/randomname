@@ -9,8 +9,11 @@ public interface PackRepository{
     /**R */
     Pack getPack(PackId packId);
     List<Pack> getPackList();
+    List<Pack> getPackListByWord(String word);
+    
     List<Word> getWordsInPack(PackId packId);
     PackId registerNew();
+    
 
     /**C */
     PackId register(Pack pack);

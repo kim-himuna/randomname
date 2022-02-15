@@ -17,6 +17,7 @@ public interface packMapper {
     List<Word> selectWordsInPack(@Param("packId") PackId packId);
     List<Pack> selectAll();
     PackId registerNew();
+    List<Pack> selectPacksByWord(String word);
 
     /**C */
     void insertPack(PackEntity packEntity);
