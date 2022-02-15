@@ -26,7 +26,7 @@ public class UserDetailsController {
 
     @GetMapping("/detail")
     public String userDetail(Model model,@AuthenticationPrincipal UserAuthDetails userAuthDetails){
-        /**TODO フロントへの表示でpack使うかpackForm使うか検討 */
+        
         List<Pack> likedPacks = likeService.readByUserId(userAuthDetails.getUserId());
         model.addAttribute("likedPacks", likedPacks);
         return "user/userDetail";

@@ -27,12 +27,12 @@
                 <tbody>
                     <tr>
                         <td width="25%" rowspan = "5" th:text="${pack.getTitle()}" >
-                        <td width="75%" th:text="${pack.getWords.get(0)}" >
+                        <td width="75%" th:text="${pack.getWords.get(0).getCharacterString()}" >
                     </tr>
-                    <tr><td th:text="${pack.getWords().get(1)}" ></tr>
-                    <tr><td th:text="${pack.getWords().get(2)}" ></tr>
-                    <tr><td th:text="${pack.getWords().get(3)}" ></tr>
-                    <tr><td th:text="${pack.getWords().get(4)}" ></tr>
+                    <tr><td th:text="${pack.getWords().get(1).getCharacterString()}" ></tr>
+                    <tr><td th:text="${pack.getWords().get(2).getCharacterString()}" ></tr>
+                    <tr><td th:text="${pack.getWords().get(3).getCharacterString()}" ></tr>
+                    <tr><td th:text="${pack.getWords().get(4).getCharacterString()}" ></tr>
                 </tbody>
                 </table>
             </div>
