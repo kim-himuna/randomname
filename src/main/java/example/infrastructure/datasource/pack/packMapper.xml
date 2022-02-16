@@ -63,10 +63,17 @@
       SELECT pack.id as pack_id, title, word.id as word_id, character_string FROM pack INNER JOIN word ON pack.id = word.pack_id WHERE title like '%${word}%'
 </select>
 
-<select id="selectPacksByWord" resultMap="packMap" parameterType="string">
-      SELECT pack.id as pack_id, title, word.id as word_id, character_string FROM pack INNER JOIN word ON pack.id = word.pack_id WHERE word.character_string like '%${word}%'
+<select id="selectIdsByWord" resultType="long" parameterType="java.util.List">
+      SELECT pack_id FROM word WHERE word.character_string like '%${word}%'
 </select>
 
+<select id="selectPacksByIds" resultMap="packMap" parameterType="string">
+            SELECT pack.id as pack_id, title, word.id as word_id, character_string FROM pack INNER JOIN word ON pack.id = word.pack_id WHERE pack.id IN (
+      <foreach collection="ids" item="packId" separator=",">
+            #{packId}
+      </foreach>
+            )
+</select>
 
 <insert id="insertPack" parameterType="example.infrastructure.mybatisEntity.PackEntity" useGeneratedKeys="true" keyProperty="packId">
       INSERT INTO pack (title) VALUES (#{title.value})
@@ -88,7 +95,7 @@
 </update>
 
 <update id="updateWords" parameterType="java.util.List">
-      UPDATE word SET character_string = ELT(field(id,
+      UPDATE word SET character_string = ELT(FIELD(id,
       <foreach collection="wordList" item="word" separator=",">#{word.wordId.value}</foreach>
       ),
       <foreach collection="wordList" item="word" separator=",">#{word.characterString.value}</foreach>

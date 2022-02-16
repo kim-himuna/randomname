@@ -95,7 +95,8 @@ public class packDatasourace implements PackRepository {
 
     @Override
     public List<Pack> getPackListByWord(String word) {
-        return mapper.selectPacksByWord(word);
+        List<Long> searchedIds = mapper.selectIdsByWord(word);
+        return mapper.selectPacksByIds(searchedIds);
     }
 
 }
