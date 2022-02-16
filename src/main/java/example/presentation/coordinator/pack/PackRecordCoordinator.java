@@ -12,6 +12,7 @@ import example.domain.model.pack.PackId;
 import example.domain.model.pack.PackTitle;
 import example.domain.model.word.CharacterString;
 import example.domain.model.word.Word;
+import example.domain.model.word.WordId;
 import example.presentation.form.PackForm;
 import example.presentation.form.WordForm;
 
@@ -24,7 +25,7 @@ public class PackRecordCoordinator {
         List<Word> words = new ArrayList<Word>();
 
         for(WordForm word:packForm.getWords()){
-            words.add(new Word(null,new CharacterString(word.word)));
+            words.add(new Word(new WordId(word.getId()),new CharacterString(word.word)));
         }
 
         Pack pack = new Pack(new PackId(packForm.getId()),new PackTitle(packForm.getTitle()),words);

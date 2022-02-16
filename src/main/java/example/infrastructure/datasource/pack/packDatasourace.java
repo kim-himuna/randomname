@@ -54,9 +54,11 @@ public class packDatasourace implements PackRepository {
         PackId packId = pack.getId();
         mapper.updatePack(new PackEntity(packId, pack.getTitle()));
 
+        List<WordEntity> wordList = new ArrayList<WordEntity>();
         for(Word word: pack.getWords()){
-            mapper.updateWord(new WordEntity(word.getId(),packId,word.getCharacterString()));
+            wordList.add(new WordEntity(word.getId(),packId,word.getCharacterString()));
         }
+        mapper.updateWords(wordList);
     }
 
     @Override

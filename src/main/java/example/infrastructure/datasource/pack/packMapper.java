@@ -26,7 +26,7 @@ public interface packMapper {
 
     /**U */
     void updatePack(PackEntity packEntity);
-    void updateWord(WordEntity wordEntity);
+    void updateWords(@Param("wordList") List<WordEntity> wordList);
 
     /**D */
     void deletePack(PackId packId);

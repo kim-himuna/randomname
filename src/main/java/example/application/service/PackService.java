@@ -67,7 +67,6 @@ public class PackService{
     }
 
     public PackId updatePack(Pack pack){
-
         packRepository.update(pack);
 
         return pack.getId();

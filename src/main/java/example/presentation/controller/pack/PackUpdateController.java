@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import example.application.service.PackService;
 import example.domain.model.pack.*;
@@ -24,6 +26,7 @@ import example.presentation.form.WordForm;
 
 @Controller
 @RequestMapping("packs/{packId}/update")
+@SessionAttributes({"packForm"})
 public class PackUpdateController {
 
     @Autowired
@@ -54,17 +57,17 @@ public class PackUpdateController {
     }
 
     @PostMapping("register")
-    public String registerThenRedirect(@PathVariable(value = "packId") PackId packId,@Validated @ModelAttribute("packForm") PackForm packForm, BindingResult result, Model model){
+    public String registerThenRedirect(@PathVariable(value = "packId") PackId packId,@Validated @ModelAttribute("packForm") PackForm packForm, BindingResult result,SessionStatus status){
 
         if (result.hasErrors()) {
             packForm.setId(packId.getValue());
             return "packs/update/form";
         }
-
         
         Pack pack = packRecordCoordinator.packCoordinate(packForm);
 
         packService.updatePack(pack);
+        status.setComplete();
 
         return "redirect:/packs/detail/" + packId;
     }

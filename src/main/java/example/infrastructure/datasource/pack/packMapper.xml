@@ -87,6 +87,16 @@
       UPDATE word SET character_string = #{characterString.value} WHERE id = #{wordId.value}
 </update>
 
+<update id="updateWords" parameterType="java.util.List">
+      UPDATE word SET character_string = ELT(field(id,
+      <foreach collection="wordList" item="word" separator=",">#{word.wordId.value}</foreach>
+      ),
+      <foreach collection="wordList" item="word" separator=",">#{word.characterString.value}</foreach>
+      ) WHERE id in (
+      <foreach collection="wordList" item="word" separator=",">#{word.wordId.value}</foreach>
+      )
+</update>
+
 <delete id="deletePack">
       DELETE from pack WHERE id = #{value}
 </delete>
