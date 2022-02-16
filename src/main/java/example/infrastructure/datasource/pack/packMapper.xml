@@ -59,8 +59,12 @@
       SELECT LAST_INSERT_ID()
 </select>
 
-<select id="selectPacksByWord" resultMap="packMap" parameterType="string">
+<select id="selectPacksByTitle" resultMap="packMap" parameterType="string">
       SELECT pack.id as pack_id, title, word.id as word_id, character_string FROM pack INNER JOIN word ON pack.id = word.pack_id WHERE title like '%${word}%'
+</select>
+
+<select id="selectPacksByWord" resultMap="packMap" parameterType="string">
+      SELECT pack.id as pack_id, title, word.id as word_id, character_string FROM pack INNER JOIN word ON pack.id = word.pack_id WHERE word.character_string like '%${word}%'
 </select>
 
 
@@ -68,8 +72,11 @@
       INSERT INTO pack (title) VALUES (#{title.value})
 </insert>
 
-<insert id="insertWord" parameterType="example.infrastructure.mybatisEntity.WordEntity" useGeneratedKeys="true" keyProperty="wordId">
-      INSERT INTO word (character_string,pack_id) VALUES (#{characterString.value},#{packId.value})
+<insert id="insertWords" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="wordId">
+      INSERT INTO word (character_string,pack_id) VALUES 
+      <foreach collection="wordList" item="word" separator=",">
+            (#{word.characterString.value},#{word.packId.value})
+      </foreach>
 </insert>
 
 <update id="updatePack" parameterType="example.infrastructure.mybatisEntity.PackEntity">

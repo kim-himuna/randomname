@@ -22,9 +22,20 @@ public class PackService{
     }
 
     
+    public List<Pack> getPackListByTitle(String word){
+        return packRepository.getPackListByTitle(word);
+    }
+
     public List<Pack> getPackListByWord(String word){
         return packRepository.getPackListByWord(word);
     }
+    public List<Pack> getPackListBySearchWord(String word){
+        List<Pack> packs = packRepository.getPackListByTitle(word);
+        packs.addAll(packRepository.getPackListByWord(word));
+        
+        return packs;
+    }
+
 
     public List<Pack> getLikedPackList(){
         return packRepository.getPackList();

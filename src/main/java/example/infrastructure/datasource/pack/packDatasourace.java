@@ -1,5 +1,6 @@
 package example.infrastructure.datasource.pack;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +40,11 @@ public class packDatasourace implements PackRepository {
     public PackId register(Pack pack){
         mapper.insertPack(new PackEntity(pack.getTitle()));
         PackId packId = mapper.registerNew();
+        List<WordEntity> wordList = new ArrayList<WordEntity>();
         for(Word word: pack.getWords()){
-            mapper.insertWord(new WordEntity(packId,word.getCharacterString()));
+            wordList.add(new WordEntity(packId,word.getCharacterString()));
         }
+        mapper.insertWords(wordList);
 
         return packId;
     }
@@ -81,6 +84,11 @@ public class packDatasourace implements PackRepository {
         mapper.deleteWordsInPack(packId);
 
         
+    }
+
+    @Override
+    public List<Pack> getPackListByTitle(String word) {
+        return mapper.selectPacksByTitle(word);
     }
 
     @Override

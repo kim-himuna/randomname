@@ -65,13 +65,13 @@ public class DashboardController {
     @PostMapping("packs/search")
     public String searchPacksByWord(Model model,SearchWordsForm searchWordsForm){
 
-        List<Pack> packList= packService.getPackListByWord(searchWordsForm.getWord());
-
+        List<Pack> packList= packService.getPackListBySearchWord(searchWordsForm.getWord());
         List<PackListForm> packs = new ArrayList<>();
 
         for(Pack pack:packList){
 
             List<String> words = new ArrayList<>();
+            /** ここで使用状態リセットされるじゃん */
             boolean isUsed = false;
             for(Word word:pack.getWords()){
                 words.add(word.getCharacterString().toString());

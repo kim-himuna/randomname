@@ -18,10 +18,11 @@ public interface packMapper {
     List<Pack> selectAll();
     PackId registerNew();
     List<Pack> selectPacksByWord(String word);
+    List<Pack> selectPacksByTitle(String word);
 
     /**C */
     void insertPack(PackEntity packEntity);
-    void insertWord(WordEntity wordEntity);
+    void insertWords(@Param("wordList") List<WordEntity> wordList);
 
     /**U */
     void updatePack(PackEntity packEntity);
