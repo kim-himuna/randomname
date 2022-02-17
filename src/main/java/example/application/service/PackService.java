@@ -31,8 +31,11 @@ public class PackService{
     }
     public List<Pack> getPackListBySearchWord(String word){
         List<Pack> packs = packRepository.getPackListByTitle(word);
-        packs.addAll(packRepository.getPackListByWord(word));
-        
+    
+        List<Pack> packsword = packRepository.getPackListByWord(word);
+        if(packsword != null){
+            packs.addAll(packsword);
+        }
         return packs;
     }
 
@@ -45,22 +48,6 @@ public class PackService{
         PackId packId = packRepository.register(pack);
         return packId;
     }
-    
-    /*
-    public PackId registerPack(PackToRegister packToRegister){
-        packRepository.registerPack(packToRegister);
-        return packToRegister.getId();
-    }
-
-    public void registerWord(WordToRegister wordToRegister){
-        packRepository.registerWord(wordToRegister);    
-    }
-
-        public PackId registerNew(){
-        return packRepository.registerNew();
-    }
-
-    */
 
     public Pack getPack(PackId packId) {
         return packRepository.getPack(packId);
@@ -73,6 +60,7 @@ public class PackService{
     }
 
     public PackId deletePack(PackId packId){
+        /**あれ？親消えたらwordきえるんじゃない？ */
         packRepository.deleteWordsInPack(packId);
         packRepository.deletePack(packId);
 

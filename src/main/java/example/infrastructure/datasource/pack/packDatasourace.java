@@ -65,17 +65,7 @@ public class packDatasourace implements PackRepository {
     public void deletePack(PackId packId){
         mapper.deletePack(packId);
     }
-/*
-    @Override
-    public void registerWord(Word word) {
-        mapper.insertWord(new WordEntity(word.getPackId(), word.getCharacterString()));
-    }
 
-    @Override
-    public void updateWord(Word word) {
-        mapper.updateWord(new WordEntity(word.getWordId(),word.getPackId(), word.getCharacterString()));
-    }
-*/
     @Override
     public void deleteWord(WordId wordId) {
         mapper.deleteWord(wordId);
@@ -96,6 +86,9 @@ public class packDatasourace implements PackRepository {
     @Override
     public List<Pack> getPackListByWord(String word) {
         List<Long> searchedIds = mapper.selectIdsByWord(word);
+        if(searchedIds.size() == 0){
+            return null;
+        }
         return mapper.selectPacksByIds(searchedIds);
     }
 
