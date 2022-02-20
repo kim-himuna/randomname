@@ -66,7 +66,7 @@ public class UserRegisterController {
             return "user/register/registerationForm";
         }
 
-        User user = new User(null, new UserName(userRegisterForm.getUserName()), new UserRole("USER"), new UserPassword(userRegisterForm.getUserPassword()));
+        User user = new User(null, new UserName(userRegisterForm.getUserName()), UserRole.USER, new UserPassword(userRegisterForm.getUserPassword()));
         userSerivice.register(user);
 
         status.setComplete();

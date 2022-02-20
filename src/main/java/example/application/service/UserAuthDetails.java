@@ -23,7 +23,7 @@ public class UserAuthDetails implements UserDetails{
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.createAuthorityList("ROLE_"+user.getUserRole().GetValue());
+        return AuthorityUtils.createAuthorityList("ROLE_"+user);
     }
 
     @Override

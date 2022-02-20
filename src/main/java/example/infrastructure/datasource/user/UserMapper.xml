@@ -3,6 +3,8 @@
 <mapper namespace="example.infrastructure.datasource.user.UserMapper">
 
     <resultMap id="userMap" type="example.domain.model.user.User">
+        
+        <result property="userRole" column="rolename"/>
         <association property="userId" javaType="example.domain.model.user.UserId">
             <constructor>
                 <arg name="value" column="id"/>
@@ -13,11 +15,7 @@
                 <arg name="value" column="username"/>
             </constructor>
         </association>
-        <association property="userRole" javaType="example.domain.model.user.UserRole">
-            <constructor>
-                <arg name="value" column="rolename"/>
-            </constructor>
-        </association>
+
         <association property="userPassword" javaType="example.domain.model.user.UserPassword">
             <constructor>
                 <arg name="value" column="password"/>
