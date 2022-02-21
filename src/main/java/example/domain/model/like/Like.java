@@ -2,9 +2,9 @@ package example.domain.model.like;
 
 import example.domain.model.pack.PackId;
 import example.domain.model.user.UserId;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class Like {
     private LikeId likeId;
     private UserId userId;

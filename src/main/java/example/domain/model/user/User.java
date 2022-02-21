@@ -1,5 +1,8 @@
 package example.domain.model.user;
 
+import lombok.Getter;
+
+@Getter
 public class User {
     private UserId userId;
     private UserName userName;
@@ -16,32 +19,4 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    public UserId GetUserId(){
-        return userId;
-    }
-    public UserName GetUserName(){
-        return userName;
-    }
-    public UserRole getUserRole(){
-        return userRole;
-    }
-    public UserPassword getPassword(){
-        return userPassword;
-    }
-
-    public void setUserId(UserId userId){
-        this.userId = userId;
-    }
-    
-    public void setUserName(UserName userName){
-        this.userName = userName;
-    }
-    
-    public void setUserPassword(UserPassword userPassword){
-        this.userPassword = userPassword;
-    }
-    
-    public void setUserRole(UserRole userRole){
-        this.userRole = userRole;
-    }
 }

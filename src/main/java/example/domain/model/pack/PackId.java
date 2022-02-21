@@ -1,5 +1,8 @@
 package example.domain.model.pack;
 
+import lombok.Getter;
+
+@Getter
 public class PackId {
     private Long value;
 
@@ -9,14 +12,6 @@ public class PackId {
 
     public static PackId from(String value) {
         return new PackId(Long.parseLong(value));
-    }
-
-    public Long getValue() {
-        return value;
-    }
-
-    public void setValue(Long value){
-        this.value = value;
     }
 
     @Override

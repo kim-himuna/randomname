@@ -1,5 +1,8 @@
 package example.domain.model.like;
 
+import lombok.Getter;
+
+@Getter
 public class LikeId {
     private Long value;
 
@@ -9,13 +12,5 @@ public class LikeId {
 
     public static LikeId from(String value) {
         return new LikeId(Long.parseLong(value));
-    }
-
-    public Long getValue() {
-        return value;
-    }
-
-    public void setValue(Long value){
-        this.value = value;
     }
 }

@@ -1,5 +1,8 @@
 package example.domain.model.user;
 
+import lombok.Getter;
+
+@Getter
 public class UserId {
     private long value;
 
@@ -7,7 +10,4 @@ public class UserId {
         this.value = value;
     }
 
-    public long getValue(){
-        return value;
-    }
 }

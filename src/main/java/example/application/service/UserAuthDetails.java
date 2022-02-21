@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import example.domain.model.user.User;
 import example.domain.model.user.UserId;
+import example.domain.model.user.UserName;
 
 public class UserAuthDetails implements UserDetails{
 
@@ -18,22 +19,26 @@ public class UserAuthDetails implements UserDetails{
     }
 
     public UserId getUserId(){
-        return user.GetUserId();
+        return user.getUserId();
+    }
+
+    public UserName getUserName(){
+        return user.getUserName();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.createAuthorityList("ROLE_"+user);
+        return AuthorityUtils.createAuthorityList("ROLE_"+user.getUserRole().toString());
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword().GetValue();
+        return user.getUserPassword().getValue();
     }
 
     @Override
     public String getUsername() {
-        return user.GetUserName().Getvalue();
+        return user.getUserName().getValue();
     }
 
     @Override
