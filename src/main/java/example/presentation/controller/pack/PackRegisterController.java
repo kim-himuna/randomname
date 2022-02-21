@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import example.application.service.PackService;
+import example.application.service.UserAuthDetails;
 import example.domain.model.pack.PackId;
 import example.domain.model.pack.Pack;
 import example.presentation.coordinator.pack.PackRecordCoordinator;
@@ -73,9 +75,10 @@ public class PackRegisterController {
 
     @GetMapping("register")
     public String registerThenRedirectAndClearSession(
-        @ModelAttribute("packForm") PackForm packForm,SessionStatus status, RedirectAttributes attributes) {
+        @ModelAttribute("packForm") PackForm packForm,SessionStatus status, RedirectAttributes attributes,
+        @AuthenticationPrincipal UserAuthDetails userAuthDetails) {
             
-        Pack pack = packRecordCoordinator.packCoordinate(packForm);
+        Pack pack = packRecordCoordinator.packCoordinate(packForm,userAuthDetails.getUserId(),userAuthDetails.getUserName());
         PackId packId = packService.register(pack);
 
         

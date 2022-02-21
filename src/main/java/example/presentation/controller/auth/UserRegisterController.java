@@ -1,6 +1,7 @@
 package example.presentation.controller.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,6 +28,10 @@ public class UserRegisterController {
     
     @Autowired
     UserService userSerivice;
+
+    @Autowired
+    private PasswordEncoder passwordEncorder;
+
 
     @GetMapping
     public String clearSessionAtStart(SessionStatus sessionstatus){
@@ -66,7 +71,7 @@ public class UserRegisterController {
             return "user/register/registerationForm";
         }
 
-        User user = new User(null, new UserName(userRegisterForm.getUserName()), UserRole.USER, new UserPassword(userRegisterForm.getUserPassword()));
+        User user = new User(null, new UserName(userRegisterForm.getUserName()), UserRole.USER, new UserPassword(passwordEncorder.encode(userRegisterForm.getUserPassword())));
         userSerivice.register(user);
 
         status.setComplete();

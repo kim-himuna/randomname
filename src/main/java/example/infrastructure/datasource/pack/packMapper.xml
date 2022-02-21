@@ -14,6 +14,16 @@
                   <arg name="value" column="title"/>
             </constructor>
       </association>
+      <association property="userId" javaType="example.domain.model.user.UserId">
+            <constructor>
+                  <arg name="value" column="user_id"/>
+            </constructor>
+      </association>
+      <association property="userName" javaType="example.domain.model.user.UserName">
+            <constructor>
+                  <arg name="value" column="username"/>
+            </constructor>
+      </association>
 
       <collection property="words" ofType="example.domain.model.word.Word">
             <association property="id" javaType="example.domain.model.word.WordId">
@@ -44,7 +54,7 @@
 
 
 <select id="selectOne" resultMap="packMap" parameterType="map">
-      SELECT pack.id as pack_id, title, word.id as word_id, character_string FROM pack INNER JOIN word ON pack.id = word.pack_id WHERE pack_id = #{packId.value}
+      SELECT pack.id as pack_id, title, user_id, username, word.id as word_id, character_string FROM pack INNER JOIN word ON pack.id = word.pack_id INNER JOIN users ON pack.user_id = users.id WHERE pack_id = #{packId.value}
 </select>
 
 <select id="selectWordsInPack" resultMap="wordMap">
@@ -52,7 +62,7 @@
 </select>
 
 <select id="selectAll" resultMap="packMap">
-      SELECT pack.id as pack_id, title, word.id as word_id, character_string FROM pack INNER JOIN word ON pack.id = word.pack_id
+      SELECT pack.id as pack_id, title, user_id, username, word.id as word_id, character_string FROM pack INNER JOIN word ON pack.id = word.pack_id INNER JOIN users ON pack.user_id = users.id
 </select>
 
 <select id="registerNew" resultType="example.domain.model.pack.PackId">
@@ -60,7 +70,7 @@
 </select>
 
 <select id="selectPacksByTitle" resultMap="packMap" parameterType="string">
-      SELECT pack.id as pack_id, title, word.id as word_id, character_string FROM pack INNER JOIN word ON pack.id = word.pack_id WHERE title like '%${word}%'
+      SELECT pack.id as pack_id, title, user_id, username, word.id as word_id, character_string FROM pack INNER JOIN word ON pack.id = word.pack_id INNER JOIN users ON pack.user_id = users.id WHERE title like '%${word}%'
 </select>
 
 <select id="selectIdsByWord" resultType="long" parameterType="java.util.List">
@@ -68,7 +78,7 @@
 </select>
 
 <select id="selectPacksByIds" resultMap="packMap" parameterType="string">
-            SELECT pack.id as pack_id, title, word.id as word_id, character_string FROM pack INNER JOIN word ON pack.id = word.pack_id WHERE pack.id IN (
+            SELECT pack.id as pack_id, title, user_id, username, word.id as word_id, character_string FROM pack INNER JOIN word ON pack.id = word.pack_id INNER JOIN users ON pack.user_id = users.id WHERE pack.id IN (
       <foreach collection="ids" item="packId" separator=",">
             #{packId}
       </foreach>
@@ -76,7 +86,7 @@
 </select>
 
 <insert id="insertPack" parameterType="example.infrastructure.mybatisEntity.PackEntity" useGeneratedKeys="true" keyProperty="packId">
-      INSERT INTO pack (title) VALUES (#{title.value})
+      INSERT INTO pack (title,user_id) VALUES (#{title.value},#{userId.value})
 </insert>
 
 <insert id="insertWords" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="wordId">

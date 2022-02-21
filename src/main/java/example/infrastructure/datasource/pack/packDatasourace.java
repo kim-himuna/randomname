@@ -38,7 +38,7 @@ public class packDatasourace implements PackRepository {
 
     @Override
     public PackId register(Pack pack){
-        mapper.insertPack(new PackEntity(pack.getTitle()));
+        mapper.insertPack(new PackEntity(pack.getTitle(),pack.getUserId()));
         PackId packId = mapper.registerNew();
         List<WordEntity> wordList = new ArrayList<WordEntity>();
         for(Word word: pack.getWords()){
@@ -52,7 +52,7 @@ public class packDatasourace implements PackRepository {
     @Override
     public void update(Pack pack){
         PackId packId = pack.getId();
-        mapper.updatePack(new PackEntity(packId, pack.getTitle()));
+        mapper.updatePack(new PackEntity(packId, pack.getTitle(),pack.getUserId()));
 
         List<WordEntity> wordList = new ArrayList<WordEntity>();
         for(Word word: pack.getWords()){

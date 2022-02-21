@@ -14,7 +14,8 @@
                 <tbody>
                     <tr>
                         <td width="25%" rowspan = "5" th:text="*{getTitle().getValue()}"></td>
-                        <td width="75%" th:text="*{getWords().get(0).getCharacterString()}"></td>
+                        <td width="50%" th:text="*{getWords().get(0).getCharacterString()}"></td>
+                        <td width="25%" rowspan = "5" th:text="*{getUserName().getValue()}"></td>
                     </tr>
                     <tr><td th:text="*{getWords().get(1).getCharacterString()}"></td></tr>
                     <tr><td th:text="*{getWords().get(2).getCharacterString()}"></td></tr>

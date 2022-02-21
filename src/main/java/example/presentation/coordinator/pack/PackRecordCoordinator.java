@@ -13,6 +13,8 @@ import example.domain.model.pack.PackTitle;
 import example.domain.model.word.CharacterString;
 import example.domain.model.word.Word;
 import example.domain.model.word.WordId;
+import example.domain.model.user.UserId;
+import example.domain.model.user.UserName;
 import example.presentation.form.PackForm;
 import example.presentation.form.WordForm;
 
@@ -20,7 +22,7 @@ import example.presentation.form.WordForm;
 public class PackRecordCoordinator {
 
 
-    public Pack packCoordinate(PackForm packForm){
+    public Pack packCoordinate(PackForm packForm,UserId userId,UserName userName){
 
         List<Word> words = new ArrayList<Word>();
 
@@ -28,7 +30,8 @@ public class PackRecordCoordinator {
             words.add(new Word(new WordId(word.getId()),new CharacterString(word.word)));
         }
 
-        Pack pack = new Pack(new PackId(packForm.getId()),new PackTitle(packForm.getTitle()),words);
+        /**packに製作者ユーザ情報入れたい */
+        Pack pack = new Pack(new PackId(packForm.getId()),new PackTitle(packForm.getTitle()),words,userId,userName);
         return pack;
     }
 }

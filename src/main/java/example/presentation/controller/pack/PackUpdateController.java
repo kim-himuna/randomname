@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import example.application.service.PackService;
+import example.application.service.UserAuthDetails;
 import example.domain.model.pack.*;
 import example.domain.model.word.Word;
 import example.presentation.coordinator.pack.PackRecordCoordinator;
@@ -57,14 +59,14 @@ public class PackUpdateController {
     }
 
     @PostMapping("register")
-    public String registerThenRedirect(@PathVariable(value = "packId") PackId packId,@Validated @ModelAttribute("packForm") PackForm packForm, BindingResult result,SessionStatus status){
+    public String registerThenRedirect(@PathVariable(value = "packId") PackId packId,@Validated @ModelAttribute("packForm") PackForm packForm, BindingResult result,SessionStatus status,@AuthenticationPrincipal UserAuthDetails userAuthDetails){
 
         if (result.hasErrors()) {
             packForm.setId(packId.getValue());
             return "packs/update/form";
         }
         
-        Pack pack = packRecordCoordinator.packCoordinate(packForm);
+        Pack pack = packRecordCoordinator.packCoordinate(packForm,userAuthDetails.getUserId(),userAuthDetails.getUserName());
 
         packService.updatePack(pack);
         status.setComplete();
