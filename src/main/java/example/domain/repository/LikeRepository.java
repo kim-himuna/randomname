@@ -8,6 +8,9 @@ import example.domain.model.pack.Pack;
 import example.domain.model.user.UserId;
 
 public interface LikeRepository {
-    public List<Pack> selectPacksByUserId(UserId userId);
-    public void create(Like like);
+    List<Pack> selectPacksByUserId(UserId userId);
+    void create(Like like);
+    void deleteByUserIdAndPackId(Like like);
+    Like getLikeByLike(Like like);
+
 }

@@ -23,6 +23,12 @@ public class LikeService {
     }
     
     public void create(Like like){
-        likeRepository.create(like);
+
+        if(likeRepository.getLikeByLike(like) == null){
+            likeRepository.create(like);
+        }else{
+            likeRepository.deleteByUserIdAndPackId(like);
+        }
+
     }
 }

@@ -15,6 +15,11 @@
                   <arg name="value" column="title"/>
             </constructor>
       </association>
+            <association property="userName" javaType="example.domain.model.user.UserName">
+            <constructor>
+                  <arg name="value" column="username"/>
+            </constructor>
+      </association>
 
       <collection property="words" ofType="example.domain.model.word.Word">
             <association property="id" javaType="example.domain.model.word.WordId">
@@ -30,14 +35,40 @@
       </collection>
 </resultMap>
 
+<resultMap id="likeMap" type="example.domain.model.like.Like">
+      <association property="likeId" javaType="example.domain.model.like.LikeId">
+            <constructor>
+                  <arg name="value" column="like_id"/>
+            </constructor>
+      </association>
+      <association property="userId" javaType="example.domain.model.user.UserId">
+            <constructor>
+                  <arg name="value" column="user_id"/>
+            </constructor>
+      </association>
+      <association property="packId" javaType="example.domain.model.pack.PackId">
+            <constructor>
+                  <arg name="value" column="pack_id"/>
+            </constructor>
+      </association>
+</resultMap>
+
 
 <select id="selectPacksByUserId" resultMap="packMap">
-      SELECT pack.id as pack_id, title, word.id as word_id, character_string FROM likes INNER JOIN pack ON likes.pack_id = pack.id INNER JOIN word ON pack.id = word.pack_id where likes.user_id = #{value}
+      SELECT pack.id as pack_id, title, username, word.id as word_id, character_string FROM likes INNER JOIN pack ON likes.pack_id = pack.id INNER JOIN word ON likes.pack_id = word.pack_id INNER JOIN users ON likes.user_id = users.id where likes.user_id = #{value}
+</select>
+
+<select id="selectLikeByLike" resultMap="likeMap">
+      SELECT * FROM likes WHERE user_id = #{userId.value} AND pack_id = #{packId.value}
 </select>
 
 
 <insert id="insert" parameterType="example.infrastructure.mybatisEntity.LikeEntity" useGeneratedKeys="true" keyProperty="likeId">
       INSERT INTO likes (user_id,pack_id) VALUES (#{userId.value},#{packId.value})
 </insert>
+
+<delete id="deleteByUserIdAndPackId" parameterType = "example.infrastructure.mybatisEntity.LikeEntity">
+      DELETE FROM likes WHERE user_id = #{userId.value} AND pack_id = #{packId.value}
+</delete>
 
 </mapper>

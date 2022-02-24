@@ -22,11 +22,8 @@ public class LikeDatasource implements LikeRepository{
     @Override
     public List<Pack> selectPacksByUserId(UserId userId) {
         List<Pack> likedList = new ArrayList<>();
-        try{
-            likedList = likeMapper.selectPacksByUserId(userId);
-        }catch(Exception e){
-            return null;
-        }
+        likedList = likeMapper.selectPacksByUserId(userId);
+        
         return likedList;
     }
 
@@ -34,6 +31,18 @@ public class LikeDatasource implements LikeRepository{
     public void create(Like like) {
 
         likeMapper.insert(new LikeEntity(null,like.getUserId(),like.getPackId()));
+    }
+
+    @Override
+    public void deleteByUserIdAndPackId(Like like) {
+
+        likeMapper.deleteByUserIdAndPackId(new LikeEntity(null,like.getUserId(),like.getPackId()));
+    }
+
+    @Override
+    public Like getLikeByLike(Like like) {
+
+        return likeMapper.selectLikeByLike(like);
     }
     
 }
