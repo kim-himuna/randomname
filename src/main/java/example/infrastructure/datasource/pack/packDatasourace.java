@@ -31,10 +31,7 @@ public class packDatasourace implements PackRepository {
         return mapper.selectWordsInPack(packId);
     }
 
-    @Override
-    public PackId registerNew(){
-        return mapper.registerNew();        
-    }
+
 
     @Override
     public PackId register(Pack pack){
@@ -74,8 +71,6 @@ public class packDatasourace implements PackRepository {
     @Override
     public void deleteWordsInPack(PackId packId) {
         mapper.deleteWordsInPack(packId);
-
-        
     }
 
     @Override

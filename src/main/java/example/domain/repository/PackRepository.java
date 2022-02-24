@@ -12,7 +12,6 @@ public interface PackRepository{
     List<Pack> getPackListByTitle(String word);
     List<Pack> getPackListByWord(String word);
     List<Word> getWordsInPack(PackId packId);
-    PackId registerNew();
     
 
     /**C */
