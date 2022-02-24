@@ -31,7 +31,7 @@
     </select>
 
     <insert id="insertUser" parameterType="example.domain.model.user.User" useGeneratedKeys="true" keyProperty="userId">
-        INSERT INTO users (username,password,rolename) VALUES (#{userName.value},#{userPassword.value},#{userRole.value})
+        INSERT INTO users (username,password,rolename) VALUES (#{userName.value},#{userPassword.value},#{userRole})
     </insert>
 
 </mapper>
