@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import example.application.service.PackService;
-import example.domain.model.ShuffleSession;
+import example.domain.model.Session;
 import example.domain.model.pack.PackId;
 
 @Controller
@@ -19,7 +19,7 @@ public class PackDeleteController {
     PackService packService;
 
     @Autowired
-    private ShuffleSession shuffleSession;
+    private Session session;
     
     @GetMapping
     public String deleteConfirm(Model model,@PathVariable(value = "packId") long packId){
@@ -30,9 +30,8 @@ public class PackDeleteController {
     @GetMapping("complete")
     public String deleteThenRedirect(Model model,@PathVariable(value = "packId") long packId){
         packService.deletePack(new PackId(packId));
-        if(shuffleSession.getShuffleList().getSelectIds().contains(packId)){
-            shuffleSession.getShuffleList().selectIds.remove(shuffleSession.getShuffleList().selectIds.indexOf(packId));
-            
+        if(session.getShuffleList().getSelectIds().contains(packId)){
+            session.getShuffleList().selectIds.remove(session.getShuffleList().selectIds.indexOf(packId));
         };
         
         return "redirect:/";

@@ -7,9 +7,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope(value="session",proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class ShuffleSession {
+public class Session {
     private ShuffleList shuffleList;
+    private String searchWord;
     
+
     public ShuffleList getShuffleList(){
 
         if(shuffleList == null){
@@ -18,13 +20,29 @@ public class ShuffleSession {
         return shuffleList;
     }
 
+    public String getSearchWord(){
+
+        if(searchWord == null){
+            searchWord = "";
+        }
+        return searchWord;
+    }
+
+
     public void setShuffleList(ShuffleList shuffleList){
         this.shuffleList = shuffleList;
-
     }
+
+    public void setSearchWord(String searchWord){
+        this.searchWord = searchWord;
+    }
+
+
 
     public void clearShuffleList(){
     }
+
+
 
 
 }

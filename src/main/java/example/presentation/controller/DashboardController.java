@@ -11,7 +11,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import example.application.service.PackService;
-import example.domain.model.ShuffleSession;
+import example.domain.model.Session;
 import example.domain.model.pack.*;
 import example.domain.model.word.Word;
 import example.presentation.form.PackListForm;
@@ -27,10 +27,10 @@ public class DashboardController {
     PackService packService;
 
     @Autowired
-    ShuffleSession shuffleSession;
+    Session session;
 
     @GetMapping
-    public String show(Model model) {
+    public String show(Model model,SearchWordsForm searchWordsForm) {
         
         List<Pack> packList= packService.getPackList();
 
@@ -45,7 +45,7 @@ public class DashboardController {
             }
 
             long packid = pack.getId().getValue();
-            for(long id:shuffleSession.getShuffleList().getSelectIds()){
+            for(long id:session.getShuffleList().getSelectIds()){
                 if(packid == id){
                     isUsed = true;
                 }
@@ -55,7 +55,7 @@ public class DashboardController {
 
         }
 
-        SearchWordsForm searchWordsForm = new SearchWordsForm();
+        searchWordsForm.setWord(session.getSearchWord());
         model.addAttribute("packs", packs);
         model.addAttribute("searchWordsForm",searchWordsForm);
 
@@ -64,6 +64,7 @@ public class DashboardController {
 
     @PostMapping("packs/search")
     public String searchPacksByWord(Model model,SearchWordsForm searchWordsForm){
+        session.setSearchWord(searchWordsForm.getWord());
 
         List<Pack> packList= packService.getPackListBySearchWord(searchWordsForm.getWord());
         List<PackListForm> packs = new ArrayList<>();
@@ -78,7 +79,7 @@ public class DashboardController {
             }
 
             long packid = pack.getId().getValue();
-            for(long id:shuffleSession.getShuffleList().getSelectIds()){
+            for(long id:session.getShuffleList().getSelectIds()){
                 if(packid == id){
                     isUsed = true;
                 }
