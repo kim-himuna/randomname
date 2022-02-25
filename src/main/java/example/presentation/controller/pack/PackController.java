@@ -30,7 +30,7 @@ public class PackController {
     public String packDetail(Model model,@PathVariable(value = "packId") PackId packId){
         Pack pack = packService.getPack(packId);
         if(pack == null){
-            return "redirect:/";
+            return "redirect:/top";
         }
         model.addAttribute("pack",pack);
         return "packs/packDetail";

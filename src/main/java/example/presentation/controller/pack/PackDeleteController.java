@@ -34,6 +34,6 @@ public class PackDeleteController {
             session.getShuffleList().selectIds.remove(session.getShuffleList().selectIds.indexOf(packId));
         };
         
-        return "redirect:/";
+        return "redirect:/top";
     }
 }

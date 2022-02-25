@@ -2,9 +2,46 @@
 <html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="fragments/layout :: htmlhead(~{::title})">
         <meta charset="UTF-8">
-        <title>トップ仮</title>
+        <title>トップページ</title>
     </head>
-<body>
-    <a th:href="@{/}"><input class="button is-small" type="button" value="パッケージ選択へ" /></a>
-</body>
+    <body>
+        <div id="header" th:replace="fragments/navigation :: navigation('トップページ')"></div>
+        <header th:replace="fragments/header :: header('トップページ')"></header>
+
+        <div class="container">
+            <form th:action="@{/packs/search}" th:object="${searchWordsForm}" method="POST">
+                <input id="input_text" type="text" th:field="*{word}">
+                <input class="button is-small" type="submit" value="検索"/>
+            </form>
+        </div>
+
+        <div class="m-1 card" th:each="pack , stat : ${packs}" th:object="${shuffleList}">
+            <div class="card-content">
+                <table>
+                <tbody>
+                    <tr>
+                        <td width="25%" rowspan = "5" th:text="${pack.getTitle()}" >
+                        <td width="25%" th:text="${pack.getWords.get(0)}" >
+                        <td width="25%" rowspan= "5"> 
+                                <a th:href="@{/packs/detail/{packId}(packId=${pack.getId()})}">詳細</a>
+                        </td>
+                        <td width="25%" rowspan= "5"> 
+                            <th:block th:if = "${!pack.getIsUsed()}">
+                                <a th:href="@{/packs/shuffle/{packId}/listAdd(packId=${pack.getId()})}"><input class="button is-small" type="button" value="使用"/></a>
+                            </th:block>
+                            <th:block th:if = "${pack.getIsUsed()}">
+                                <a th:href="@{/packs/shuffle/{packId}/listRemoveFromTop(packId=${pack.getId()})}"><input class="button is-small" type="button" value="使用キャンセル"/></a>
+                            </th:block>
+                        </td>
+                    </tr>
+                    <tr><td th:text="${pack.getWords().get(1)}" ></tr>
+                    <tr><td th:text="${pack.getWords().get(2)}" ></tr>
+                    <tr><td th:text="${pack.getWords().get(3)}" ></tr>
+                    <tr><td th:text="${pack.getWords().get(4)}" ></tr>
+                </tbody>
+                </table>
+            </div>
+        </div>
+        <script type="text/javascript" th:src="@{/js/packlist.js}"></script>
+    </body>
 </html>

@@ -51,14 +51,14 @@ public class PackShuffleController {
         }
         redirectAttrs.addFlashAttribute("session",session);
 
-        return "redirect:/";
+        return "redirect:/top";
     }
 
     @RequestMapping("/{packId}/listRemoveFromTop")
     public String ShuffleListRemoveFromTop(@PathVariable PackId packId,RedirectAttributes redirectAttrs){
         ShuffleList shuffleList = session.getShuffleList();
         shuffleList.selectIds.remove(shuffleList.selectIds.indexOf(packId.getValue()));
-        return "redirect:/";
+        return "redirect:/top";
     }
 
     @RequestMapping("/{packId}/listRemoveFromDetail")

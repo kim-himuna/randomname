@@ -20,7 +20,7 @@ import example.presentation.form.SearchWordsForm;
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/top")
 public class DashboardController {
     
     @Autowired
@@ -59,7 +59,7 @@ public class DashboardController {
         model.addAttribute("packs", packs);
         model.addAttribute("searchWordsForm",searchWordsForm);
 
-        return "/index";
+        return "/top";
     }
 
     @PostMapping("packs/search")
@@ -93,7 +93,7 @@ public class DashboardController {
 
 
 
-        return "/index";
+        return "/top";
 
     }
 }

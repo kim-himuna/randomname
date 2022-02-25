@@ -29,12 +29,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception{
         http.csrf().disable().
         authorizeRequests().
-        antMatchers("/loginForm","/loginForm?error=true","/","/packs/shuffle/**","/packs/detail/{packId}","/user/register/**","/packs/search").
+        antMatchers("/loginForm","/loginForm?error=true","/","/top","/packs/shuffle/**","/packs/detail/{packId}","/user/register/**","/packs/search").
         permitAll()
         .anyRequest().authenticated();
 
         http.formLogin().loginPage("/loginForm").loginProcessingUrl("/login")
-        .defaultSuccessUrl("/",true).failureUrl("/loginForm?error=true")
+        .defaultSuccessUrl("/top",true).failureUrl("/loginForm?error=true")
         .usernameParameter("username").passwordParameter("password")
         .and()
         .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
