@@ -81,7 +81,7 @@ public class UserRegisterController {
 
     @GetMapping("completed")
     public String showResult(Model model) {
-        return "redirect:/";
+        return "redirect:/auth/login";
     }
     
 }
