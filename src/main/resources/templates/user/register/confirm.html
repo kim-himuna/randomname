@@ -6,16 +6,20 @@
     </head>
 
 <body>
-    <form th:action="@{/user/register/register}" th:object="${userRegisterForm}" method="get">
-            ユーザー名：
-            <div th:text="*{userName}"></div>
-            パスワード：
-            <div th:text="*{userPassword}"></div>
-        <p>
-            <a th:href="@{/user/register}"><input class="button is-small" type="button" value="キャンセル" /></a>
-            <input class="button is-small" type="submit" value="完了">
-        </p>
-    </form>
+    <div class="container">
+        <div class="box">
+            <form th:action="@{/user/register/register}" th:object="${userRegisterForm}" method="get">
+            ユーザー名:
+                <span th:text="*{userName}"></span>
+            パスワード:
+                <span th:text="*{userPassword}"></span>
+                <div class="block">
+                    <input class="button is-small is-primary" type="submit" value="完了">
+                </div>
+                <a class="block" th:href="@{/user/register}"><input class="button is-small is-primary" type="button" value="キャンセル" /></a>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>

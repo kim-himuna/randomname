@@ -5,26 +5,26 @@
 <title>ログイン</title>
 </head>
 <body>
-<div class="main">
-  <div class="col-md-6 col-sm-12">
-    <div class="login-form">
+  <div class="container">
+    <div class="box">
+      <div class="block">
         <form th:action="@{/login}" method="POST" id="loginForm">
-          <div class="form-group">
-              <label for="userId">ユーザーID：</label>
-              <input type="text" id="username" name="username" placeholder="ユーザーIDを入力"/>
-          </div>
-          <div class="form-group">
-              <label for="passwd">パスワード：</label>
-              <input type="password" id="password" name="password" placeholder="パスワードを入力"/>
-          </div>
-          <button type="submit" >Login</button>
-      </form>
-      <p th:if="${param.error}">名前かパスワードが間違っています</p>
+            <div class="field">
+                <label for="userId">ユーザー名:</label>
+                <input type="text" id="username" name="username" placeholder="ユーザーIDを入力"/>
+            </div>
+            <div class="field">
+                <label for="password">パスワード:</label>
+                <input type="password" id="password" name="password" placeholder="パスワードを入力"/>
+            </div>
+        <input class="button is-small is-primary" type="submit" value="Login" />
+        </form>
+        <p th:if="${param.error}">名前かパスワードが間違っています</p>
+      </div>
+    
+      <a class="block" th:href="@{/user/register}"><input class="button is-small is-primary" type="button" value="新規登録" /></a>
+      <a class="block" th:href="@{/top}"><input class="button is-small is-primary" type="button" value="トップへ" /></a>
     </div>
-
-    <a th:href="@{/user/register}">新規登録</a>
-    <a th:href="@{/}"><input class="button" type="button" value="トップへ" /></a>
   </div>
-</div>
 </body>
 </html>
