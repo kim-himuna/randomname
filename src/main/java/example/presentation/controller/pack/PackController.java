@@ -41,6 +41,6 @@ public class PackController {
 
         likeService.create(new Like(null, userAuthDetails.getUserId(), packId));
 
-        return "redirect:/packs/detail/{packId}";
+        return "redirect:/top";
     }
 }
