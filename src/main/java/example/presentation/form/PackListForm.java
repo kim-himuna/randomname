@@ -11,12 +11,16 @@ public class PackListForm {
     private String title;
     private List<String> words;
     private boolean isUsed;
+    private boolean isLiked;
+    private String creator;
 
-    public PackListForm(long id,String title,List<String> words,boolean isUsed){
+    public PackListForm(long id,String title,List<String> words,String creator,boolean isUsed,boolean isLiked){
         this.id = id;
         this.title = title;
         this.words = words;
         this.isUsed = isUsed;
+        this.isLiked = isLiked;
+        this.creator = creator;
     }
 
     public long getId(){
@@ -31,10 +35,21 @@ public class PackListForm {
         return words;
     }
 
+    public String getCreator(){
+        return creator;
+    }
+
     public boolean getIsUsed(){
         return isUsed;
     }
     public void setIsUsed(boolean isUsed){
-        isUsed = this.isUsed;
+        this.isUsed = isUsed;
+    }
+
+    public boolean getIsLiked(){
+        return isLiked;
+    }
+    public void setIsLiked(boolean isLiked){
+        this.isLiked = isLiked;
     }
 }
