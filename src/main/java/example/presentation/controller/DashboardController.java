@@ -9,8 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
+
+import example.application.service.LikeService;
 import example.application.service.PackService;
+import example.application.service.UserAuthDetails;
 import example.domain.model.Session;
 import example.domain.model.pack.*;
 import example.domain.model.word.Word;
@@ -20,17 +24,20 @@ import example.presentation.form.SearchWordsForm;
 
 
 @Controller
-@RequestMapping("/top")
+@RequestMapping
 public class DashboardController {
     
     @Autowired
     PackService packService;
 
     @Autowired
+    LikeService likeService;
+
+    @Autowired
     Session session;
 
-    @GetMapping
-    public String show(Model model,SearchWordsForm searchWordsForm) {
+    @GetMapping("/top")
+    public String show(Model model,SearchWordsForm searchWordsForm,@AuthenticationPrincipal UserAuthDetails userAuthDetails) {
         
         List<Pack> packList= packService.getPackList();
 
@@ -40,6 +47,7 @@ public class DashboardController {
 
             List<String> words = new ArrayList<>();
             boolean isUsed = false;
+            boolean isLiked = false;
             for(Word word:pack.getWords()){
                 words.add(word.getCharacterString().toString());
             }
@@ -51,7 +59,15 @@ public class DashboardController {
                 }
             }
 
-            packs.add(new PackListForm(pack.getId().getValue(), pack.getTitle().getValue(),words,isUsed));
+            if(userAuthDetails != null){
+            for(Pack likeList:likeService.readByUserId(userAuthDetails.getUserId())){
+                if(packid == likeList.getId().getValue()){
+                    isLiked = true;
+                }
+            }
+        }
+
+            packs.add(new PackListForm(pack.getId().getValue(), pack.getTitle().getValue(),words,pack.getUserName().getValue(),isUsed,isLiked));
 
         }
 
@@ -63,7 +79,7 @@ public class DashboardController {
     }
 
     @PostMapping("packs/search")
-    public String searchPacksByWord(Model model,SearchWordsForm searchWordsForm){
+    public String searchPacksByWord(Model model,SearchWordsForm searchWordsForm,@AuthenticationPrincipal UserAuthDetails userAuthDetails){
         session.setSearchWord(searchWordsForm.getWord());
 
         List<Pack> packList= packService.getPackListBySearchWord(searchWordsForm.getWord());
@@ -74,6 +90,7 @@ public class DashboardController {
             List<String> words = new ArrayList<>();
             /** ここで使用状態リセットされるじゃん */
             boolean isUsed = false;
+            boolean isLiked = false;
             for(Word word:pack.getWords()){
                 words.add(word.getCharacterString().toString());
             }
@@ -85,7 +102,15 @@ public class DashboardController {
                 }
             }
 
-            packs.add(new PackListForm(pack.getId().getValue(), pack.getTitle().getValue(),words,isUsed));
+            if(userAuthDetails != null){
+            for(Pack likeList:likeService.readByUserId(userAuthDetails.getUserId())){
+                if(packid == likeList.getId().getValue()){
+                    isLiked = true;
+                }
+            }
+            }
+
+            packs.add(new PackListForm(pack.getId().getValue(), pack.getTitle().getValue(),words,pack.getUserName().getValue(),isUsed,isLiked));
 
         }
 
