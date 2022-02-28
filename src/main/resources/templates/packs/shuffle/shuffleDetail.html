@@ -5,36 +5,38 @@
         <title>シャッフル詳細</title>
     </head>
 <body>
-    <header th:replace="fragments/navigation::navigation('シャッフル詳細')"></header>
-    <form th:object="${shuffleDetailForm}" th:action="@{/packs/shuffle/detail/update}" method="post">
-        <p>
-            <label="name">最大文字数</label>
-            <input type="number" th:field="*{wordSize}" th:errorclass="input-error" placeholder="1~20以内でお願いします。（例：４）" min="1" max="20">
-            <span style="color: red;" th:if="${#fields.hasErrors('*{wordSize}')}" th:errors="*{wordSize}"></span>
-        </p>
-        <p>
-            <label="name">最大単語数</label>
-            <input type="number" th:field="*{wordCount}" th:errorclass="input-error"　placeholder="1~5以内でお願いします。（例：４）" min="1" max="5">
-            <span style="color: red;" th:if="${#fields.hasErrors('*{wordCount}')}" th:errors="*{wordCount}"></span>
-        </p>
+    <div th:replace="fragments/navigation::navigation('シャッフル詳細')"></div>
+    <div class="container">
+        <header th:replace="fragments/header :: header('シャッフル詳細')"></header>
+        <form th:object="${shuffleDetailForm}" th:action="@{/packs/shuffle/detail/update}" method="post">
+            <p>
+                最大文字数:
+                <input type="number" th:field="*{wordSize}" th:errorclass="input-error" placeholder="1~20以内でお願いします。（例:12）" min="1" max="20">
+                <span style="color: red;" th:if="${#fields.hasErrors('*{wordSize}')}" th:errors="*{wordSize}"></span>
+            </p>
+            <p>
+                最大単語数:
+                <input type="number" th:field="*{wordCount}" th:errorclass="input-error" placeholder="1~5以内でお願いします。（例:3）" min="1" max="5">
+                <span style="color: red;" th:if="${#fields.hasErrors('*{wordCount}')}" th:errors="*{wordCount}"></span>
+            </p>
 
-        <p>
-            <input id="update-form" input class="button is-small" type="submit" value="完了">
-        </p>
-    </form>
-    <p>
-        <a th:href="@{/packs/shuffle/listReset}" ><input class="button is-small" type="button" value="単語リストリセット" /></a>
-    </p>
+            <p>
+                <input class="button is-small is-primary" type="submit" value="設定完了">
+            </p>
+        </form>
 
-    <div class="m-1 card" th:each="pack: ${shuffleselectPacks.getSelectPacks()}">
-        <div class="card-content">
-            <table>
+        <div class="block">
+            <a th:href="@{/packs/shuffle/listReset}" ><input class="button is-small is-primary" type="button" value="単語リストリセット" /></a>
+        </div>
+
+    <div class="box" th:each="pack: ${shuffleselectPacks.getSelectPacks()}">
+            <table class="table is-striped is-bordered">
             <tbody>
                 <tr>
                     <td width="25%" rowspan = "5" th:text="${pack.title.value}" >
                     <td width="25%" th:text="${pack.getWords.get(0).characterString.value}" >
                     <td width="50%" rowspan= "5"> 
-                        <a th:href="@{/packs/shuffle/{packId}/listRemoveFromDetail(packId=${pack.getId})}">使用キャンセル</a>
+                        <a th:href="@{/packs/shuffle/{packId}/listRemoveFromDetail(packId=${pack.getId})}"><input class="button is-small is-primary" type="button" value="使用キャンセル"></a>
                     </td>
                 </tr>
                 <tr><td th:text="${pack.getWords().get(1).characterString.value}" ></tr>
@@ -43,7 +45,7 @@
                 <tr><td th:text="${pack.getWords().get(4).characterString.value}" ></tr>
             </tbody>
             </table>
-        </div>
     </div>
+</div>
 </body>
 </html>

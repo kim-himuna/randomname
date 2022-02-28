@@ -5,13 +5,15 @@
 <title>ログイン</title>
 </head>
 <body>
+  
   <div class="container">
+    <header th:replace="fragments/header :: header('ログイン')"></header>
     <div class="box">
       <div class="block">
         <form th:action="@{/login}" method="POST" id="loginForm">
             <div class="field">
                 <label for="userId">ユーザー名:</label>
-                <input type="text" id="username" name="username" placeholder="ユーザーIDを入力"/>
+                <input type="text" id="username" name="username" placeholder="ユーザー名を入力"/>
             </div>
             <div class="field">
                 <label for="password">パスワード:</label>

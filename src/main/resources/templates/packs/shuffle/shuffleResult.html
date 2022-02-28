@@ -5,9 +5,16 @@
         <title>シャッフル結果</title>
     </head>
 <body>
-    <header th:replace="fragments/navigation::navigation('シャッフル結果')"></header>
-    <p th:text="${word}"></p>
-    <a th:href="@{/}"><input class="button is-small" type="button" value="戻る" /></a>
-    <a th:href="@{/packs/shuffle}"><input class="button is-small" type="button" value="もう一回" /></a>
+    <div th:replace="fragments/navigation::navigation('シャッフル結果')"></div>
+    <div class="container">
+        <header th:replace="fragments/header :: header('シャッフル結果')"></header>
+        <div class="has-text-centered">
+            <div class="box">
+                <font size="6"><p th:text="${word}"></p></font>
+            </div>
+            <a th:href="@{/top}"><input class="button is-small is-primary" type="button" value="戻る" /></a>
+            <a th:href="@{/packs/shuffle}"><input class="button is-small is-primary" type="button" value="もう一回" /></a>
+        </div>
+    </div>
 </body>
 </html>

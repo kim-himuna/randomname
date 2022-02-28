@@ -6,11 +6,12 @@
 </head>
 <body>
     <div class="container">
+        <header th:replace="fragments/header :: header('ユーザ登録')"></header>
         <div class="box">
             <form class="block" th:action="@{/user/register/confirm}" method="POST" id="registerForm" th:object="${userRegisterForm}">
                 <div class="field">
                     ユーザー名:
-                    <input type="text" id="userName" name="userName" placeholder="ユーザー名を入力"/>
+                    <input type="text" id="userName" name="userName" placeholder="12字以内"/>
                     <div style="color: red;" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></div>
                 </div>
                 <div th:if="${signupError}">
@@ -18,7 +19,7 @@
                 </div>
                 <div class="field">
                     パスワード:
-                    <input type="password" id="userPassword" name="userPassword" placeholder="パスワードを入力"/>
+                    <input type="password" id="userPassword" name="userPassword" placeholder="12字以内"/>
                     <div style="color: red;" th:if="${#fields.hasErrors('userPassword')}" th:errors="*{userPassword}"></div>
                 </div>
                 <input class="button is-small is-primary" type="submit" value="登録"/>

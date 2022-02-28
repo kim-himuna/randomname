@@ -7,10 +7,10 @@
 
 <body>
 <header th:replace="fragments/navigation::navigation('')"></header>
+<div class="container">
     <header th:replace="fragments/header :: header('パック詳細')"></header>
-    <div class="m-1 card" th:object="${pack}">
-        <div class="card-content">
-            <table>
+    <div class="box" th:object="${pack}">
+            <table class="table is-striped is-bordered">
                 <tbody>
                     <tr>
                         <td width="25%" rowspan = "5" th:text="*{getTitle().getValue()}"></td>
@@ -23,18 +23,20 @@
                     <tr><td th:text="*{getWords().get(4).getCharacterString()}"></td></tr>
                 </tbody>
             </table>
-        </div>
     </div>
     
-    <a th:href="@{/}"><input class="button is-small" type="button" value="戻る"/></a>
-    <div sec:authorize="hasRole('USER')">
-        <a th:href="@{/packs/detail/{packId}/like(packId=${pack.getId()})}">お気に入り</a>
+    <div class="block">
+        <a th:href="@{/top}"><input class="button is-small is-primary" type="button" value="戻る"/></a>
+    </div>
+    <div class="block" sec:authorize="hasRole('USER')">
+        <a th:href="@{/packs/detail/{packId}/like(packId=${pack.getId()})}"><input class="button is-small is-primary" type="button" value="お気に入り"/></a>
     </div>
 
     <div sec:authorize="hasRole('ADMIN')">
-        <a th:href="@{/packs/{packId}/update(packId=${pack.getId()})}">編集</a>
-        <a th:href="@{/packs/{packId}/delete(packId=${pack.getId()})}">削除ページへ</a>
+        <a th:href="@{/packs/{packId}/update(packId=${pack.getId()})}"><input class="button is-small is-primary" type="button" value="編集"/></a>
+        <a th:href="@{/packs/{packId}/delete(packId=${pack.getId()})}"><input class="button is-small is-primary" type="button" value="削除"/></a>
     </div>
+</div>
 </body>
 
 </html>

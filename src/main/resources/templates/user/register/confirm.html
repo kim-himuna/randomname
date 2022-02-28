@@ -7,12 +7,17 @@
 
 <body>
     <div class="container">
+        <header th:replace="fragments/header :: header('ユーザ登録確認')"></header>
         <div class="box">
             <form th:action="@{/user/register/register}" th:object="${userRegisterForm}" method="get">
-            ユーザー名:
+            <div class="block">
+                ユーザー名:
                 <span th:text="*{userName}"></span>
+            </div>
+            <div class="block">
             パスワード:
                 <span th:text="*{userPassword}"></span>
+            </div>
                 <div class="block">
                     <input class="button is-small is-primary" type="submit" value="完了">
                 </div>

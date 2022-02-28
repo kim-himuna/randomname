@@ -6,18 +6,19 @@
     </head>
 
 <body>
-    <header th:replace="fragments/navigation::navigation('')"></header>
+    <div th:replace="fragments/navigation::navigation('パック作成')"></div>
+    <div class="container">
+    <header th:replace="fragments/header :: header('パック詳細')"></header>
     <form th:action="@{/packs/register/confirm}" th:object="${packForm}" method="post">
-    <div class="m-1 card">
-        <div class="card-content">
-            <table>
+    <div class="box">
+            <table class="table is-striped is-bordered">
                 <tr>
                 <td width="25%" rowspan = "5">
-                        <input type="text" th:name="*{title}" th:field="*{title}" th:errorclass="input-error" placeholder="title">
+                        <input type="text" th:name="*{title}" th:field="*{title}" th:errorclass="input-error" placeholder="title:10字以内">
                         <div style="color: red;" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
                     </td>
                     <td width="75%">
-                        <input type="text" th:field="*{words[0].word}" th:errorclass="input-error" placeholder="word">
+                        <input type="text" th:field="*{words[0].word}" th:errorclass="input-error" placeholder="word:10字以内">
                         <span style="color: red;" th:if="${#fields.hasErrors('*{words[0].word}')}" th:errors="*{words[0].word}"></span>
                     </td>
                 </tr>
@@ -47,13 +48,13 @@
                     </td>
                 </tr>
             </table>
-        </div>
     </div>                
     <p>
-        <a th:href="@{/}"><input class="button is-small" type="button" value="戻る" /></a>
-        <input class="button is-small" type="submit" value="完了">
+        <a th:href="@{/top}"><input class="button is-small is-primary" type="button" value="戻る" /></a>
+        <input class="button is-small is-primary" type="submit" value="完了">
     </p>
 </form>
+</div>
 </body>
 
 </html>
