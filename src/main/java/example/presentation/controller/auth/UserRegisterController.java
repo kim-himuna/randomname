@@ -22,7 +22,7 @@ import example.domain.model.user.UserRole;
 import example.presentation.form.UserRegisterForm;
 
 @Controller
-@RequestMapping("user/register")
+@RequestMapping("users/register")
 @SessionAttributes({"userRegisterForm"})
 public class UserRegisterController {
     
@@ -36,7 +36,7 @@ public class UserRegisterController {
     @GetMapping
     public String clearSessionAtStart(SessionStatus sessionstatus){
         sessionstatus.setComplete();
-        return "forward:/user/register/input";
+        return "forward:/users/register/input";
     }
     
     @GetMapping("input")
@@ -76,7 +76,7 @@ public class UserRegisterController {
 
         status.setComplete();
 
-        return "redirect:/user/register/completed";
+        return "redirect:/users/register/completed";
     }
 
     @GetMapping("completed")
