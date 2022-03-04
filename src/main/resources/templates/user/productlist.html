@@ -6,31 +6,19 @@
     </head>
     <body>
         
-        <div id="header" th:replace="fragments/navigation :: navigation('トップページ')"></div>
+        <div id="header" th:replace="fragments/navigation :: navigation('製作者詳細')"></div>
         <div class="container">
 
-            <header th:replace="fragments/header :: header('トップページ')"></header>
+            <header th:replace="fragments/header :: header('製作者詳細')"></header>
 
             <div class="columns">
                 <div class="column is-3">
                     <div class="box">
-                        <form th:action="@{/packs/search}" th:object="${searchWordsForm}" method="POST">
-                            <input id="input_text" type="text" th:field="*{word}">
-                            <input class="button is-small is-primary" type="submit" value="検索"/>
-                        </form>
+                        製作者<span th:text="${creatorName}"></span>
                     </div>
                 </div>
 
                 <div class="column is-9">
-                    <div class="box">
-                        <table class="table is-bordered">
-                            <tbody>
-                                <td width="40%" th:text="タイトル"></td>
-                                <td width="40%" th:text="単語" ></td>
-                                <td width="20%" th:text="その他"></td>
-                            </tbody>
-                        </table>
-                    </div>
                     <div class="box" th:each="pack , stat : ${packs}" th:object="${shuffleList}">
                             <table class="table is-striped is-bordered">
                                 <tbody>
@@ -56,9 +44,6 @@
                                                 <th:block th:if="${!pack.getIsLiked()}">
                                                     <a th:href="@{/packs/detail/{packId}/like(packId=${pack.getId()})}"><input class="button is-small is-primary" type="button" value="お気に入り"/></a>
                                                 </th:block>
-                                            </div>
-                                            <div class="block">
-                                                製作者:<a th:href="@{/users/product/from{packId}(packId=${pack.getId()})}"><span th:text="${pack.getCreator()}"></span></a>
                                             </div>
                                         </td>
                                     </tr>

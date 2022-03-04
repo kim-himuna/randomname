@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import example.domain.model.pack.*;
+import example.domain.model.user.UserId;
 import example.domain.model.word.*;
 import example.domain.repository.PackRepository;
 import example.infrastructure.mybatisEntity.*;
@@ -85,6 +86,11 @@ public class packDatasourace implements PackRepository {
             return null;
         }
         return mapper.selectPacksByIds(searchedIds);
+    }
+
+    @Override
+    public List<Pack> getPackListByUserId(UserId userId) {
+        return mapper.selectPacksByUserId(userId);
     }
 
 }

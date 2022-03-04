@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import example.domain.model.pack.*;
+import example.domain.model.user.UserId;
 import example.domain.repository.PackRepository;
 
 
@@ -37,6 +38,10 @@ public class PackService{
             packs.addAll(packsword);
         }
         return packs;
+    }
+
+    public List<Pack> getPackListByCreatorId(UserId userId){
+        return packRepository.getPackListByUserId(userId);
     }
 
 

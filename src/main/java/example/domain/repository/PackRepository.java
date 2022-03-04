@@ -3,6 +3,7 @@ package example.domain.repository;
 import java.util.List;
 
 import example.domain.model.pack.*;
+import example.domain.model.user.UserId;
 import example.domain.model.word.*;
 
 public interface PackRepository{
@@ -12,6 +13,7 @@ public interface PackRepository{
     List<Pack> getPackListByTitle(String word);
     List<Pack> getPackListByWord(String word);
     List<Word> getWordsInPack(PackId packId);
+    List<Pack> getPackListByUserId(UserId userId);
     
 
     /**C */

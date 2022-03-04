@@ -85,6 +85,10 @@
             )
 </select>
 
+<select id="selectPacksByUserId" resultMap="packMap" parameterType="example.domain.model.user.UserId">
+      SELECT pack.id as pack_id, title, user_id, username, word.id as word_id, character_string FROM pack INNER JOIN word ON pack.id = word.pack_id INNER JOIN users ON pack.user_id = users.id WHERE pack.user_id = #{userId.value}
+</select>
+
 <insert id="insertPack" parameterType="example.infrastructure.mybatisEntity.PackEntity" useGeneratedKeys="true" keyProperty="packId">
       INSERT INTO pack (title,user_id) VALUES (#{title.value},#{userId.value})
 </insert>
