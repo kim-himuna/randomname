@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import example.domain.model.pack.*;
+import example.domain.model.user.UserId;
 import example.domain.model.word.*;
 import example.infrastructure.mybatisEntity.*;
 
@@ -20,6 +21,7 @@ public interface packMapper {
     List<Long> selectIdsByWord(String word);
     List<Pack> selectPacksByTitle(String word);
     List<Pack> selectPacksByIds(@Param("ids")List<Long> ids);
+    List<Pack> selectPacksByUserId(@Param("userId")UserId userId);
 
     /**C */
     void insertPack(PackEntity packEntity);
