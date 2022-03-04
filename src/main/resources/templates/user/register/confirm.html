@@ -9,7 +9,7 @@
     <div class="container">
         <header th:replace="fragments/header :: header('ユーザ登録確認')"></header>
         <div class="box">
-            <form th:action="@{/user/register/register}" th:object="${userRegisterForm}" method="get">
+            <form th:action="@{/users/register/register}" th:object="${userRegisterForm}" method="get">
             <div class="block">
                 ユーザー名:
                 <span th:text="*{userName}"></span>
@@ -21,7 +21,7 @@
                 <div class="block">
                     <input class="button is-small is-primary" type="submit" value="完了">
                 </div>
-                <a class="block" th:href="@{/user/register}"><input class="button is-small is-primary" type="button" value="キャンセル" /></a>
+                <a class="block" th:href="@{/users/register}"><input class="button is-small is-primary" type="button" value="キャンセル" /></a>
             </form>
         </div>
     </div>

@@ -8,7 +8,7 @@
     <div class="container">
         <header th:replace="fragments/header :: header('ユーザ登録')"></header>
         <div class="box">
-            <form class="block" th:action="@{/user/register/confirm}" method="POST" id="registerForm" th:object="${userRegisterForm}">
+            <form class="block" th:action="@{/users/register/confirm}" method="POST" id="registerForm" th:object="${userRegisterForm}">
                 <div class="field">
                     ユーザー名:
                     <input type="text" id="userName" name="userName" placeholder="12字以内"/>
