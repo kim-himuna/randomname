@@ -13,9 +13,29 @@
             <table class="table is-striped is-bordered">
                 <tbody>
                     <tr>
-                        <td width="25%" rowspan = "5" th:text="*{getTitle()}"></td>
-                        <td width="50%" th:text="*{getWords().get(0)}"></td>
-                        <td width="25%" rowspan = "5" th:text="*{getCreator()}"></td>
+                        <td width="40%" rowspan = "5" th:text="*{getTitle()}"></td>
+                        <td width="40%" th:text="*{getWords().get(0)}"></td>
+                        <td width="20%" rowspan = "5">
+                            <div class="block">
+                                <th:block th:if = "${!pack.getIsUsed()}">
+                                    <a th:href="@{/packs/shuffle/{packId}/listAdd/{fromPage}(packId=${pack.getId()},fromPage=packsDetail)}"><input class="button is-small is-primary" type="button" value="使用"/></a>
+                                </th:block>
+                                <th:block th:if = "${pack.getIsUsed()}">
+                                    <a th:href="@{/packs/shuffle/{packId}/listRemove/{fromPage}(packId=${pack.getId()},fromPage=packsDetail)}"><input class="button is-small is-primary" type="button" value="使用キャンセル"/></a>
+                                </th:block>
+                            </div>
+                            <div class="block" sec:authorize="hasRole('USER')">
+                                <th:block th:if="${pack.getIsLiked()}">
+                                    <a th:href="@{/like/{packId}/{fromPage}(packId=${pack.getId()},fromPage=packsDetail)}"><input class="button is-small is-primary" type="button" value="お気に入り解除"/></a>
+                                </th:block>
+                                <th:block th:if="${!pack.getIsLiked()}">
+                                    <a th:href="@{/like/{packId}/{fromPage}(packId=${pack.getId()},fromPage=packsDetail)}"><input class="button is-small is-primary" type="button" value="お気に入り"/></a>
+                                </th:block>
+                            </div>
+                            <div class="block">
+                                製作者:<a th:href="@{/users/product/from{packId}(packId=${pack.getId()})}"><span th:text="${pack.getCreator()}"></span></a>
+                            </div>
+                        </td>
                     </tr>
                     <tr><td th:text="*{getWords().get(1)}"></td></tr>
                     <tr><td th:text="*{getWords().get(2)}"></td></tr>
@@ -24,19 +44,16 @@
                 </tbody>
             </table>
     </div>
+
+
+
+
     
     <div class="block">
         <a th:href="@{/top}"><input class="button is-small is-primary" type="button" value="戻る"/></a>
     </div>
 
-    <div class="block" sec:authorize="hasRole('USER')">
-        <th:block th:if="${pack.getIsLiked()}">
-            <a th:href="@{/like/{packId}/{fromPage}(packId=${pack.getId()},fromPage=packsDetail)}"><input class="button is-small is-primary" type="button" value="お気に入り解除"/></a>
-        </th:block>
-        <th:block th:if="${!pack.getIsLiked()}">
-            <a th:href="@{/like/{packId}/{fromPage}(packId=${pack.getId()},fromPage=packsDetail)}"><input class="button is-small is-primary" type="button" value="お気に入り"/></a>
-        </th:block>
-    </div>
+
 
     <div sec:authorize="hasRole('ADMIN')">
         <a th:href="@{/packs/{packId}/update(packId=${pack.getId()})}"><input class="button is-small is-primary" type="button" value="編集"/></a>
