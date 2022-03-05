@@ -34,7 +34,7 @@ public class LikeController {
         }else if(fromPage.equals("usersDetail")){
             return "redirect:/users/detail";
         }else if(fromPage.equals("shuffleDetail")){
-            return "redirect:/users/packs/shuffle/detail";
+            return "redirect:/packs/shuffle/detail";
         }
 
         return "redirect:/top";
