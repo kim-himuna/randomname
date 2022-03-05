@@ -18,13 +18,16 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import example.application.service.LikeService;
 import example.application.service.PackService;
 import example.application.service.UserAuthDetails;
 import example.domain.model.pack.PackId;
+import example.domain.model.Session;
 import example.domain.model.pack.Pack;
 import example.presentation.form.PackForm;
 import example.presentation.form.WordForm;
 import example.presentation.helper.PackFormToPackHelper;
+import example.presentation.helper.PackToPackFormHelper;
 
 
 @Controller
@@ -36,7 +39,17 @@ public class PackRegisterController {
     PackFormToPackHelper PackFormToPackHelper;
 
     @Autowired
+    PackToPackFormHelper toPackFormHelper;
+
+    @Autowired
     PackService packService;
+
+    @Autowired
+    LikeService likeService;
+
+    @Autowired
+    Session session;
+
 
     @GetMapping
     public String clearSessionAtStart(SessionStatus sessionstatus){
@@ -92,10 +105,12 @@ public class PackRegisterController {
     }
 
     @GetMapping("completed")
-    public String showResult(Model model,@RequestParam("packId") PackId packId,@RequestParam("packTitle") String packTitle) {
+    public String showResult(Model model,@RequestParam("packId") PackId packId,@RequestParam("packTitle") String packTitle,@AuthenticationPrincipal UserAuthDetails userAuthDetails) {
 
         Pack pack = packService.getPack(packId);
-        model.addAttribute("pack",pack);
+
+        
+        model.addAttribute("pack",toPackFormHelper.toPackForm(pack, session, userAuthDetails, likeService));
         return "packs/packDetail";
     }
 
