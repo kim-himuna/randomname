@@ -22,9 +22,9 @@ import example.application.service.PackService;
 import example.application.service.UserAuthDetails;
 import example.domain.model.pack.PackId;
 import example.domain.model.pack.Pack;
-import example.presentation.coordinator.pack.PackRecordCoordinator;
 import example.presentation.form.PackForm;
 import example.presentation.form.WordForm;
+import example.presentation.helper.PackFormToPackHelper;
 
 
 @Controller
@@ -33,7 +33,7 @@ import example.presentation.form.WordForm;
 public class PackRegisterController {
 
     @Autowired
-    PackRecordCoordinator packRecordCoordinator;
+    PackFormToPackHelper PackFormToPackHelper;
 
     @Autowired
     PackService packService;
@@ -49,6 +49,7 @@ public class PackRegisterController {
 
         PackForm packForm = new PackForm();
         List<WordForm> words = new ArrayList<WordForm>();
+        /**pack内のword数回繰り返す */
         for(int i=0;i<5;i++){
             words.add(new WordForm());
         }
@@ -78,7 +79,7 @@ public class PackRegisterController {
         @ModelAttribute("packForm") PackForm packForm,SessionStatus status, RedirectAttributes attributes,
         @AuthenticationPrincipal UserAuthDetails userAuthDetails) {
             
-        Pack pack = packRecordCoordinator.packCoordinate(packForm,userAuthDetails.getUserId(),userAuthDetails.getUserName());
+        Pack pack = PackFormToPackHelper.packCoordinate(packForm,userAuthDetails.getUserId(),userAuthDetails.getUserName());
         PackId packId = packService.register(pack);
 
         
