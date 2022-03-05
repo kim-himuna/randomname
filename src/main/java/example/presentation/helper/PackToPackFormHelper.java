@@ -49,4 +49,34 @@ public class PackToPackFormHelper {
         return packs;
 
     }
+
+    public PackListForm toPackForm(Pack pack,Session session,UserAuthDetails userAuthDetails,LikeService likeService){
+
+        List<String> words = new ArrayList<>();
+        boolean isUsed = false;
+        boolean isLiked = false;
+
+        for(Word word:pack.getWords()){
+            words.add(word.getCharacterString().toString());
+        }
+
+        long packid = pack.getId().getValue();
+        for(long id:session.getShuffleList().getSelectIds()){
+            if(packid == id){
+                 isUsed = true;
+            }
+        }
+
+        if(userAuthDetails != null){
+            for(Pack likeList:likeService.readByUserId(userAuthDetails.getUserId())){
+                if(packid == likeList.getId().getValue()){
+                    isLiked = true;
+                }
+            }
+        }
+
+        PackListForm packForm = new PackListForm(pack.getId().getValue(), pack.getTitle().getValue(), words, pack.getUserName().getValue(), isUsed, isLiked);
+        return packForm;
+
+    }
 }
