@@ -40,10 +40,10 @@
                                         <td width="20%" rowspan= "5">
                                             <div class="block">
                                                 <th:block th:if = "${!pack.getIsUsed()}">
-                                                    <a th:href="@{/packs/shuffle/{packId}/listAdd(packId=${pack.getId()})}"><input class="button is-small is-primary" type="button" value="使用"/></a>
+                                                    <a th:href="@{/packs/shuffle/{packId}/listAdd/{fromPage}(packId=${pack.getId()},fromPage=top)}"><input class="button is-small is-primary" type="button" value="使用"/></a>
                                                 </th:block>
                                                 <th:block th:if = "${pack.getIsUsed()}">
-                                                    <a th:href="@{/packs/shuffle/{packId}/listRemoveFromTop(packId=${pack.getId()})}"><input class="button is-small is-primary" type="button" value="使用キャンセル"/></a>
+                                                    <a th:href="@{/packs/shuffle/{packId}/listRemove/{fromPage}(packId=${pack.getId()},fromPage=top)}"><input class="button is-small is-primary" type="button" value="使用キャンセル"/></a>
                                                 </th:block>
                                             </div>
                                             <div class="block">
@@ -51,10 +51,10 @@
                                             </div>
                                             <div class="block" sec:authorize="hasRole('USER')">
                                                 <th:block th:if="${pack.getIsLiked()}">
-                                                    <a th:href="@{/packs/detail/{packId}/like(packId=${pack.getId()})}"><input class="button is-small is-primary" type="button" value="お気に入り解除"/></a>
+                                                    <a th:href="@{/like/{packId}/{fromPage}(packId=${pack.getId()},fromPage=top)}"><input class="button is-small is-primary" type="button" value="お気に入り解除"/></a>
                                                 </th:block>
                                                 <th:block th:if="${!pack.getIsLiked()}">
-                                                    <a th:href="@{/packs/detail/{packId}/like(packId=${pack.getId()})}"><input class="button is-small is-primary" type="button" value="お気に入り"/></a>
+                                                    <a th:href="@{/like/{packId}/{fromPage}(packId=${pack.getId()},fromPage=top)}"><input class="button is-small is-primary" type="button" value="お気に入り"/></a>
                                                 </th:block>
                                             </div>
                                             <div class="block">
