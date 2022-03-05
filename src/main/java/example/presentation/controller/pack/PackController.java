@@ -1,8 +1,5 @@
 package example.presentation.controller.pack;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -42,10 +39,7 @@ public class PackController {
             return "redirect:/top";
         }
 
-        List<Pack> packList = new ArrayList<>();
-        packList.add(pack);
-        
-        model.addAttribute("pack",toPackForm.toPackFormList(packList, session, userAuthDetails, likeService).get(0));
+        model.addAttribute("pack",toPackForm.toPackForm(pack, session, userAuthDetails, likeService));
         return "packs/packDetail";
     }
 
