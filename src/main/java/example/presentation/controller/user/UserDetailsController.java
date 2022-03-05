@@ -20,6 +20,7 @@ import example.domain.model.pack.PackId;
 import example.domain.model.word.Word;
 import example.presentation.form.PackListForm;
 import example.presentation.form.SearchWordsForm;
+import example.presentation.helper.PackToPackFormHelper;
 
 
 @Controller
@@ -32,12 +33,18 @@ public class UserDetailsController {
     LikeService likeService;
     @Autowired
     Session session;
+    @Autowired
+    PackToPackFormHelper toPackForm;
 
     @GetMapping("/detail")
     public String userDetail(Model model,@AuthenticationPrincipal UserAuthDetails userAuthDetails){
         
         List<Pack> likedPacks = likeService.readByUserId(userAuthDetails.getUserId());
-        model.addAttribute("likedPacks", likedPacks);
+        
+        model.addAttribute("likedPacks", toPackForm.toPackFormList(likedPacks, session, userAuthDetails, likeService));
+
+        List<Pack> producedPacks = packService.getPackListByCreatorId(userAuthDetails.getUserId());
+        model.addAttribute("producedPacks", toPackForm.toPackFormList(producedPacks, session, userAuthDetails, likeService));
         return "user/userDetail";
     }
 

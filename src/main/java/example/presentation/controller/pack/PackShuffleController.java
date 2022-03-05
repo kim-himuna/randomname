@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,14 +13,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import example.application.service.LikeService;
 import example.application.service.PackService;
 import example.application.service.PackShuffleService;
+import example.application.service.UserAuthDetails;
 import example.domain.model.ShuffleList;
 import example.domain.model.Session;
 import example.domain.model.pack.Pack;
 import example.domain.model.pack.PackId;
 import example.presentation.form.ShuffleDetailForm;
 import example.presentation.form.ShuffleSelectPacks;
+import example.presentation.helper.PackToPackFormHelper;
 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,11 +40,17 @@ public class PackShuffleController {
     private PackService packService;
 
     @Autowired
+    private LikeService likeService;
+
+    @Autowired
     private Session session;
 
+    @Autowired
+    private PackToPackFormHelper toPackFormHelper;
 
-    @RequestMapping("/{packId}/listAdd")
-    public String ShuffleListAdd(@PathVariable long packId,RedirectAttributes redirectAttrs){
+
+    @RequestMapping("/{packId}/listAdd/{fromPage}")
+    public String ShuffleListAdd(@PathVariable("packId") long packId,@PathVariable("fromPage") String fromPage,RedirectAttributes redirectAttrs){
 
         ShuffleList shuffleList = session.getShuffleList();
 
@@ -51,22 +61,42 @@ public class PackShuffleController {
         }
         redirectAttrs.addFlashAttribute("session",session);
 
+        if(fromPage.equals("top")){
+            return "redirect:/top";
+        }else if(fromPage.equals("packsDetail")){
+            return "redirect:/packs/detail/" + packId;
+        }else if(fromPage.equals("productlist")){
+            return "redirect:/users/product/from" + packId;
+        }else if(fromPage.equals("usersDetail")){
+            return "redirect:/users/detail";
+        }else if(fromPage.equals("shuffleDetail")){
+            return "redirect:/packs/shuffle/detail";
+        }
+
         return "redirect:/top";
     }
 
-    @RequestMapping("/{packId}/listRemoveFromTop")
-    public String ShuffleListRemoveFromTop(@PathVariable PackId packId,RedirectAttributes redirectAttrs){
+    @RequestMapping("/{packId}/listRemove/{fromPage}")
+    public String ShuffleListRemoveFromTop(@PathVariable("packId") PackId packId,@PathVariable("fromPage") String fromPage,RedirectAttributes redirectAttrs){
         ShuffleList shuffleList = session.getShuffleList();
         shuffleList.selectIds.remove(shuffleList.selectIds.indexOf(packId.getValue()));
+
+
+        if(fromPage.equals("top")){
+            return "redirect:/top";
+        }else if(fromPage.equals("packsDetail")){
+            return "redirect:/packs/detail/" + packId;
+        }else if(fromPage.equals("productlist")){
+            return "redirect:/users/product/from" + packId;
+        }else if(fromPage.equals("usersDetail")){
+            return "redirect:/users/detail";
+        }else if(fromPage.equals("shuffleDetail")){
+            return "redirect:/packs/shuffle/detail";
+        }
+
         return "redirect:/top";
     }
 
-    @RequestMapping("/{packId}/listRemoveFromDetail")
-    public String ShuffleListRemoveFromDetail(@PathVariable PackId packId,RedirectAttributes redirectAttrs){
-        ShuffleList shuffleList = session.getShuffleList();
-        shuffleList.selectIds.remove(shuffleList.selectIds.indexOf(packId.getValue()));
-        return "redirect:/packs/shuffle/detail";
-    }
 
     @GetMapping()
     public String WordShuffle(Model model){
@@ -84,7 +114,7 @@ public class PackShuffleController {
 
 
     @GetMapping("detail")
-    public String ShuffleDetail(Model model){
+    public String ShuffleDetail(Model model,@AuthenticationPrincipal UserAuthDetails userAuthDetails){
         ShuffleDetailForm shuffleDetailForm = new ShuffleDetailForm();
         shuffleDetailForm.setWordSize(session.getShuffleList().getWordSize()); 
         shuffleDetailForm.setWordCount(session.getShuffleList().getWordCount());
@@ -96,8 +126,7 @@ public class PackShuffleController {
         for(Long packId:session.getShuffleList().getSelectIds()){
             selectPacks.add(packService.getPack(new PackId(packId)));
         }
-        ShuffleSelectPacks shuffleSelectPacks = new ShuffleSelectPacks(selectPacks);
-        model.addAttribute("shuffleselectPacks", shuffleSelectPacks);
+        model.addAttribute("shuffleselectPacks", toPackFormHelper.toPackFormList(selectPacks, session, userAuthDetails, likeService));
         return "packs/shuffle/shuffleDetail";
     }
 
