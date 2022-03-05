@@ -13,14 +13,14 @@
             <table class="table is-striped is-bordered">
                 <tbody>
                     <tr>
-                        <td width="25%" rowspan = "5" th:text="*{getTitle().getValue()}"></td>
-                        <td width="50%" th:text="*{getWords().get(0).getCharacterString()}"></td>
-                        <td width="25%" rowspan = "5" th:text="*{getUserName().getValue()}"></td>
+                        <td width="25%" rowspan = "5" th:text="*{getTitle()}"></td>
+                        <td width="50%" th:text="*{getWords().get(0)}"></td>
+                        <td width="25%" rowspan = "5" th:text="*{getCreator()}"></td>
                     </tr>
-                    <tr><td th:text="*{getWords().get(1).getCharacterString()}"></td></tr>
-                    <tr><td th:text="*{getWords().get(2).getCharacterString()}"></td></tr>
-                    <tr><td th:text="*{getWords().get(3).getCharacterString()}"></td></tr>
-                    <tr><td th:text="*{getWords().get(4).getCharacterString()}"></td></tr>
+                    <tr><td th:text="*{getWords().get(1)}"></td></tr>
+                    <tr><td th:text="*{getWords().get(2)}"></td></tr>
+                    <tr><td th:text="*{getWords().get(3)}"></td></tr>
+                    <tr><td th:text="*{getWords().get(4)}"></td></tr>
                 </tbody>
             </table>
     </div>
@@ -28,8 +28,14 @@
     <div class="block">
         <a th:href="@{/top}"><input class="button is-small is-primary" type="button" value="戻る"/></a>
     </div>
+
     <div class="block" sec:authorize="hasRole('USER')">
-        <a th:href="@{/packs/detail/{packId}/like(packId=${pack.getId()})}"><input class="button is-small is-primary" type="button" value="お気に入り"/></a>
+        <th:block th:if="${pack.getIsLiked()}">
+            <a th:href="@{/like/{packId}/{fromPage}(packId=${pack.getId()},fromPage=packsDetail)}"><input class="button is-small is-primary" type="button" value="お気に入り解除"/></a>
+        </th:block>
+        <th:block th:if="${!pack.getIsLiked()}">
+            <a th:href="@{/like/{packId}/{fromPage}(packId=${pack.getId()},fromPage=packsDetail)}"><input class="button is-small is-primary" type="button" value="お気に入り"/></a>
+        </th:block>
     </div>
 
     <div sec:authorize="hasRole('ADMIN')">
