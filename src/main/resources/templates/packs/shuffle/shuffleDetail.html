@@ -29,20 +29,35 @@
             <a th:href="@{/packs/shuffle/listReset}" ><input class="button is-small is-primary" type="button" value="単語リストリセット" /></a>
         </div>
 
-    <div class="box" th:each="pack: ${shuffleselectPacks.getSelectPacks()}">
+    <div class="box" th:each="pack: ${shuffleselectPacks}">
             <table class="table is-striped is-bordered">
             <tbody>
                 <tr>
-                    <td width="25%" rowspan = "5" th:text="${pack.title.value}" >
-                    <td width="25%" th:text="${pack.getWords.get(0).characterString.value}" >
-                    <td width="50%" rowspan= "5"> 
-                        <a th:href="@{/packs/shuffle/{packId}/listRemoveFromDetail(packId=${pack.getId})}"><input class="button is-small is-primary" type="button" value="使用キャンセル"></a>
+                    <td width="40%" rowspan = "5" th:text="${pack.getTitle()}" >
+                    <td width="40%" th:text="${pack.getWords.get(0)}" >
+                    <td width="20%" rowspan= "5">
+                        <div class="block">
+                        <a th:href="@{/packs/shuffle/{packId}/listRemove/{fromPage}(packId=${pack.getId},fromPage=shuffleDetail)}"><input class="button is-small is-primary" type="button" value="使用キャンセル"></a>
+                        </div>
+
+                        <div class="block"  sec:authorize="hasRole('USER')">
+                            <th:block th:if="${pack.getIsLiked()}">
+                                <a th:href="@{/like/{packId}/{fromPage}(packId=${pack.getId()},fromPage=shuffleDetail)}"><input class="button is-small is-primary" type="button" value="お気に入り解除"/></a>
+                            </th:block>
+                            <th:block th:if="${!pack.getIsLiked()}">
+                                <a th:href="@{/like/{packId}/{fromPage}(packId=${pack.getId()},fromPage=shuffleDetail)}"><input class="button is-small is-primary" type="button" value="お気に入り"/></a>
+                            </th:block>                    
+                        </div>
+
+                        <div class="block">
+                            製作者:<a th:href="@{/users/product/from{packId}(packId=${pack.getId()})}"><span th:text="${pack.getCreator()}"></span></a>
+                        </div>
                     </td>
                 </tr>
-                <tr><td th:text="${pack.getWords().get(1).characterString.value}" ></tr>
-                <tr><td th:text="${pack.getWords().get(2).characterString.value}" ></tr>
-                <tr><td th:text="${pack.getWords().get(3).characterString.value}" ></tr>
-                <tr><td th:text="${pack.getWords().get(4).characterString.value}" ></tr>
+                <tr><td th:text="${pack.getWords().get(1)}" ></tr>
+                <tr><td th:text="${pack.getWords().get(2)}" ></tr>
+                <tr><td th:text="${pack.getWords().get(3)}" ></tr>
+                <tr><td th:text="${pack.getWords().get(4)}" ></tr>
             </tbody>
             </table>
     </div>
