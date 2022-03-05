@@ -22,9 +22,9 @@ import example.application.service.PackService;
 import example.application.service.UserAuthDetails;
 import example.domain.model.pack.*;
 import example.domain.model.word.Word;
-import example.presentation.coordinator.pack.PackRecordCoordinator;
 import example.presentation.form.PackForm;
 import example.presentation.form.WordForm;
+import example.presentation.helper.PackFormToPackHelper;
 
 @Controller
 @RequestMapping("packs/{packId}/update")
@@ -35,7 +35,7 @@ public class PackUpdateController {
     PackService packService;
 
     @Autowired
-    PackRecordCoordinator packRecordCoordinator;
+    PackFormToPackHelper packFormToPackHelper;
 
 
     @GetMapping
@@ -66,7 +66,7 @@ public class PackUpdateController {
             return "packs/update/form";
         }
         
-        Pack pack = packRecordCoordinator.packCoordinate(packForm,userAuthDetails.getUserId(),userAuthDetails.getUserName());
+        Pack pack = packFormToPackHelper.packCoordinate(packForm,userAuthDetails.getUserId(),userAuthDetails.getUserName());
 
         packService.updatePack(pack);
         status.setComplete();
