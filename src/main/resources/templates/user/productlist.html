@@ -14,7 +14,7 @@
             <div class="columns">
                 <div class="column is-3">
                     <div class="box">
-                        製作者<span th:text="${creatorName}"></span>
+                        製作者:<span th:text="${creatorName}"></span>
                     </div>
                 </div>
 
@@ -33,9 +33,6 @@
                                                 <th:block th:if = "${pack.getIsUsed()}">
                                                     <a th:href="@{/packs/shuffle/{packId}/listRemove/{fromPage}(packId=${pack.getId()},fromPage=productlist)}"><input class="button is-small is-primary" type="button" value="使用キャンセル"/></a>
                                                 </th:block>
-                                            </div>
-                                            <div class="block">
-                                                <a th:href="@{/packs/detail/{packId}(packId=${pack.getId()})}"><input class="button is-small is-primary" type="button" value="詳細"/></a>
                                             </div>
                                             <div class="block" sec:authorize="hasRole('USER')">
                                                 <th:block th:if="${pack.getIsLiked()}">
