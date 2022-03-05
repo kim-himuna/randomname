@@ -1,6 +1,6 @@
 /** formの変換処理を行っている．詰め替え用のクラスの名前はよくわからない*/
 
-package example.presentation.coordinator.pack;
+package example.presentation.helper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import example.presentation.form.PackForm;
 import example.presentation.form.WordForm;
 
 @Component
-public class PackRecordCoordinator {
+public class PackFormToPackHelper {
 
 
     public Pack packCoordinate(PackForm packForm,UserId userId,UserName userName){
