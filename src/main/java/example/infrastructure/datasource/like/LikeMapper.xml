@@ -55,7 +55,7 @@
 
 
 <select id="selectPacksByUserId" resultMap="packMap">
-      SELECT pack.id as pack_id, title, username, word.id as word_id, character_string FROM likes INNER JOIN pack ON likes.pack_id = pack.id INNER JOIN word ON likes.pack_id = word.pack_id INNER JOIN users ON likes.user_id = users.id where likes.user_id = #{value}
+      SELECT pack.id as pack_id, title, username, word.id as word_id, character_string FROM likes INNER JOIN pack ON likes.pack_id = pack.id INNER JOIN word ON likes.pack_id = word.pack_id INNER JOIN users ON pack.user_id = users.id where likes.user_id = #{value}
 </select>
 
 <select id="selectLikeByLike" resultMap="likeMap">
