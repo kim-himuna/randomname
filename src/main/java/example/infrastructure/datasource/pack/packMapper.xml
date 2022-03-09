@@ -65,8 +65,10 @@
       SELECT pack.id as pack_id, title, user_id, username, word.id as word_id, character_string FROM pack INNER JOIN word ON pack.id = word.pack_id INNER JOIN users ON pack.user_id = users.id
 </select>
 
+
+<!-- mysql -> postgre :LAST_INSERT_ID -> LASTVAL() -->
 <select id="registerNew" resultType="example.domain.model.pack.PackId">
-      SELECT LAST_INSERT_ID()
+      SELECT LASTVAL()
 </select>
 
 <select id="selectPacksByTitle" resultMap="packMap" parameterType="string">
@@ -108,6 +110,7 @@
       UPDATE word SET character_string = #{characterString.value} WHERE id = #{wordId.value}
 </update>
 
+<!-- mysql時のwordバルクアップデート
 <update id="updateWords" parameterType="java.util.List">
       UPDATE word SET character_string = ELT(FIELD(id,
       <foreach collection="wordList" item="word" separator=",">#{word.wordId.value}</foreach>
@@ -116,6 +119,14 @@
       ) WHERE id in (
       <foreach collection="wordList" item="word" separator=",">#{word.wordId.value}</foreach>
       )
+</update>
+-->
+
+<update id="updateWords" parameterType="java.util.List">
+      UPDATE word SET character_string = new_table.new_word FROM ( VALUES
+      <foreach collection="wordList" item="word" separator=",">(#{word.characterString.value},#{word.wordId.value})</foreach>
+      ) AS new_table(new_word,id) 
+      WHERE word.id = new_table.id
 </update>
 
 <delete id="deletePack">
