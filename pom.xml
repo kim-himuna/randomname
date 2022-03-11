@@ -11,6 +11,7 @@
 	<groupId>randomname.web</groupId>
 	<artifactId>randomname</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
 	<name>randomname</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -49,12 +50,6 @@
 			 <groupId>org.mybatis.spring.boot</groupId>
 			 <artifactId>mybatis-spring-boot-starter</artifactId>
 			 <version>2.1.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
