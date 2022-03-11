@@ -34,6 +34,9 @@
                     <a class="navbar-item" th:classappend="${active.equals('ユーザ情報')} ? 'is-active' : ''" th:href="@{/users/detail}">
                         <span>ユーザ情報</span>
                     </a>
+                    <a class="navbar-item" th:classappend="${active.equals('ランダムネーム')} ? 'is-active' : ''" th:href="@{/}">
+                        <span>ランダムネーム</span>
+                    </a>
                 </div>
             </nav>
         </header>

@@ -5,7 +5,9 @@
     <title>ユーザ登録</title>
 </head>
 <body>
+    <div id="header" th:replace="fragments/navigation :: navigation('ユーザ情報')"></div>
     <div class="container">
+
         <header th:replace="fragments/header :: header('ユーザ登録')"></header>
         <div class="box">
             <form class="block" th:action="@{/users/register/confirm}" method="POST" id="registerForm" th:object="${userRegisterForm}">

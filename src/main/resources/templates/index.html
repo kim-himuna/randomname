@@ -5,7 +5,11 @@
         <title>index</title>
     </head>
 <body>
+    <div id="header" th:replace="fragments/navigation :: navigation('ランダムネーム')"></div>
     <div class="container">
+
+        <header th:replace="fragments/header :: header('ランダムネーム')"></header>
+
         <div class="block">
             <div class="box">
                 <div class="block">
@@ -37,6 +41,8 @@
                             ログイン済みの場合は「お気に入りパック」や「作製したパック」を確認できます。
                             <li>検索</li>
                             検索したい単語やタイトルが含まれているパックを探すことができます。
+                            <li>製作者情報</li>
+                            パックの「製作者」から特定ユーザの作ったパック一覧を見ることができます。
                         </ul>
                     </div>
                 </div>
