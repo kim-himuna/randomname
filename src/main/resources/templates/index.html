@@ -2,10 +2,64 @@
 <html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="fragments/layout :: htmlhead(~{::title})">
         <meta charset="UTF-8">
-        <title>トップ仮</title>
+        <title>index</title>
     </head>
 <body>
-    <div>名前決めようぜ</div>>
-    <a th:href="@{/top}"><input class="button is-small" type="button" value="パッケージ選択へ" /></a>
+    <div class="container">
+        <div class="block">
+            <div class="box">
+                <div class="block">
+                    <h3>ランダムネームとは</h3>
+                    <div>
+                        単語をランダムにつなげて名前をつけるサービスです。<br>
+                        ゲームのプレイヤー名、チーム名、愛犬、愛車の名前などにぜひ。
+                    </div>
+                </div>
+
+                <div class="block">
+                    <h3>使い方</h3>
+                    <div class="content">
+                        <ol>
+                            <li>使用するパックを選びます</li>
+                            <li>シャッフル結果を表示します</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="block">
+                    <h3>その他の機能</h3>                
+                    <div class="content">
+                        <ul>
+                            <li>シャッフル詳細</li>
+                            文字数の上限やつなげる単語数を決めることができます。<br>
+                            また、使用中のカードを確認することができます。<br>
+                            <li>ユーザ情報</li>
+                            未ログインの場合はこちらから新規登録やログインができます。<br>
+                            ログイン済みの場合は「お気に入りパック」や「作製したパック」を確認できます。
+                            <li>検索</li>
+                            検索したい単語やタイトルが含まれているパックを探すことができます。
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="block">
+                    <h3>登録するとできること</h3>
+                    <div class="content">
+                        <ul>
+                            <li>パック作成</li>
+                            パックを作製することができるようになります。<br>
+                            <li>お気に入り登録</li>
+                            よく使うパックなどをお気に入り登録できるようになります。<br>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <a class="block" th:href="@{/top}"><input class="button is-small is-primary" type="button" value="ゲストユーザ" /></a>
+            <a class="block" th:href="@{/loginForm}"><input class="button is-small is-primary" type="button" value="ログインページ" /></a>
+            <a class="block" th:href="@{/users/register}"><input class="button is-small is-primary" type="button" value="新規登録" /></a>
+        </div>
+    </div>
 </body>
 </html>
