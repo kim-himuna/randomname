@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="box">
+        <div class="box" sec:authorize="!hasRole('USER')">
             <a class="block" th:href="@{/top}"><input class="button is-small is-primary" type="button" value="ゲストユーザ" /></a>
             <a class="block" th:href="@{/loginForm}"><input class="button is-small is-primary" type="button" value="ログインページ" /></a>
             <a class="block" th:href="@{/users/register}"><input class="button is-small is-primary" type="button" value="新規登録" /></a>
