@@ -89,7 +89,7 @@ public class UserDetailsController {
 
 
 
-        return "/user/productlist";
+        return "user/productlist";
     }
     
 }

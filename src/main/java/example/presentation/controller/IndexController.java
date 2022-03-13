@@ -8,6 +8,6 @@ import org.springframework.stereotype.Controller;
 @RequestMapping("/")
 public class IndexController {
     public String index(){
-        return "/index";
+        return "index";
     }
 }

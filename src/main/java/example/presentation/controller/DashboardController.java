@@ -75,7 +75,7 @@ public class DashboardController {
         model.addAttribute("packs", packs);
         model.addAttribute("searchWordsForm",searchWordsForm);
 
-        return "/top";
+        return "top";
     }
 
     @PostMapping("packs/search")
@@ -118,7 +118,7 @@ public class DashboardController {
 
 
 
-        return "/top";
+        return "top";
 
     }
 }
