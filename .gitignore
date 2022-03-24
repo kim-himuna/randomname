@@ -34,4 +34,4 @@ build/
 
 
 ### properties ###
-.properties
+*.properties
