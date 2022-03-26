@@ -1,4 +1,4 @@
-package example.application.service;
+package example.domain.model;
 
 import java.util.Collection;
 
