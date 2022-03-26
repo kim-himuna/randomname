@@ -8,7 +8,6 @@ public class UserName {
 
     public UserName(String value){
         this.value = value;
-
     }
 
 }

@@ -1,5 +1,8 @@
 package example.domain.model.word;
 
+import lombok.Getter;
+
+@Getter
 public class Word {
     WordId id;
     CharacterString characterString;
@@ -10,13 +13,5 @@ public class Word {
     public Word(WordId id, CharacterString characterString){
         this.id = id;
         this.characterString = characterString;
-    }
-
-    public WordId getId(){
-        return id;
-    }
-
-    public CharacterString getCharacterString(){
-        return characterString;
     }
 }
