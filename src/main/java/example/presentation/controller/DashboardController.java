@@ -14,8 +14,8 @@ import org.springframework.ui.Model;
 
 import example.application.service.LikeService;
 import example.application.service.PackService;
-import example.application.service.UserAuthDetails;
 import example.domain.model.Session;
+import example.domain.model.UserAuthDetails;
 import example.domain.model.pack.*;
 import example.domain.model.word.Word;
 import example.presentation.form.PackListForm;

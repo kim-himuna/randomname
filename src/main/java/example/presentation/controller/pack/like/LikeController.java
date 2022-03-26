@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import example.application.service.LikeService;
-import example.application.service.UserAuthDetails;
+import example.domain.model.UserAuthDetails;
 import example.domain.model.like.Like;
 import example.domain.model.pack.PackId;
 

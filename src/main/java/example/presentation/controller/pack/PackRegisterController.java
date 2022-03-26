@@ -20,9 +20,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import example.application.service.LikeService;
 import example.application.service.PackService;
-import example.application.service.UserAuthDetails;
 import example.domain.model.pack.PackId;
 import example.domain.model.Session;
+import example.domain.model.UserAuthDetails;
 import example.domain.model.pack.Pack;
 import example.presentation.form.PackForm;
 import example.presentation.form.WordForm;

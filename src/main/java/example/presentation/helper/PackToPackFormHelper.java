@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import example.application.service.LikeService;
-import example.application.service.UserAuthDetails;
 import example.domain.model.Session;
+import example.domain.model.UserAuthDetails;
 import example.domain.model.pack.Pack;
 import example.domain.model.word.Word;
 import example.presentation.form.PackListForm;

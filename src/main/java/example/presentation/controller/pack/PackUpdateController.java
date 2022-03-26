@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import example.application.service.PackService;
-import example.application.service.UserAuthDetails;
+import example.domain.model.UserAuthDetails;
 import example.domain.model.pack.*;
 import example.domain.model.word.Word;
 import example.presentation.form.PackForm;
