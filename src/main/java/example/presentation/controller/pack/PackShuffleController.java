@@ -101,13 +101,15 @@ public class PackShuffleController {
     @GetMapping()
     public String WordShuffle(Model model){
 
-        String word ="使用するパックを選んでください";
+        String[] wordsResult = new String[10];
 
-        if(session.getShuffleList().getSelectIds().size() != 0){        
-            word = packShuffleService.shuffleResult(session.getShuffleList());
+        if(session.getShuffleList().getSelectIds().size() != 0){
+            for (int i = 0; i < 10; i++){
+                wordsResult[i] = packShuffleService.shuffleResult(session.getShuffleList());
+            }
         }
 
-        model.addAttribute("word", word);
+        model.addAttribute("wordsResult", wordsResult);
         return "packs/shuffle/shuffleResult";
     }
 
