@@ -65,9 +65,6 @@ public class PackService{
     }
 
     public PackId deletePack(PackId packId){
-        /**あれ？親消えたらwordきえるんじゃない？
-         * => 外部キー設定しないとデフォルトでは消えないよ．
-         */
     
         packRepository.deleteWordsInPack(packId);
         

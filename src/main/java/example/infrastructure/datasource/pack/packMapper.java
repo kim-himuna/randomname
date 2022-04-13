@@ -11,7 +11,7 @@ import example.domain.model.word.*;
 import example.infrastructure.mybatisEntity.*;
 
 @Mapper
-public interface packMapper {
+public interface PackMapper {
 
     /**R */
     Pack selectOne(@Param("packId") PackId packId);

@@ -13,9 +13,9 @@ import example.domain.repository.PackRepository;
 import example.infrastructure.mybatisEntity.*;
 
 @Repository
-public class packDatasourace implements PackRepository {
+public class PackDatasourace implements PackRepository {
     @Autowired
-    packMapper mapper;
+    PackMapper mapper;
 
     @Override
     public Pack getPack(PackId packId){
