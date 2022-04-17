@@ -5,28 +5,29 @@
 <title>ログイン</title>
 </head>
 <body>
-  <div id="header" th:replace="fragments/navigation :: navigation('ユーザ情報')"></div>
-  <div class="container">
+<div id="header" th:replace="fragments/navigation :: navigation('ユーザ情報')"></div>
+<div class="container">
     <header th:replace="fragments/header :: header('ログイン')"></header>
     <div class="box">
-      <div class="block">
-        <form th:action="@{/login}" method="POST" id="loginForm">
-            <div class="field">
-                <label for="userId">ユーザー名:</label>
-                <input type="text" id="username" name="username" placeholder="ユーザー名を入力"/>
-            </div>
-            <div class="field">
-                <label for="password">パスワード:</label>
-                <input type="password" id="password" name="password" placeholder="パスワードを入力"/>
-            </div>
-        <input class="button is-small is-primary" type="submit" value="Login" />
-        </form>
-        <p th:if="${param.error}">名前かパスワードが間違っています</p>
-      </div>
-    
-      <a class="block" th:href="@{/users/register}"><input class="button is-small is-primary" type="button" value="新規登録" /></a>
-      <a class="block" th:href="@{/top}"><input class="button is-small is-primary" type="button" value="トップへ" /></a>
+        <div class="block">
+            <form th:action="@{/login}" method="POST" id="loginForm">
+                <div class="field">
+                    <label for="userId">ユーザー名:</label>
+                    <input type="text" id="username" name="username" placeholder="ユーザー名を入力"/>
+                </div>
+
+                <div class="field">
+                    <label for="password">パスワード:</label>
+                    <input type="password" id="password" name="password" placeholder="パスワードを入力"/>
+                </div>
+                
+                <input class="button is-small is-primary" type="submit" value="Login" />
+            </form>
+            <p th:if="${param.error}">名前かパスワードが間違っています</p>
+        </div>
+        <a class="block" th:href="@{/users/register}"><input class="button is-small is-primary" type="button" value="新規登録" /></a>
+        <a class="block" th:href="@{/top}"><input class="button is-small is-primary" type="button" value="トップへ" /></a>
     </div>
-  </div>
+</div>
 </body>
 </html>
