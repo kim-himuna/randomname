@@ -12,48 +12,64 @@
 
         <div class="block">
             <div class="box">
-                <div class="block">
-                    <h3>ランダムネームとは</h3>
-                    <div>
+                <div class="content">
+                    <div class="block">
+                        <h3>ランダムネームとは</h3>
                         単語をランダムにつなげて名前をつけるサービスです。<br>
-                        ゲームのプレイヤー名、チーム名、愛犬、愛車の名前などにぜひ。
+                        ゲームのプレイヤー名、チーム名や各種サービスのアカウント名などに是非。
                     </div>
-                </div>
 
-                <div class="block">
-                    <h3>使い方</h3>
-                    <div class="content">
+                    <div class="block">
+                        <h3>使い方</h3>
                         <ol>
-                            <li>使用するパックを選びます</li>
-                            <li>シャッフル結果を表示します</li>
+                            <li>トップページで使用するパックをいくつか選び「使用」を押します。</li>
+                            <li>シャッフル結果ページを表示します。</li>
                         </ol>
                     </div>
-                </div>
-                <div class="block">
-                    <h3>その他の機能</h3>                
-                    <div class="content">
+                    <div class="block">
+                        <h3>ページ説明</h3>
+                        <h4>トップページ</h4>
                         <ul>
-                            <li>シャッフル詳細</li>
-                            文字数の上限やつなげる単語数を決めることができます。<br>
-                            また、使用中のカードを確認することができます。<br>
-                            <li>ユーザ情報</li>
-                            未ログインの場合はこちらから新規登録やログインができます。<br>
-                            ログイン済みの場合は「お気に入りパック」や「作製したパック」を確認できます。
-                            <li>検索</li>
-                            検索したい単語やタイトルが含まれているパックを探すことができます。
-                            <li>製作者情報</li>
-                            パックの「製作者」から特定ユーザの作ったパック一覧を見ることができます。
+                            <li>パックと単語一覧が表示されます。</li>
+                            <li>検索ボックスで欲しいワードがタイトルか単語リストに含まれているパックを検索できます。</li>
                         </ul>
+                        <h4>シャッフル結果</h4>
+                        <ul>
+                            <li>選んだパックから単語を適当に組み合わせて複雑な単語を作ります。</li>
+                        </ul>
+                        <h4>シャッフル詳細</h4>
+                        <ul>
+                            <li>文字数、単語数の制限を設定できます。</li>
+                            <li>使用するパックの確認や除去、使用リストのリセットなどができます。</li>
+                        </ul>
+                        <h4>ユーザ情報</h4>
+                        <ul>
+                            <li>未ログインの場合、ユーザ登録やログイン画面に進みます。</li>
+                            <li>ログイン中の場合、お気に入りパックや作製したパックの一覧を表示できます。</li>
+                        </ul>
+                        <h4>パック作成</h4>
+                        <ul>
+                            <li>ログイン中の場合のみの表示です。</li>
+                            <li>新しい単語やパックを登録できます。 </li>
+                        </ul>
+                        <h4>パックについて</h4>
+                        <ul>
+                            <li>「使用」を押すとシャッフルリストに追加されます。</li>
+                            <li>「使用キャンセル」を押すとシャッフルリストから除去されます。</li>
+                            <li>「お気に入り」を押すとお気に入りリストに入ります。</li>
+                            <li>「お気に入り解除」を押すとお気に入りリストから除去されます。</li>
+                            <li>「制作者」の名前を押すとその製作者が作った他のパックを見ることができます。</li>
+                        </ul> 
                     </div>
                 </div>
             </div>
             <div class="box">
                 <div class="block">
-                    <h3>登録するとできること</h3>
+                    <h3>ユーザ登録するとできること</h3>
                     <div class="content">
                         <ul>
                             <li>パック作成</li>
-                            パックを作製することができるようになります。<br>
+                            パックを作成することができるようになります。<br>
                             <li>お気に入り登録</li>
                             よく使うパックなどをお気に入り登録できるようになります。<br>
                         </ul>
@@ -62,7 +78,7 @@
             </div>
         </div>
         <div class="box" sec:authorize="!hasRole('USER')">
-            <a class="block" th:href="@{/top}"><input class="button is-small is-primary" type="button" value="ゲストユーザ" /></a>
+            <a class="block" th:href="@{/top}"><input class="button is-small is-primary" type="button" value="ログインせずに使う" /></a>
             <a class="block" th:href="@{/loginForm}"><input class="button is-small is-primary" type="button" value="ログインページ" /></a>
             <a class="block" th:href="@{/users/register}"><input class="button is-small is-primary" type="button" value="新規登録" /></a>
         </div>
