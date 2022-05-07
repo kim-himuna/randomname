@@ -50,6 +50,7 @@
                                         </th:block>
                                     </div>
                                     <div class="block">
+                                        <a th:href="@{/packs/{packId}/delete(packId=${pack.getId()})}"><input class="button is-small is-primary" type="button" value="削除"/></a>
                                         製作者:<a th:href="@{/users/product/from{packId}(packId=${pack.getId()})}"><span th:text="${pack.getCreator()}"></span></a>
                                     </div>
                                 </td>
