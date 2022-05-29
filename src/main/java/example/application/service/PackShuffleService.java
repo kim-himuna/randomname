@@ -3,7 +3,7 @@ package example.application.service;
 import java.util.ArrayList;
 import java.util.Random;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,13 +11,14 @@ import example.domain.model.ShuffleList;
 import example.domain.model.pack.*;
 import example.domain.model.word.*;
 import example.domain.repository.PackRepository;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class PackShuffleService {
 
-    @Autowired
-    private PackRepository packRepository;
+    private final PackRepository packRepository;
 
     public String shuffleResult(ShuffleList shuffleList){
 

@@ -3,7 +3,7 @@ package example.presentation.controller.user;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,20 +21,18 @@ import example.domain.model.word.Word;
 import example.presentation.form.PackListForm;
 import example.presentation.form.SearchWordsForm;
 import example.presentation.helper.PackToPackFormHelper;
+import lombok.RequiredArgsConstructor;
 
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("users")
 public class UserDetailsController {
 
-    @Autowired
-    PackService packService;
-    @Autowired
-    LikeService likeService;
-    @Autowired
-    Session session;
-    @Autowired
-    PackToPackFormHelper toPackForm;
+    private final PackService packService;
+    private final LikeService likeService;
+    private final Session session;
+    private final PackToPackFormHelper toPackForm;
 
     @GetMapping("/detail")
     public String userDetail(Model model,@AuthenticationPrincipal UserAuthDetails userAuthDetails){

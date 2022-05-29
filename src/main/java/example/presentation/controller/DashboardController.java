@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 
@@ -20,21 +20,18 @@ import example.domain.model.pack.*;
 import example.domain.model.word.Word;
 import example.presentation.form.PackListForm;
 import example.presentation.form.SearchWordsForm;
+import lombok.RequiredArgsConstructor;
 
 
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping
 public class DashboardController {
-    
-    @Autowired
-    PackService packService;
 
-    @Autowired
-    LikeService likeService;
-
-    @Autowired
-    Session session;
+    private final PackService packService;
+    private final LikeService likeService;
+    private final Session session;
 
     @GetMapping("/top")
     public String show(Model model,SearchWordsForm searchWordsForm,@AuthenticationPrincipal UserAuthDetails userAuthDetails) {

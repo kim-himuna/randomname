@@ -3,7 +3,7 @@ package example.infrastructure.datasource.pack;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Repository;
 
 import example.domain.model.pack.*;
@@ -11,11 +11,13 @@ import example.domain.model.user.UserId;
 import example.domain.model.word.*;
 import example.domain.repository.PackRepository;
 import example.infrastructure.mybatisEntity.*;
+import lombok.RequiredArgsConstructor;
 
 @Repository
+@RequiredArgsConstructor
 public class PackDatasourace implements PackRepository {
-    @Autowired
-    PackMapper mapper;
+
+    private final PackMapper mapper;
 
     @Override
     public Pack getPack(PackId packId){

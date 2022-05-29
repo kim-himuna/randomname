@@ -3,7 +3,7 @@ package example.presentation.controller.pack;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,29 +24,22 @@ import example.domain.model.pack.PackId;
 import example.presentation.form.ShuffleDetailForm;
 import example.presentation.form.ShuffleSelectPacks;
 import example.presentation.helper.PackToPackFormHelper;
+import lombok.RequiredArgsConstructor;
 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("packs/shuffle")
 public class PackShuffleController {
 
-    @Autowired
-    private PackShuffleService packShuffleService;
-
-    @Autowired
-    private PackService packService;
-
-    @Autowired
-    private LikeService likeService;
-
-    @Autowired
-    private Session session;
-
-    @Autowired
-    private PackToPackFormHelper toPackFormHelper;
+    private final PackShuffleService packShuffleService;
+    private final PackService packService;
+    private final LikeService likeService;
+    private final Session session;
+    private final PackToPackFormHelper toPackFormHelper;
 
 
     @RequestMapping("/{packId}/listAdd/{fromPage}")

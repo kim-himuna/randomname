@@ -1,16 +1,18 @@
 package example.infrastructure.datasource.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Repository;
 
 import example.domain.model.user.User;
 import example.domain.model.user.UserName;
 import example.domain.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 
 @Repository
+@RequiredArgsConstructor
 public class UserDatasource implements UserRepository{
-    @Autowired
-    UserMapper mapper;
+
+    private final UserMapper mapper;
 
     @Override
     public User getUserByName(UserName username) {

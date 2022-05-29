@@ -3,7 +3,7 @@ package example.infrastructure.datasource.like;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Repository;
 
 import example.domain.model.like.Like;
@@ -11,13 +11,13 @@ import example.domain.model.pack.Pack;
 import example.domain.model.user.UserId;
 import example.domain.repository.LikeRepository;
 import example.infrastructure.mybatisEntity.LikeEntity;
+import lombok.RequiredArgsConstructor;
 
 @Repository
+@RequiredArgsConstructor
 public class LikeDatasource implements LikeRepository{
 
-
-    @Autowired
-    LikeMapper likeMapper;
+    private final LikeMapper likeMapper;
 
     @Override
     public List<Pack> selectPacksByUserId(UserId userId) {

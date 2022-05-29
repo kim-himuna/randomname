@@ -3,7 +3,7 @@ package example.presentation.controller.pack;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 
@@ -25,19 +25,18 @@ import example.domain.model.word.Word;
 import example.presentation.form.PackForm;
 import example.presentation.form.WordForm;
 import example.presentation.helper.PackFormToPackHelper;
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("packs/{packId}/update")
 @SessionAttributes({"packForm"})
 public class PackUpdateController {
 
-    @Autowired
-    PackService packService;
+    private final PackService packService;
+    private final PackFormToPackHelper packFormToPackHelper;
 
-    @Autowired
-    PackFormToPackHelper packFormToPackHelper;
-
-
+    
     @GetMapping
     public String open(@PathVariable(value = "packId") PackId packId, Model model){
 

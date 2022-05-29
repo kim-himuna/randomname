@@ -2,21 +2,22 @@ package example.application.service;
 
 
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import example.domain.model.pack.*;
 import example.domain.model.user.UserId;
 import example.domain.repository.PackRepository;
+import lombok.RequiredArgsConstructor;
 
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class PackService{
 
-    @Autowired
-    private PackRepository packRepository;
+    private final PackRepository packRepository;
 
     public List<Pack> getPackList(){
         return packRepository.getPackList();

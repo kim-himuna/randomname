@@ -1,6 +1,6 @@
 package example.presentation.controller.auth;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,17 +20,16 @@ import example.domain.model.user.UserName;
 import example.domain.model.user.UserPassword;
 import example.domain.model.user.UserRole;
 import example.presentation.form.UserRegisterForm;
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("users/register")
 @SessionAttributes({"userRegisterForm"})
 public class UserRegisterController {
     
-    @Autowired
-    UserService userSerivice;
-
-    @Autowired
-    private PasswordEncoder passwordEncorder;
+    private final UserService userSerivice;
+    private final PasswordEncoder passwordEncorder;
 
 
     @GetMapping

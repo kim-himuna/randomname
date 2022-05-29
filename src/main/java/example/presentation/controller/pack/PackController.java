@@ -1,6 +1,6 @@
 package example.presentation.controller.pack;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,23 +14,19 @@ import example.domain.model.Session;
 import example.domain.model.UserAuthDetails;
 import example.domain.model.pack.*;
 import example.presentation.helper.PackToPackFormHelper;
+import lombok.RequiredArgsConstructor;
 
 /**pack詳細 */
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("packs/detail/{packId}")
 public class PackController {
 
-    @Autowired
-    PackService packService;
-
-    @Autowired
-    LikeService likeService;
-
-    @Autowired
-    Session session;
-    @Autowired
-    PackToPackFormHelper toPackForm;
+    private final PackService packService;
+    private final LikeService likeService;
+    private final Session session;
+    private final PackToPackFormHelper toPackForm;
 
     @GetMapping
     public String packDetail(Model model,@PathVariable(value = "packId") PackId packId,@AuthenticationPrincipal UserAuthDetails userAuthDetails){

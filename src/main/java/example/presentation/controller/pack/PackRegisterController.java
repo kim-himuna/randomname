@@ -3,7 +3,7 @@ package example.presentation.controller.pack;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,27 +28,20 @@ import example.presentation.form.PackForm;
 import example.presentation.form.WordForm;
 import example.presentation.helper.PackFormToPackHelper;
 import example.presentation.helper.PackToPackFormHelper;
+import lombok.RequiredArgsConstructor;
 
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("packs/register")
 @SessionAttributes({"packForm"})
 public class PackRegisterController {
 
-    @Autowired
-    PackFormToPackHelper PackFormToPackHelper;
-
-    @Autowired
-    PackToPackFormHelper toPackFormHelper;
-
-    @Autowired
-    PackService packService;
-
-    @Autowired
-    LikeService likeService;
-
-    @Autowired
-    Session session;
+    private final PackFormToPackHelper PackFormToPackHelper;
+    private final PackToPackFormHelper toPackFormHelper;
+    private final PackService packService;
+    private final LikeService likeService;
+    private final Session session;
 
 
     @GetMapping

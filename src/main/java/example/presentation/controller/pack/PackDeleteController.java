@@ -1,6 +1,6 @@
 package example.presentation.controller.pack;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,16 +13,15 @@ import example.domain.model.Session;
 import example.domain.model.UserAuthDetails;
 import example.domain.model.pack.PackId;
 import example.domain.model.user.UserId;
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("packs/{packId}/delete")
 public class PackDeleteController {
 
-    @Autowired
-    PackService packService;
-
-    @Autowired
-    private Session session;
+    private final PackService packService;
+    private final Session session;
     
     @GetMapping
     public String deleteConfirm(Model model,@PathVariable(value = "packId") long packId){

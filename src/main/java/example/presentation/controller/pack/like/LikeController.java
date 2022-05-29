@@ -1,6 +1,6 @@
 package example.presentation.controller.pack.like;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,13 +12,14 @@ import example.application.service.LikeService;
 import example.domain.model.UserAuthDetails;
 import example.domain.model.like.Like;
 import example.domain.model.pack.PackId;
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("like/{packId}/{fromPage}")
 public class LikeController {
-
-    @Autowired
-    LikeService likeService;
+    
+    private final LikeService likeService;
 
     @GetMapping
     public String likePack(Model model,@AuthenticationPrincipal UserAuthDetails userAuthDetails,@PathVariable(value = "packId") PackId packId,@PathVariable(value = "fromPage") String fromPage){
