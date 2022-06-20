@@ -34,10 +34,10 @@
                                     
                                     <div class="block">
                                         <th:block th:if = "${!pack.getIsUsed()}">
-                                            <a th:href="@{/packs/shuffle/{packId}/listAdd/{fromPage}(packId=${pack.getId()},fromPage=usersDetail)}"><input class="button is-small is-primary" type="button" value="使用"/></a>
+                                            <button th:id="'usebtn_' + ${pack.getId()}" th:data-packid="${pack.getId()}" class="button is-small is-primary" type="button">使用</button>
                                         </th:block>
                                         <th:block th:if = "${pack.getIsUsed()}">
-                                            <a th:href="@{/packs/shuffle/{packId}/listRemove/{fromPage}(packId=${pack.getId()},fromPage=usersDetail)}"><input class="button is-small is-primary" type="button" value="使用キャンセル"/></a>
+                                            <button th:id="'usebtn_' + ${pack.getId()}" th:data-packid="${pack.getId()}" class="button is-small is-primary" type="button">使用キャンセル</button>
                                         </th:block>
                                     </div>
 
@@ -73,11 +73,11 @@
                             <td width="40%" th:text="${likedPack.getWords.get(0)}" >
                             <td width="20%" rowspan = "5">
                                 <div class="block">
-                                    <th:block th:if = "${!likedPack.getIsUsed()}">
-                                        <a th:href="@{/packs/shuffle/{packId}/listAdd/{fromPage}(packId=${likedPack.getId()},fromPage=usersDetail)}"><input class="button is-small is-primary" type="button" value="使用"/></a>
+                                    <th:block th:if = "${!pack.getIsUsed()}">
+                                        <button th:id="'usebtn_' + ${pack.getId()}" th:data-packid="${pack.getId()}" class="button is-small is-primary" type="button">使用</button>
                                     </th:block>
-                                    <th:block th:if = "${likedPack.getIsUsed()}">
-                                        <a th:href="@{/packs/shuffle/{packId}/listRemove/{fromPage}(packId=${likedPack.getId()},fromPage=usersDetail)}"><input class="button is-small is-primary" type="button" value="使用キャンセル"/></a>
+                                    <th:block th:if = "${pack.getIsUsed()}">
+                                        <button th:id="'usebtn_' + ${pack.getId()}" th:data-packid="${pack.getId()}" class="button is-small is-primary" type="button">使用キャンセル</button>
                                     </th:block>
                                 </div>
                                 
@@ -102,7 +102,8 @@
                     </table>
                 </div>
             </div>
-</div>
+        </div>
 
+        <script type="text/javascript" src="/javascript/pack-use.js" th:src="@{/javascript/pack-use.js}"></script>
     </body>
 </html>
