@@ -21,12 +21,14 @@ public class LikeService {
         return likeRepository.selectPacksByUserId(userId);
     }
     
-    public void create(Like like){
+    public boolean create(Like like){
 
         if(likeRepository.getLikeByLike(like) == null){
             likeRepository.create(like);
+            return true;
         }else{
             likeRepository.deleteByUserIdAndPackId(like);
+            return false;
         }
 
     }
