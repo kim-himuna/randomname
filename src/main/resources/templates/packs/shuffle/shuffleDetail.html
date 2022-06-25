@@ -40,13 +40,13 @@
                         <a th:href="@{/packs/shuffle/{packId}/listRemove/{fromPage}(packId=${pack.getId},fromPage=shuffleDetail)}"><input class="button is-small is-primary" type="button" value="使用キャンセル"></a>
                         </div>
 
-                        <div class="block"  sec:authorize="hasRole('USER')">
+                        <div class="block" sec:authorize="hasRole('USER')">
                             <th:block th:if="${pack.getIsLiked()}">
-                                <a th:href="@{/like/{packId}/{fromPage}(packId=${pack.getId()},fromPage=shuffleDetail)}"><input class="button is-small is-primary" type="button" value="お気に入り解除"/></a>
+                                <button th:id="'likebtn_' + ${pack.getId()}" th:data-packid="${pack.getId()}" class="button is-small is-primary" type="button">お気に入り解除</button>
                             </th:block>
                             <th:block th:if="${!pack.getIsLiked()}">
-                                <a th:href="@{/like/{packId}/{fromPage}(packId=${pack.getId()},fromPage=shuffleDetail)}"><input class="button is-small is-primary" type="button" value="お気に入り"/></a>
-                            </th:block>                    
+                                <button th:id="'likebtn_' + ${pack.getId()}" th:data-packid="${pack.getId()}" class="button is-small is-primary" type="button">お気に入り</button>
+                            </th:block>
                         </div>
 
                         <div class="block">
