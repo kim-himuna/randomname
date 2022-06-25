@@ -12,6 +12,7 @@ $(function(){
             }
         }).done(function(note) {
             $('#usebtn_'+packid).html(note);
+            $('#usebtn_'+packid+'likedpack').html(note);
         }).fail(function() {
             alert("通信に失敗しました。")
         }).always(function() {
