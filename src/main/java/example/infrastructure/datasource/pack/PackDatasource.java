@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PackDatasource implements PackRepository {
 
-    private final packMapper mapper;
+    private final PackMapper mapper;
 
     @Override
     public Pack getPack(PackId packId){
