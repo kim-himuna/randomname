@@ -4,7 +4,9 @@
 
 
 # URL
-https://randamu-name.herokuapp.com  
+
+~~https://randamu-name.herokuapp.com~~
+herokuの無料版が終了するため削除
 
 ログインなしでも特定機能は使用できますが、  
 アカウント名:user  
